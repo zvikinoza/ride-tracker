@@ -9,21 +9,67 @@
     light: "https://tiles.openfreemap.org/styles/positron",
     dark: "https://tiles.openfreemap.org/styles/dark",
   };
+  const PLANE_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg>';
 
   let map, config, lastFix, styleReady = false;
   let markers = [];
   let geo = { type: "FeatureCollection", features: [] };
 
-  const dark = window.matchMedia("(prefers-color-scheme: dark)");
-  const css = (name) => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+  // ---------- theme ----------
+  const root = document.documentElement;
+  const isDark = () => root.dataset.theme === "dark";
+  function setTheme(name) {
+    root.dataset.theme = name;
+    try { localStorage.setItem("theme", name); } catch (e) { /* private mode */ }
+    if (map) { styleReady = false; map.setStyle(isDark() ? STYLE.dark : STYLE.light); }
+  }
+  class ThemeToggle {
+    onAdd() {
+      this.el = document.createElement("div");
+      this.el.className = "maplibregl-ctrl maplibregl-ctrl-group theme-toggle";
+      this.el.innerHTML = '<button type="button" title="Switch light / dark" aria-label="Switch light / dark">' +
+        '<svg class="sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>' +
+        '<svg class="moon" viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button>';
+      this.el.querySelector("button").addEventListener("click", () => setTheme(isDark() ? "light" : "dark"));
+      return this.el;
+    }
+    onRemove() { this.el.remove(); }
+  }
+  const css = (name) => getComputedStyle(root).getPropertyValue(name).trim();
 
   // ---------- geometry ----------
   const R = 6371;
+  const toRad = (d) => (d * Math.PI) / 180, toDeg = (r) => (r * 180) / Math.PI;
   function haversine(a, b) {
-    const toRad = (d) => (d * Math.PI) / 180;
     const dLat = toRad(b.lat - a.lat), dLon = toRad(b.lon - a.lon);
     const s = Math.sin(dLat / 2) ** 2 + Math.cos(toRad(a.lat)) * Math.cos(toRad(b.lat)) * Math.sin(dLon / 2) ** 2;
     return 2 * R * Math.asin(Math.sqrt(s));
+  }
+  function bearing(a, b) {
+    const φ1 = toRad(a.lat), φ2 = toRad(b.lat), Δλ = toRad(b.lon - a.lon);
+    const y = Math.sin(Δλ) * Math.cos(φ2);
+    const x = Math.cos(φ1) * Math.sin(φ2) - Math.sin(φ1) * Math.cos(φ2) * Math.cos(Δλ);
+    return (toDeg(Math.atan2(y, x)) + 360) % 360;
+  }
+  /* Great-circle arc from a to b as [x, lat] pairs, x continuing a's unwrapped longitude. */
+  function arc(a, b, n = 64) {
+    const φ1 = toRad(a.lat), λ1 = toRad(a.lon), φ2 = toRad(b.lat), λ2 = toRad(b.lon);
+    const d = 2 * Math.asin(Math.sqrt(Math.sin((φ2 - φ1) / 2) ** 2 + Math.cos(φ1) * Math.cos(φ2) * Math.sin((λ2 - λ1) / 2) ** 2));
+    const out = [];
+    let prevLon = a.lon, offset = a.x - a.lon;
+    for (let i = 0; i <= n; i++) {
+      const f = i / n;
+      if (d === 0) { out.push([a.x, a.lat]); continue; }
+      const A = Math.sin((1 - f) * d) / Math.sin(d), B = Math.sin(f * d) / Math.sin(d);
+      const x = A * Math.cos(φ1) * Math.cos(λ1) + B * Math.cos(φ2) * Math.cos(λ2);
+      const y = A * Math.cos(φ1) * Math.sin(λ1) + B * Math.cos(φ2) * Math.sin(λ2);
+      const z = A * Math.sin(φ1) + B * Math.sin(φ2);
+      const lat = toDeg(Math.atan2(z, Math.sqrt(x * x + y * y))), lon = toDeg(Math.atan2(y, x));
+      if (lon - prevLon > 180) offset -= 360; else if (lon - prevLon < -180) offset += 360;
+      prevLon = lon;
+      out.push([lon + offset, lat]);
+    }
+    return out;
   }
 
   /* Unwrap longitudes so a route that crosses the antimeridian stays continuous
@@ -40,15 +86,17 @@
     });
   }
 
-  /* Split the track into ridden segments and transfers (flights, ferries, trains).
-     A hop counts as a transfer when it is long AND implausibly fast for a bicycle. */
+  /* Split the track into ridden segments, flights and other transfers (ferry, train, bus).
+     A hop counts as a transfer when it is long AND implausibly fast for a bicycle;
+     a transfer longer than flight_min_km is a flight and is drawn as a great-circle arc. */
   function analyse(points, cfg) {
     const minKm = cfg.transfer_min_km ?? 15;
     const maxKmh = cfg.transfer_speed_kmh ?? 40;
+    const flightKm = cfg.flight_min_km ?? 400;
     const pts = unwrap(points);
     const segments = [];
     let cur = { type: "ride", coords: [] };
-    let km = 0;
+    let km = 0, flights = 0;
     for (let i = 0; i < pts.length; i++) {
       const p = pts[i];
       if (i === 0) { cur.coords.push([p.x, p.lat]); continue; }
@@ -57,7 +105,14 @@
       const hours = Math.max((Date.parse(p.t) - Date.parse(prev.t)) / 3.6e6, 1 / 60);
       if (d > minKm && d / hours > maxKmh) {
         if (cur.coords.length > 1) segments.push(cur);
-        segments.push({ type: "transfer", coords: [[prev.x, prev.lat], [p.x, p.lat]] });
+        if (d >= flightKm) {
+          flights++;
+          const coords = arc(prev, p);
+          const mid = coords[Math.floor(coords.length / 2)];
+          segments.push({ type: "flight", coords, km: d, mid, heading: bearing({ lat: mid[1], lon: mid[0] }, p) });
+        } else {
+          segments.push({ type: "transfer", coords: [[prev.x, prev.lat], [p.x, p.lat]], km: d });
+        }
         cur = { type: "ride", coords: [[p.x, p.lat]] };
       } else {
         if (d > 0.03) km += d; // ignore GPS jitter while stopped
@@ -65,7 +120,7 @@
       }
     }
     if (cur.coords.length > 1) segments.push(cur);
-    return { segments, km, pts };
+    return { segments, km, flights, pts };
   }
 
   // ---------- formatting ----------
@@ -91,14 +146,16 @@
   function initMap() {
     map = new maplibregl.Map({
       container: "map",
-      style: dark.matches ? STYLE.dark : STYLE.light,
-      center: [20, 30],
-      zoom: 1.6,
+      style: isDark() ? STYLE.dark : STYLE.light,
+      center: [40, 42],
+      zoom: 2,
       attributionControl: { compact: window.innerWidth < 640 },
       cooperativeGestures: false,
     });
     map.addControl(new maplibregl.NavigationControl({ showCompass: false }), "top-right");
+    map.addControl(new ThemeToggle(), "top-right");
     map.on("style.load", addLayers);
+
     // Compact attribution (phones) pops open once attributions arrive; fold it the first time, leave taps alone.
     const attrib = map.getContainer().querySelector(".maplibregl-ctrl-attrib");
     if (attrib) {
@@ -112,31 +169,49 @@
       obs.observe(attrib, { attributes: true, attributeFilter: ["class", "open"] });
       setTimeout(() => obs.disconnect(), 60000);
     }
-    dark.addEventListener("change", () => {
-      styleReady = false;
-      map.setStyle(dark.matches ? STYLE.dark : STYLE.light);
-    });
+  }
+
+  /* Calm the basemap labels: one language per name, no villages/regions/road names,
+     cities only from mid zoom, and more breathing room between labels. */
+  function quietLabels() {
+    const HIDE = /^(label_other|label_village|label_state|highway-|road_shield|waterway_line_label|water_name_line_label|airport|place_other|place_suburb|place_village|place_state|highway_name|road_oneway)/;
+    const LATE = { label_town: 8, place_town: 8, label_city: 5, place_city: 5, place_city_large: 4 };
+    for (const layer of map.getStyle().layers) {
+      if (layer.type !== "symbol") continue;
+      if (HIDE.test(layer.id)) { map.setLayoutProperty(layer.id, "visibility", "none"); continue; }
+      map.setLayoutProperty(layer.id, "text-field", ["coalesce", ["get", "name_en"], ["get", "name:latin"], ["get", "name"]]);
+      map.setLayoutProperty(layer.id, "text-padding", 14);
+      if (LATE[layer.id]) map.setLayerZoomRange(layer.id, LATE[layer.id], layer.maxzoom ?? 24);
+    }
   }
 
   function addLayers() {
+    quietLabels();
     const accent = css("--accent"), casing = css("--casing"), transfer = css("--transfer");
     if (!map.getSource("route")) map.addSource("route", { type: "geojson", data: geo });
     else map.getSource("route").setData(geo);
-    const ride = ["==", ["get", "type"], "ride"];
-    map.addLayer({ id: "route-casing", type: "line", source: "route", filter: ride,
+    const is = (t) => ["==", ["get", "type"], t];
+    map.addLayer({ id: "route-casing", type: "line", source: "route", filter: is("ride"),
       layout: { "line-join": "round", "line-cap": "round" },
       paint: { "line-color": casing, "line-width": 6, "line-opacity": 0.9 } });
-    map.addLayer({ id: "route-transfer", type: "line", source: "route", filter: ["==", ["get", "type"], "transfer"],
+    map.addLayer({ id: "route-transfer", type: "line", source: "route", filter: is("transfer"),
       paint: { "line-color": transfer, "line-width": 1.5, "line-dasharray": [1, 4], "line-opacity": 0.9 } });
-    map.addLayer({ id: "route-ride", type: "line", source: "route", filter: ride,
+    map.addLayer({ id: "route-flight", type: "line", source: "route", filter: is("flight"),
+      paint: { "line-color": transfer, "line-width": 1.2, "line-dasharray": [4, 4], "line-opacity": 0.8 } });
+    map.addLayer({ id: "route-ride", type: "line", source: "route", filter: is("ride"),
       layout: { "line-join": "round", "line-cap": "round" },
       paint: { "line-color": accent, "line-width": 2.5, "line-opacity": 0.95 } });
     styleReady = true;
   }
 
-  function popup(el, html) {
-    const p = new maplibregl.Popup({ closeButton: false, closeOnClick: false, className: "quiet", offset: 12 });
-    return p.setHTML(html);
+  function popup(html) {
+    return new maplibregl.Popup({ closeButton: false, closeOnClick: false, className: "quiet", offset: 14 }).setHTML(html);
+  }
+  function addMarker(el, lngLat, html, opts = {}) {
+    const m = new maplibregl.Marker({ element: el, ...opts }).setLngLat(lngLat).setPopup(popup(html)).addTo(map);
+    el.addEventListener("mouseenter", () => { if (!m.getPopup().isOpen()) m.togglePopup(); });
+    el.addEventListener("mouseleave", () => { if (m.getPopup().isOpen()) m.togglePopup(); });
+    markers.push(m);
   }
 
   function draw(points) {
@@ -150,17 +225,16 @@
     if (!pts.length) return;
     const first = pts[0], last = pts[pts.length - 1];
 
-    const s = document.createElement("div"); s.className = "start";
-    markers.push(new maplibregl.Marker({ element: s }).setLngLat([first.x, first.lat])
-      .setPopup(popup(s, `Started here · ${config.start_place || fmtDate(config.start_date)}`)).addTo(map));
-    const h = document.createElement("div"); h.className = "here";
-    markers.push(new maplibregl.Marker({ element: h }).setLngLat([last.x, last.lat])
-      .setPopup(popup(h, `Latest fix · ${relTime(last.t)}`)).addTo(map));
-    for (const m of markers) {
-      const el = m.getElement();
-      el.addEventListener("mouseenter", () => { if (!m.getPopup().isOpen()) m.togglePopup(); });
-      el.addEventListener("mouseleave", () => { if (m.getPopup().isOpen()) m.togglePopup(); });
+    for (const s of segments) {
+      if (s.type !== "flight") continue;
+      const el = document.createElement("div"); el.className = "plane"; el.innerHTML = PLANE_SVG;
+      el.firstChild.style.transform = `rotate(${Math.round(s.heading)}deg)`;
+      addMarker(el, s.mid, `Flight · ${fmtInt(s.km)} km, not counted`);
     }
+    const st = document.createElement("div"); st.className = "start";
+    addMarker(st, [first.x, first.lat], `Started here · ${config.start_place || fmtDate(config.start_date)}`);
+    const here = document.createElement("div"); here.className = "here";
+    addMarker(here, [last.x, last.lat], `Latest fix · ${relTime(last.t)}`);
   }
 
   function fit(points) {
@@ -188,7 +262,7 @@
   }
 
   function render(points, summary) {
-    const { km } = analyse(points, config);
+    const { km, flights } = analyse(points, config);
     $("km").textContent = points.length ? fmtInt(km) : "—";
     $("days").textContent = fmtInt(dayCount(config.start_date));
 
@@ -207,6 +281,7 @@
 
     const parts = [];
     if (config.start_date) parts.push(`Left ${config.start_place ? config.start_place + " on " : ""}${fmtDate(config.start_date)}`);
+    if (flights) parts.push(`${flights} flight${flights === 1 ? "" : "s"}`);
     if (points.length) parts.push(`${fmtInt(points.length)} tracker fixes`);
     $("meta").textContent = parts.join(" · ");
 

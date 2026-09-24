@@ -11,8 +11,7 @@
   --serif: "Fraunces", Georgia, serif;
   --sans: "Inter", system-ui, -apple-system, sans-serif;
 }
-@media (prefers-color-scheme: dark) {
-  :root {
+:root[data-theme="dark"] {
     --bg: #17181a;
     --ink: #ebe7df;
     --muted: #918b81;
@@ -22,7 +21,6 @@
     --accent-soft: rgba(217, 118, 93, 0.28);
     --transfer: #6f6a62;
     --casing: rgba(20, 20, 22, 0.9);
-  }
 }
 
 * { box-sizing: border-box; }
@@ -173,9 +171,14 @@ h1 {
 }
 .maplibregl-ctrl-group button { background: transparent !important; }
 .maplibregl-ctrl-group button + button { border-top-color: var(--line) !important; }
-@media (prefers-color-scheme: dark) {
-  .maplibregl-ctrl-group button .maplibregl-ctrl-icon { filter: invert(0.9); }
-}
+:root[data-theme="dark"] .maplibregl-ctrl-group button .maplibregl-ctrl-icon { filter: invert(0.9); }
+
+/* Theme toggle (a MapLibre control) */
+.theme-toggle button { width: 29px; height: 29px; display: grid; place-items: center; cursor: pointer; }
+.theme-toggle svg { width: 15px; height: 15px; stroke: var(--ink); fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.theme-toggle .moon { display: none; }
+:root[data-theme="dark"] .theme-toggle .sun { display: none; }
+:root[data-theme="dark"] .theme-toggle .moon { display: block; }
 
 /* Markers */
 .here {
@@ -203,6 +206,16 @@ h1 {
   0%   { transform: scale(0.6); opacity: 0.8; }
   100% { transform: scale(2.4); opacity: 0; }
 }
+.plane {
+  width: 26px; height: 26px;
+  display: grid; place-items: center;
+  border-radius: 50%;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  color: var(--muted);
+  cursor: default;
+}
+.plane svg { width: 14px; height: 14px; fill: currentColor; }
 .start {
   width: 10px; height: 10px;
   border-radius: 50%;
@@ -234,7 +247,8 @@ h1 {
     padding: 18px 18px 16px;
   }
   .num { font-size: 34px; }
-  .maplibregl-ctrl-top-right { display: none; }
+  .maplibregl-ctrl-top-right .maplibregl-ctrl-group:not(.theme-toggle) { display: none; } /* no +/- on phones, keep the theme toggle */
+  .maplibregl-ctrl-top-right { top: max(14px, env(safe-area-inset-top)); }
   .maplibregl-ctrl-bottom-right { top: 0; bottom: auto; }
   .maplibregl-ctrl-attrib { border-radius: 0 0 0 8px; }
 }

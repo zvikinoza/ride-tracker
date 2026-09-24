@@ -48,9 +48,11 @@ python3 scripts/fetch_track.py
 - **Kilometres cycled** is the sum of straight-line distances between consecutive fixes,
   ignoring hops under 30 m (GPS jitter while stopped). A hop longer than `transfer_min_km`
   covered faster than `transfer_speed_kmh` counts as a transfer (flight, ferry, train): it is
-  drawn as a dotted line and not counted. Tune those two values in `config.json`. Slow ferries
+  drawn as a dotted line and not counted. A transfer of `flight_min_km` or more is a flight: a dashed
+  great-circle arc with a plane icon. Tune those values in `config.json`. Slow ferries
   can slip through; hand-edit `data/track.json` if one does.
 - **Days on the road** is today minus `start_date`, inclusive.
+- **Theme**: light by default, with a sun/moon toggle on the map that remembers the choice in the browser.
 - **Last seen** uses the newest fix; the place name comes from OpenStreetMap Nominatim
   (one lookup per run, only when the position changed). The dot turns grey after 36 h of silence.
 - The page re-reads the data every 30 minutes if left open.
