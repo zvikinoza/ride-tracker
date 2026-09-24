@@ -67,3 +67,10 @@ python3 scripts/fetch_track.py
   older tracks). Once a point is in `data/track.json` it stays there regardless.
 - Feed reference: Garmin's "About inReach KML Feeds" support article; URL parameters `d1`/`d2`
   are ISO-8601 UTC timestamps.
+
+## Deploying changes
+
+`index.html` references `css/style.css?v=…` and `js/app.js?v=…`. Bump that stamp whenever you change either
+file (any value works, e.g. the short commit hash), otherwise visitors' browsers may keep the old copy for
+up to 10 minutes after GitHub Pages redeploys. The page itself can also be cached for 10 minutes, so use a
+hard reload (Cmd/Ctrl+Shift+R) right after a deploy.
