@@ -4,8 +4,8 @@
   --muted: #7d766c;
   --line: rgba(31, 29, 26, 0.10);
   --panel: rgba(250, 248, 243, 0.82);
-  --accent: #b5533c;
-  --accent-soft: rgba(181, 83, 60, 0.25);
+  --accent: #2b6fd6;
+  --accent-soft: rgba(43, 111, 214, 0.25);
   --transfer: #9a948a;
   --casing: rgba(255, 255, 255, 0.9);
   --serif: "Fraunces", Georgia, serif;
@@ -17,8 +17,8 @@
     --muted: #918b81;
     --line: rgba(235, 231, 223, 0.12);
     --panel: rgba(28, 29, 32, 0.80);
-    --accent: #d9765d;
-    --accent-soft: rgba(217, 118, 93, 0.28);
+    --accent: #6fa3ff;
+    --accent-soft: rgba(111, 163, 255, 0.28);
     --transfer: #6f6a62;
     --casing: rgba(20, 20, 22, 0.9);
 }
@@ -181,7 +181,7 @@ h1 {
 
 /* Earth view: imagery on a globe over a night-sky backdrop; route colours brightened for it */
 :root:not([data-view="map"]) {
-  --accent: #ff7f45;
+  --accent: #3d9bff;
   --casing: rgba(255, 255, 255, 0.85);
   --transfer: #e9e4da;
 }

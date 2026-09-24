@@ -253,14 +253,14 @@
     const is = (t) => ["==", ["get", "type"], t];
     map.addLayer({ id: "route-casing", type: "line", source: "route", filter: is("ride"),
       layout: { "line-join": "round", "line-cap": "round" },
-      paint: { "line-color": casing, "line-width": 6, "line-opacity": 0.9 } });
+      paint: { "line-color": casing, "line-width": 8, "line-opacity": 0.9 } });
     map.addLayer({ id: "route-transfer", type: "line", source: "route", filter: is("transfer"),
       paint: { "line-color": transfer, "line-width": 1.5, "line-dasharray": [1, 4], "line-opacity": 0.9 } });
     map.addLayer({ id: "route-flight", type: "line", source: "route", filter: is("flight"),
       paint: { "line-color": transfer, "line-width": 1.2, "line-dasharray": [4, 4], "line-opacity": 0.8 } });
     map.addLayer({ id: "route-ride", type: "line", source: "route", filter: is("ride"),
       layout: { "line-join": "round", "line-cap": "round" },
-      paint: { "line-color": accent, "line-width": 2.5, "line-opacity": 0.95 } });
+      paint: { "line-color": accent, "line-width": 4, "line-opacity": 0.95 } });
     styleReady = true;
   }
 
