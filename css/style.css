@@ -247,7 +247,7 @@ h1 {
   100% { transform: scale(2.4); opacity: 0; }
 }
 .plane {
-  width: 26px; height: 26px;
+  width: 32px; height: 32px;
   display: grid; place-items: center;
   border-radius: 50%;
   background: var(--panel);
@@ -255,7 +255,7 @@ h1 {
   color: var(--muted);
   cursor: default;
 }
-.plane svg { width: 14px; height: 14px; fill: currentColor; }
+.plane svg { width: 18px; height: 18px; fill: currentColor; }
 .start {
   width: 10px; height: 10px;
   border-radius: 50%;

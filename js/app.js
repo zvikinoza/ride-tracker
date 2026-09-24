@@ -257,7 +257,7 @@
     map.addLayer({ id: "route-transfer", type: "line", source: "route", filter: is("transfer"),
       paint: { "line-color": transfer, "line-width": 1.5, "line-dasharray": [1, 4], "line-opacity": 0.9 } });
     map.addLayer({ id: "route-flight", type: "line", source: "route", filter: is("flight"),
-      paint: { "line-color": transfer, "line-width": 1.2, "line-dasharray": [4, 4], "line-opacity": 0.8 } });
+      paint: { "line-color": transfer, "line-width": 2.6, "line-dasharray": [2.2, 1.8], "line-opacity": 0.95 } });
     map.addLayer({ id: "route-ride", type: "line", source: "route", filter: is("ride"),
       layout: { "line-join": "round", "line-cap": "round" },
       paint: { "line-color": accent, "line-width": 4, "line-opacity": 0.95 } });
@@ -300,13 +300,13 @@
 
   const uiPadding = () => (window.innerWidth < 640
     ? { top: 110, left: 20, bottom: 260, right: 20 }
-    : { top: 110, left: 360, bottom: 60, right: 60 });
+    : { top: 80, left: 160, bottom: 40, right: 40 });
 
   /* First view: a regional look around where they are now (the whole route is a zoom-out away). */
   function fit(points) {
     if (!points.length) return;
     const last = points[points.length - 1];
-    map.jumpTo({ center: [last.lon, last.lat], zoom: window.innerWidth < 640 ? 5.2 : 6, padding: uiPadding() });
+    map.jumpTo({ center: [last.lon, last.lat], zoom: window.innerWidth < 640 ? 3.6 : 4.3, padding: uiPadding() });
   }
 
   // ---------- data ----------
