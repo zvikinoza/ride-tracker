@@ -1,0 +1,13 @@
+{
+  "rider": "Your Friend",
+  "title": "Around the world by bicycle",
+  "start_date": "2026-08-28",
+  "start_place": "Tbilisi, Georgia",
+  "mapshare_id": "YOUR_MAPSHARE_NAME",
+  "demo": true,
+  "transfer_min_km": 15,
+  "transfer_speed_kmh": 40,
+  "links": [
+    { "label": "Instagram", "url": "" }
+  ]
+}
