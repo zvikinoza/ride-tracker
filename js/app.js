@@ -298,16 +298,15 @@
     addMarker(here, [last.x, last.lat], `Latest fix · ${relTime(last.t)}`);
   }
 
+  const uiPadding = () => (window.innerWidth < 640
+    ? { top: 110, left: 20, bottom: 260, right: 20 }
+    : { top: 110, left: 360, bottom: 60, right: 60 });
+
+  /* First view: a regional look around where they are now (the whole route is a zoom-out away). */
   function fit(points) {
     if (!points.length) return;
-    const pts = unwrap(points);
-    const xs = pts.map((p) => p.x), ys = pts.map((p) => p.lat);
-    const small = window.innerWidth < 640;
-    map.fitBounds([[Math.min(...xs), Math.min(...ys)], [Math.max(...xs), Math.max(...ys)]], {
-      padding: small ? { top: 100, left: 30, bottom: 250, right: 30 } : { top: 100, left: 360, bottom: 60, right: 60 },
-      maxZoom: 12,
-      animate: false,
-    });
+    const last = points[points.length - 1];
+    map.jumpTo({ center: [last.lon, last.lat], zoom: window.innerWidth < 640 ? 5.2 : 6, padding: uiPadding() });
   }
 
   // ---------- data ----------

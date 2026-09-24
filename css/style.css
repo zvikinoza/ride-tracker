@@ -1,9 +1,13 @@
 :root {
   --bg: #f4f1ea;
   --ink: #1f1d1a;
-  --muted: #7d766c;
+  --muted: #675f55;
   --line: rgba(31, 29, 26, 0.10);
   --panel: rgba(250, 248, 243, 0.82);
+  --glass: linear-gradient(135deg, rgba(255, 255, 255, 0.74), rgba(255, 255, 255, 0.5));
+  --glass-edge: rgba(255, 255, 255, 0.75);
+  --glass-shine: rgba(255, 255, 255, 0.9);
+  --glass-shadow: 0 12px 40px -12px rgba(0, 0, 0, 0.28);
   --accent: #2b6fd6;
   --accent-soft: rgba(43, 111, 214, 0.25);
   --transfer: #9a948a;
@@ -17,6 +21,10 @@
     --muted: #918b81;
     --line: rgba(235, 231, 223, 0.12);
     --panel: rgba(28, 29, 32, 0.80);
+    --glass: linear-gradient(135deg, rgba(60, 62, 70, 0.66), rgba(24, 25, 30, 0.58));
+    --glass-edge: rgba(255, 255, 255, 0.18);
+    --glass-shine: rgba(255, 255, 255, 0.28);
+    --glass-shadow: 0 12px 40px -12px rgba(0, 0, 0, 0.6);
     --accent: #6fa3ff;
     --accent-soft: rgba(111, 163, 255, 0.28);
     --transfer: #6f6a62;
@@ -48,13 +56,7 @@ body {
   left: 24px;
   z-index: 500;
   pointer-events: none;
-  padding: 14px 20px 16px;
-  background: var(--panel);
-  border: 1px solid var(--line);
-  border-radius: 14px;
-  backdrop-filter: blur(14px) saturate(1.1);
-  -webkit-backdrop-filter: blur(14px) saturate(1.1);
-  box-shadow: 0 10px 30px -18px rgba(0, 0, 0, 0.35);
+  padding: 16px 22px 18px;
 }
 .eyebrow {
   margin: 0 0 4px;
@@ -80,14 +82,29 @@ h1 {
   bottom: max(24px, env(safe-area-inset-bottom));
   z-index: 500;
   width: 300px;
-  padding: 22px 22px 18px;
-  background: var(--panel);
-  border: 1px solid var(--line);
-  border-radius: 14px;
-  backdrop-filter: blur(14px) saturate(1.1);
-  -webkit-backdrop-filter: blur(14px) saturate(1.1);
-  box-shadow: 0 10px 30px -18px rgba(0, 0, 0, 0.35);
+  padding: 24px 24px 20px;
 }
+
+/* Glass surfaces: translucent gradient, deep blur, a bright specular edge and a soft drop shadow. */
+.brand, .panel {
+  background: var(--glass);
+  border: 1px solid var(--glass-edge);
+  border-radius: 24px;
+  backdrop-filter: blur(28px) saturate(1.7);
+  -webkit-backdrop-filter: blur(28px) saturate(1.7);
+  box-shadow: var(--glass-shadow),
+              inset 0 1px 0 var(--glass-shine),
+              inset 1px 0 0 rgba(255, 255, 255, 0.25),
+              inset 0 -1px 0 rgba(255, 255, 255, 0.08);
+}
+.brand::before, .panel::before {
+  content: "";
+  position: absolute; inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: radial-gradient(120% 60% at 20% 0%, rgba(255, 255, 255, 0.35), transparent 60%);
+}
+.brand > *, .panel > * { position: relative; }
 .stats {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -168,15 +185,15 @@ h1 {
 }
 .maplibregl-ctrl-attrib a { color: var(--muted) !important; }
 .maplibregl-ctrl-group {
-  background: var(--panel) !important;
-  border: 1px solid var(--line);
-  border-radius: 10px !important;
-  box-shadow: none !important;
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  background: var(--glass) !important;
+  border: 1px solid var(--glass-edge);
+  border-radius: 12px !important;
+  box-shadow: var(--glass-shadow), inset 0 1px 0 var(--glass-shine) !important;
+  backdrop-filter: blur(24px) saturate(1.6);
+  -webkit-backdrop-filter: blur(24px) saturate(1.6);
 }
 .maplibregl-ctrl-group button { background: transparent !important; }
-.maplibregl-ctrl-group button + button { border-top-color: var(--line) !important; }
+.maplibregl-ctrl-group button + button { border-top-color: var(--glass-edge) !important; }
 :root[data-theme="dark"] .maplibregl-ctrl-group button .maplibregl-ctrl-icon { filter: invert(0.9); }
 
 /* Earth view: imagery on a globe over a night-sky backdrop; route colours brightened for it */
@@ -262,12 +279,13 @@ h1 {
 
 /* Mobile */
 @media (max-width: 640px) {
-  .brand { left: 12px; top: max(12px, env(safe-area-inset-top)); padding: 12px 16px 14px; }
+  .brand { left: 12px; top: max(12px, env(safe-area-inset-top)); padding: 14px 18px 16px; border-radius: 20px; }
   h1 { font-size: 28px; }
   .panel {
     left: 12px; right: 12px; bottom: max(12px, env(safe-area-inset-bottom));
     width: auto;
-    padding: 18px 18px 16px;
+    padding: 20px 20px 18px;
+    border-radius: 22px;
   }
   .num { font-size: 34px; }
   .maplibregl-ctrl-top-right .maplibregl-ctrl-group:not(.theme-toggle):not(.view-toggle) { display: none; } /* no +/- on phones, keep the theme toggle */
