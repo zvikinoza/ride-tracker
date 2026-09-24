@@ -284,10 +284,14 @@ h1 {
   .panel {
     left: 12px; right: 12px; bottom: max(12px, env(safe-area-inset-bottom));
     width: auto;
-    padding: 20px 20px 18px;
-    border-radius: 22px;
+    padding: 14px 18px 12px;
+    border-radius: 20px;
   }
-  .num { font-size: 34px; }
+  .stats { gap: 14px; padding-bottom: 10px; }
+  .num { font-size: 30px; }
+  .label { margin-top: 3px; font-size: 11.5px; }
+  .last { margin-top: 10px; font-size: 14px; }
+  .meta { margin-top: 6px; font-size: 12px; }
   .maplibregl-ctrl-top-right .maplibregl-ctrl-group:not(.theme-toggle):not(.view-toggle) { display: none; } /* no +/- on phones, keep the theme toggle */
   .maplibregl-ctrl-top-right { top: max(14px, env(safe-area-inset-top)); }
   .maplibregl-ctrl-bottom-right { top: 0; bottom: auto; }

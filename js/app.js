@@ -342,7 +342,6 @@
     const parts = [];
     if (config.start_date) parts.push(`Left ${config.start_place ? config.start_place + " on " : ""}${fmtDate(config.start_date)}`);
     if (flights) parts.push(`${flights} flight${flights === 1 ? "" : "s"}`);
-    if (points.length) parts.push(`${fmtInt(points.length)} tracker fixes`);
     $("meta").textContent = parts.join(" · ");
 
     const links = (config.links || []).filter((l) => l.url);
