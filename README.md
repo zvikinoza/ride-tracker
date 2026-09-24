@@ -1,5 +1,7 @@
 # Ride tracker
 
+**Live site:** https://zvikinoza.github.io/ride-tracker/
+
 A quiet, single-page site that shows where a cyclist is right now, the road behind them,
 kilometres cycled and days on the road. Data comes from a Garmin inReach **MapShare** feed,
 pulled every two hours by a GitHub Action and committed to this repo, so the site itself is
