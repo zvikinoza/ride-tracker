@@ -179,6 +179,23 @@ h1 {
 .maplibregl-ctrl-group button + button { border-top-color: var(--line) !important; }
 :root[data-theme="dark"] .maplibregl-ctrl-group button .maplibregl-ctrl-icon { filter: invert(0.9); }
 
+/* Earth view: imagery on a globe over a night-sky backdrop; route colours brightened for it */
+:root:not([data-view="map"]) {
+  --accent: #ff7f45;
+  --casing: rgba(255, 255, 255, 0.85);
+  --transfer: #e9e4da;
+}
+:root:not([data-view="map"]) #map { background: #05070c; }
+:root:not([data-view="map"]) .plane { background: rgba(10, 12, 18, 0.7); border-color: rgba(255,255,255,0.25); color: #f3efe8; }
+:root:not([data-view="map"]) .start { background: rgba(10, 12, 18, 0.7); border-color: #f3efe8; }
+
+/* View toggle (a MapLibre control) */
+.view-toggle button { width: 29px; height: 29px; display: grid; place-items: center; cursor: pointer; }
+.view-toggle svg { width: 15px; height: 15px; stroke: var(--ink); fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.view-toggle .mapicon { display: none; }
+:root:not([data-view="map"]) .view-toggle .globe { display: none; }
+:root:not([data-view="map"]) .view-toggle .mapicon { display: block; }
+
 /* Theme toggle (a MapLibre control) */
 .theme-toggle button { width: 29px; height: 29px; display: grid; place-items: center; cursor: pointer; }
 .theme-toggle svg { width: 15px; height: 15px; stroke: var(--ink); fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
@@ -253,7 +270,7 @@ h1 {
     padding: 18px 18px 16px;
   }
   .num { font-size: 34px; }
-  .maplibregl-ctrl-top-right .maplibregl-ctrl-group:not(.theme-toggle) { display: none; } /* no +/- on phones, keep the theme toggle */
+  .maplibregl-ctrl-top-right .maplibregl-ctrl-group:not(.theme-toggle):not(.view-toggle) { display: none; } /* no +/- on phones, keep the theme toggle */
   .maplibregl-ctrl-top-right { top: max(14px, env(safe-area-inset-top)); }
   .maplibregl-ctrl-bottom-right { top: 0; bottom: auto; }
   .maplibregl-ctrl-attrib { border-radius: 0 0 0 8px; }

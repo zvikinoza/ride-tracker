@@ -8,7 +8,7 @@ pulled every two hours by a GitHub Action and committed to this repo, so the sit
 plain static files on GitHub Pages. No servers, no keys in the browser.
 
 ```
-index.html, css/, js/        the site (MapLibre GL + OpenFreeMap basemap, no key, no build step)
+index.html, css/, js/        the site (MapLibre GL globe, Esri imagery + OpenFreeMap labels, no keys)
 config.json                  rider name, start date, MapShare name, demo switch
 data/track.json              every tracker fix so far (grows over time)
 data/summary.json            latest fix, total km, reverse-geocoded place name
@@ -52,7 +52,9 @@ python3 scripts/fetch_track.py
   great-circle arc with a plane icon. Tune those values in `config.json`. Slow ferries
   can slip through; hand-edit `data/track.json` if one does.
 - **Days on the road** is today minus `start_date`, inclusive.
-- **Theme**: light by default, with a sun/moon toggle on the map that remembers the choice in the browser.
+- **Views**: the default is a Google-Earth-like satellite globe (Esri World Imagery with the quiet map's
+  borders and labels in white). A globe/map button switches to the flat, quiet map; a sun/moon button switches
+  light/dark chrome. Both choices are remembered in the browser.
 - **Last seen** uses the newest fix; the place name comes from OpenStreetMap Nominatim
   (one lookup per run, only when the position changed). The dot turns grey after 36 h of silence.
 - The page re-reads the data every 30 minutes if left open.

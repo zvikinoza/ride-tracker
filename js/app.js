@@ -11,17 +11,75 @@
   };
   const PLANE_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg>';
 
-  let map, config, lastFix, styleReady = false;
+  const ESRI = "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}";
+  let map, config, lastFix, styleReady = false, earthStyleJSON = null;
   let markers = [];
   let geo = { type: "FeatureCollection", features: [] };
 
-  // ---------- theme ----------
+  // ---------- view (earth / map) and theme (light / dark chrome) ----------
   const root = document.documentElement;
   const isDark = () => root.dataset.theme === "dark";
+  const isEarth = () => root.dataset.view !== "map";
+  const remember = (k, v) => { try { localStorage.setItem(k, v); } catch (e) { /* private mode */ } };
+
+  /* Google-Earth-like style: satellite imagery on a globe, with the quiet map's borders and
+     labels laid over it in white. Built once from the positron style so fonts/sources match. */
+  async function earthStyle() {
+    if (!earthStyleJSON) {
+      const base = await (await fetch(STYLE.light)).json();
+      const keep = base.layers.filter((l) => l.type === "symbol" || l.id.startsWith("boundary"));
+      const layers = [
+        { id: "satellite", type: "raster", source: "satellite", paint: { "raster-saturation": -0.1, "raster-brightness-max": 0.95 } },
+        ...keep.map((l) => {
+          const c = JSON.parse(JSON.stringify(l));
+          if (c.type === "symbol") {
+            c.paint = { ...c.paint, "text-color": "#ffffff", "text-halo-color": "rgba(0,0,0,0.65)", "text-halo-width": 1.3, "text-halo-blur": 0.6 };
+          } else {
+            c.paint = { ...c.paint, "line-color": "rgba(255,255,255,0.7)", "line-width": ["interpolate", ["linear"], ["zoom"], 2, 0.6, 8, 1.2] };
+          }
+          return c;
+        }),
+      ];
+      earthStyleJSON = JSON.stringify({
+        version: 8,
+        projection: { type: "globe" },
+        sky: {
+          "sky-color": "#0b1526", "horizon-color": "#7fb0e0", "fog-color": "#cfe0f2",
+          "sky-horizon-blend": 0.6, "horizon-fog-blend": 0.6, "fog-ground-blend": 0.9,
+          "atmosphere-blend": ["interpolate", ["linear"], ["zoom"], 0, 1, 8, 1, 11, 0],
+        },
+        sprite: base.sprite, glyphs: base.glyphs,
+        sources: { ...base.sources, satellite: { type: "raster", tiles: [ESRI], tileSize: 256, maxzoom: 19,
+          attribution: "Imagery &copy; Esri, Maxar, Earthstar Geographics" } },
+        layers,
+      });
+    }
+    return JSON.parse(earthStyleJSON);
+  }
+  async function applyStyle() {
+    styleReady = false;
+    map.setStyle(isEarth() ? await earthStyle() : (isDark() ? STYLE.dark : STYLE.light));
+  }
   function setTheme(name) {
-    root.dataset.theme = name;
-    try { localStorage.setItem("theme", name); } catch (e) { /* private mode */ }
-    if (map) { styleReady = false; map.setStyle(isDark() ? STYLE.dark : STYLE.light); }
+    root.dataset.theme = name; remember("theme", name);
+    if (map && !isEarth()) applyStyle();
+    else if (map) draw(window.__points || []); // route colours follow the chrome
+  }
+  function setView(name) {
+    root.dataset.view = name; remember("view", name);
+    if (map) applyStyle();
+  }
+  class ViewToggle {
+    onAdd() {
+      this.el = document.createElement("div");
+      this.el.className = "maplibregl-ctrl maplibregl-ctrl-group view-toggle";
+      this.el.innerHTML = '<button type="button" title="Satellite / map" aria-label="Switch satellite / map">' +
+        '<svg class="globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>' +
+        '<svg class="mapicon" viewBox="0 0 24 24"><path d="M3 6l6-2 6 2 6-2v14l-6 2-6-2-6 2zM9 4v14M15 6v14"/></svg></button>';
+      this.el.querySelector("button").addEventListener("click", () => setView(isEarth() ? "map" : "earth"));
+      return this.el;
+    }
+    onRemove() { this.el.remove(); }
   }
   class ThemeToggle {
     onAdd() {
@@ -146,15 +204,17 @@
   function initMap() {
     map = new maplibregl.Map({
       container: "map",
-      style: isDark() ? STYLE.dark : STYLE.light,
+      style: isDark() ? STYLE.dark : STYLE.light, // swapped for the earth style right after
       center: [40, 42],
       zoom: 2,
       attributionControl: { compact: window.innerWidth < 640 },
       cooperativeGestures: false,
     });
     map.addControl(new maplibregl.NavigationControl({ showCompass: false }), "top-right");
+    map.addControl(new ViewToggle(), "top-right");
     map.addControl(new ThemeToggle(), "top-right");
     map.on("style.load", addLayers);
+    if (isEarth()) applyStyle();
 
     // Compact attribution (phones) pops open once attributions arrive; fold it the first time, leave taps alone.
     const attrib = map.getContainer().querySelector(".maplibregl-ctrl-attrib");
@@ -218,6 +278,7 @@
     const { segments, pts } = analyse(points, config);
     geo = { type: "FeatureCollection", features: segments.map((s) => ({
       type: "Feature", properties: { type: s.type }, geometry: { type: "LineString", coordinates: s.coords } })) };
+    window.__points = points;
     if (styleReady) map.getSource("route").setData(geo);
 
     markers.forEach((m) => m.remove());
