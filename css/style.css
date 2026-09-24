@@ -223,6 +223,56 @@ h1 {
 /* Markers */
 .here {
   position: relative;
+  width: 16px; height: 16px;
+  cursor: pointer;
+}
+.here::before {
+  content: "";
+  position: absolute; inset: 0;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 3px solid var(--casing);
+  box-shadow: 0 0 0 2px rgba(0,0,0,0.15), 0 2px 6px rgba(0,0,0,0.35);
+  animation: beat 1.6s ease-in-out infinite;
+}
+.here::after, .here .ring2 {
+  content: "";
+  position: absolute; inset: -4px;
+  border-radius: 50%;
+  border: 2px solid var(--accent);
+  background: var(--accent-soft);
+  opacity: 0;
+  animation: ring 1.6s ease-out infinite;
+}
+.here .ring2 { animation-delay: 0.8s; }
+@keyframes ring {
+  0%   { transform: scale(0.5); opacity: 0.9; }
+  100% { transform: scale(3.6); opacity: 0; }
+}
+@keyframes beat {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.18); }
+}
+.plane { background: rgba(10, 12, 18, 0.7); border-color: rgba(255,255,255,0.25); color: #f3efe8; }
+:root:not([data-view="map"]) .start { background: rgba(10, 12, 18, 0.7); border-color: #f3efe8; }
+
+/* View toggle (a MapLibre control) */
+.view-toggle button { width: 29px; height: 29px; display: grid; place-items: center; cursor: pointer; }
+.view-toggle svg { width: 15px; height: 15px; stroke: var(--ink); fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.view-toggle .mapicon { display: none; }
+:root:not([data-view="map"]) .view-toggle .globe { display: none; }
+:root:not([data-view="map"]) .view-toggle .mapicon { display: block; }
+
+/* Theme toggle (a MapLibre control) */
+.theme-toggle button { width: 29px; height: 29px; display: grid; place-items: center; cursor: pointer; }
+.theme-toggle svg { width: 15px; height: 15px; stroke: var(--ink); fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.theme-toggle .moon { display: none; }
+:root[data-theme="dark"] .theme-toggle .sun { display: none; }
+:root[data-theme="dark"] .theme-toggle .moon { display: block; }
+
+/* Markers */
+.here {
+  position: relative;
   width: 14px; height: 14px;
   cursor: pointer;
 }

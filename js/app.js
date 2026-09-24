@@ -294,7 +294,7 @@
     }
     const st = document.createElement("div"); st.className = "start";
     addMarker(st, [first.x, first.lat], `Started here · ${config.start_place || fmtDate(config.start_date)}`);
-    const here = document.createElement("div"); here.className = "here";
+    const here = document.createElement("div"); here.className = "here"; here.innerHTML = '<span class="ring2"></span>';
     addMarker(here, [last.x, last.lat], `Latest fix · ${relTime(last.t)}`);
   }
 
@@ -306,7 +306,7 @@
   function fit(points) {
     if (!points.length) return;
     const last = points[points.length - 1];
-    map.jumpTo({ center: [last.lon, last.lat], zoom: window.innerWidth < 640 ? 3.6 : 4.3, padding: uiPadding() });
+    map.jumpTo({ center: [last.lon, last.lat], zoom: window.innerWidth < 640 ? 2.4 : 4.3, padding: uiPadding() });
   }
 
   // ---------- data ----------
