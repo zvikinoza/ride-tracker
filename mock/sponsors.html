@@ -22,7 +22,7 @@
 
   /* ---- idea 1: "Supported by" glass pill ---- */
   .sponsors {
-    position: fixed; right: 24px; bottom: max(24px, env(safe-area-inset-bottom)); z-index: 500;
+    position: fixed; right: 24px; bottom: 44px; z-index: 500;
     display: flex; align-items: center; gap: 18px; padding: 12px 18px;
     background: var(--glass); border: 1px solid var(--glass-edge); border-radius: 999px;
     backdrop-filter: blur(28px) saturate(1.7); -webkit-backdrop-filter: blur(28px) saturate(1.7);
@@ -128,7 +128,7 @@
     document.body.appendChild(pill);
     // Signal bars instead of the dot
     const bars = document.createElement("span"); bars.className = "bars"; bars.innerHTML = "<i></i><i></i><i></i><i></i>";
-    dot.replaceWith(bars);
+    dot.style.display = "none"; dot.before(bars);
     const via = document.createElement("span"); via.className = "via"; via.textContent = "via cellfie";
     document.getElementById("last").after(via);
     // Hydration row
