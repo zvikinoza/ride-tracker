@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<base href="../">
+<title>Sponsor ideas · mock</title>
+<script>try{var d=document.documentElement.dataset;d.theme=localStorage.getItem("theme")||"light";d.view=localStorage.getItem("view")||"earth"}catch(e){document.documentElement.dataset.theme="light";document.documentElement.dataset.view="earth"}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.css">
+<link rel="stylesheet" href="css/style.css">
+<style>
+  /* ---- placeholder wordmarks (real logos to be dropped in later) ---- */
+  .wm { display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; color: var(--ink); text-decoration: none; opacity: 0.8; }
+  .wm:hover { opacity: 1; }
+  .wm-nab { font-family: var(--serif); font-weight: 600; letter-spacing: 0.06em; font-size: 12px; }
+  .wm-cel { font-family: var(--sans); font-weight: 700; letter-spacing: -0.02em; font-size: 13px; }
+  .wm-cry { font-family: var(--serif); font-weight: 400; font-size: 13px; }
+  .wm svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linejoin: round; stroke-linecap: round; }
+
+  /* ---- idea 1: "Supported by" glass pill ---- */
+  .sponsors {
+    position: fixed; right: 24px; bottom: max(24px, env(safe-area-inset-bottom)); z-index: 500;
+    display: flex; align-items: center; gap: 18px; padding: 12px 18px;
+    background: var(--glass); border: 1px solid var(--glass-edge); border-radius: 999px;
+    backdrop-filter: blur(28px) saturate(1.7); -webkit-backdrop-filter: blur(28px) saturate(1.7);
+    box-shadow: var(--glass-shadow), inset 0 1px 0 var(--glass-shine);
+  }
+  .sponsors .eyebrow { margin: 0; font-size: 10px; }
+  .sponsors .sep { width: 1px; height: 14px; background: var(--line); }
+
+  /* ---- idea 2: Cellfie signal bars on "Last seen" ---- */
+  .bars { display: inline-flex; align-items: flex-end; gap: 2px; height: 12px; flex: none; transform: translateY(1px); }
+  .bars i { width: 3px; background: var(--accent); border-radius: 1px; display: block; animation: beat 1.6s ease-in-out infinite; }
+  .bars i:nth-child(1) { height: 4px; } .bars i:nth-child(2) { height: 7px; } .bars i:nth-child(3) { height: 10px; animation-delay: .2s; } .bars i:nth-child(4) { height: 12px; animation-delay: .4s; }
+  .via { color: var(--muted); font-size: 12px; margin-left: 4px; }
+
+  /* ---- idea 3: Nabeghlavi hydration row ---- */
+  .hydra { display: flex; align-items: center; gap: 10px; margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--line); font-size: 13.5px; }
+  .bottle { width: 14px; height: 28px; flex: none; }
+  .bottle .glass { fill: none; stroke: var(--ink); stroke-width: 1.4; }
+  .bottle .water { fill: var(--accent); opacity: .85; }
+  .hydra small { display: block; color: var(--muted); font-size: 12px; }
+
+  /* ---- idea 4: Crystal gem milestones (markers) ---- */
+  .gem { width: 22px; height: 22px; display: grid; place-items: center; cursor: pointer; filter: drop-shadow(0 1px 2px rgba(0,0,0,.4)); }
+  .gem svg { width: 18px; height: 18px; }
+  .gem .face { fill: #cfe4ff; stroke: #2b6fd6; stroke-width: 1.2; stroke-linejoin: round; }
+  .gem .edge { fill: none; stroke: #2b6fd6; stroke-width: .8; opacity: .8; }
+
+  /* ---- idea 5 (set 2): funded kilometres bar ---- */
+  .fund { margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--line); font-size: 12.5px; color: var(--muted); }
+  .fund .track { position: relative; height: 6px; border-radius: 3px; background: var(--line); margin: 8px 0 6px; overflow: hidden; }
+  .fund .fill { position: absolute; inset: 0 auto 0 0; width: 13%; background: linear-gradient(90deg, var(--accent), #8cc4ff); border-radius: 3px; }
+  .fund .fill::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, transparent, rgba(255,255,255,.7), transparent); animation: shine 2.8s linear infinite; }
+  @keyframes shine { from { transform: translateX(-100%); } to { transform: translateX(200%); } }
+  .fund b { color: var(--ink); font-weight: 500; }
+
+  /* ---- idea 6 (set 2): weather line ---- */
+  .wx { display: flex; align-items: center; gap: 8px; margin-top: 10px; font-size: 13px; }
+  .wx svg { width: 16px; height: 16px; fill: none; stroke: var(--ink); stroke-width: 1.5; stroke-linecap: round; }
+
+  /* ---- idea 7 (set 2): phone-shaped live marker ---- */
+  body.set2 .here::before { border-radius: 4px; inset: -3px 1px; }
+  body.set2 .here { width: 16px; height: 22px; }
+  body.set2 .here::after, body.set2 .here .ring2 { inset: -6px -3px; border-radius: 8px; }
+
+  /* ---- footer sponsor text line (set 2) ---- */
+  .credits { margin-top: 8px; }
+  .credits a { color: var(--muted); text-decoration: none; }
+  .credits a b { color: var(--ink); font-weight: 500; }
+
+  .mocknote { position: fixed; top: max(20px, env(safe-area-inset-top)); left: 50%; transform: translateX(-50%); z-index: 600; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); background: var(--glass); border: 1px solid var(--glass-edge); border-radius: 999px; padding: 6px 12px; backdrop-filter: blur(20px); }
+  @media (max-width: 640px) {
+    .mocknote { display: none; }
+    .sponsors { left: 12px; right: 12px; bottom: max(12px, env(safe-area-inset-bottom)); justify-content: center; gap: 14px; padding: 10px 14px; border-radius: 18px; }
+    .sponsors .eyebrow { display: none; }
+    .panel { bottom: calc(max(12px, env(safe-area-inset-bottom)) + 54px); }
+    body.set2 .panel { bottom: max(12px, env(safe-area-inset-bottom)); }
+  }
+</style>
+</head>
+<body>
+<div id="map" aria-label="Map of the route"></div>
+<div class="mocknote" id="note">Mock · placeholder wordmarks</div>
+
+<header class="brand">
+  <p class="eyebrow" id="title">Around the world by bicycle</p>
+  <h1 id="rider">&nbsp;</h1>
+</header>
+
+<aside class="panel" aria-live="polite">
+  <div class="stats">
+    <div class="stat"><span class="num" id="km">—</span><span class="label">kilometres cycled</span></div>
+    <div class="stat"><span class="num" id="days">—</span><span class="label">days on the road</span></div>
+  </div>
+  <button class="last" id="locate" type="button" title="Show latest position">
+    <span class="dot" aria-hidden="true"></span>
+    <span id="last">Waiting for the first fix…</span>
+  </button>
+  <p class="meta" id="meta"></p>
+  <p class="meta links" id="links"></p>
+</aside>
+
+<script src="https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.js"></script>
+<script src="js/app.js"></script>
+<script>
+(function () {
+  const set = new URLSearchParams(location.search).get("set") || "1";
+  document.body.classList.add("set" + set);
+  const NAB = '<span class="wm wm-nab"><svg viewBox="0 0 24 24"><path d="M9 3h6M10 3v3l-2.5 3v11a1 1 0 0 0 1 1h7a1 1 0 0 0 1-1V9L14 6V3"/></svg>NABEGHLAVI</span>';
+  const CEL = '<span class="wm wm-cel"><svg viewBox="0 0 24 24"><path d="M4 18v-4M9 18V9M14 18V5M19 18V3"/></svg>cellfie</span>';
+  const CRY = '<span class="wm wm-cry"><svg viewBox="0 0 24 24"><path d="M6 3h12l4 6-10 12L2 9zM2 9h20M9 3l3 6 3-6M12 9v12"/></svg>Crystal</span>';
+  const gemSVG = '<svg viewBox="0 0 24 24"><path class="face" d="M6 3h12l4 6-10 12L2 9z"/><path class="edge" d="M2 9h20M9 3l3 6 3-6M12 9v12"/></svg>';
+  const bottleSVG = (pct) => `<svg class="bottle" viewBox="0 0 14 28"><clipPath id="bc"><path d="M4 1h6v3.5l2 3V25a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7.5l2-3z"/></clipPath><rect class="water" x="0" y="${27 - 26 * pct}" width="14" height="27" clip-path="url(#bc)"/><path class="glass" d="M4 1h6v3.5l2 3V25a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7.5l2-3z"/></svg>`;
+
+  const panel = document.querySelector(".panel");
+  const meta = document.getElementById("meta");
+  const dot = document.querySelector(".dot");
+
+  if (set === "1") {
+    document.getElementById("note").textContent = "Mock A · pill + signal bars + hydration + gem milestones";
+    // Supported-by pill
+    const pill = document.createElement("aside"); pill.className = "sponsors";
+    pill.innerHTML = `<p class="eyebrow">Supported by</p>${NAB}<span class="sep"></span>${CEL}<span class="sep"></span>${CRY}`;
+    document.body.appendChild(pill);
+    // Signal bars instead of the dot
+    const bars = document.createElement("span"); bars.className = "bars"; bars.innerHTML = "<i></i><i></i><i></i><i></i>";
+    dot.replaceWith(bars);
+    const via = document.createElement("span"); via.className = "via"; via.textContent = "via cellfie";
+    document.getElementById("last").after(via);
+    // Hydration row
+    const hy = document.createElement("div"); hy.className = "hydra";
+    hy.innerHTML = `${bottleSVG(0.62)}<div>≈ 1,240 litres drunk so far<small>water by Nabeghlavi · today's bottle 62% down</small></div>`;
+    meta.before(hy);
+  } else {
+    document.getElementById("note").textContent = "Mock B · credits line + funded km + weather + phone marker";
+    const fund = document.createElement("div"); fund.className = "fund";
+    fund.innerHTML = `<b>3,879</b> of 30,000 planned km<div class="track"><div class="fill"></div></div>every kilometre backed by <b>Crystal</b>`;
+    meta.before(fund);
+    const wx = document.createElement("div"); wx.className = "wx";
+    wx.innerHTML = `<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2"/></svg><span>31°C in Khorog · drink up <span class="via">· Nabeghlavi</span></span>`;
+    meta.before(wx);
+    const cr = document.createElement("p"); cr.className = "meta credits";
+    cr.innerHTML = `Water by <a href="#"><b>Nabeghlavi</b></a> · Connected by <a href="#"><b>Cellfie</b></a> · Backed by <a href="#"><b>Crystal</b></a>`;
+    meta.after(cr);
+  }
+
+  // Gem milestones every 1,000 km (both sets, so you can judge them on the globe)
+  const R = 6371, toRad = (d) => d * Math.PI / 180;
+  const hav = (a, b) => { const dLat = toRad(b.lat - a.lat), dLon = toRad(b.lon - a.lon); const s = Math.sin(dLat/2)**2 + Math.cos(toRad(a.lat))*Math.cos(toRad(b.lat))*Math.sin(dLon/2)**2; return 2*R*Math.asin(Math.sqrt(s)); };
+  let placed = false;
+  const tryMilestones = () => {
+    const pts = window.__points; const map = document.querySelector("#map") && window.__map;
+    if (placed || !pts || !pts.length) return;
+    // find the map instance through the marker DOM (app.js keeps it private) — use maplibre's container registry
+    const mapObj = window.__map;
+    if (!mapObj) return;
+    placed = true;
+    let acc = 0, next = 1000;
+    for (let i = 1; i < pts.length; i++) {
+      const d = hav(pts[i-1], pts[i]);
+      if (d > 100) continue;
+      if (d > 0.03) acc += d;
+      if (acc >= next) {
+        const el = document.createElement("div"); el.className = "gem"; el.innerHTML = gemSVG;
+        const m = new maplibregl.Marker({ element: el }).setLngLat([pts[i].lon, pts[i].lat])
+          .setPopup(new maplibregl.Popup({ closeButton: false, className: "quiet", offset: 14 }).setHTML(`${next.toLocaleString()} km · milestone by Crystal`)).addTo(mapObj);
+        el.addEventListener("mouseenter", () => m.togglePopup()); el.addEventListener("mouseleave", () => m.togglePopup());
+        next += 1000;
+      }
+    }
+  };
+  setInterval(tryMilestones, 500);
+})();
+</script>
+</body>
+</html>

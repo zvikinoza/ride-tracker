@@ -210,6 +210,7 @@
       attributionControl: { compact: window.innerWidth < 640 },
       cooperativeGestures: false,
     });
+    window.__map = map;
     map.addControl(new maplibregl.NavigationControl({ showCompass: false }), "top-right");
     map.addControl(new ViewToggle(), "top-right");
     map.addControl(new ThemeToggle(), "top-right");
