@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.css">
-<link rel="stylesheet" href="css/style.css?v=202609251834">
+<link rel="stylesheet" href="css/style.css?v=202609251840">
 </head>
 <body>
 <div id="map" aria-label="Map of the route"></div>
@@ -38,11 +38,11 @@
   </button>
   <div class="sponsor-stats" id="sponsor-stats" hidden>
     <div class="mini">
-      <svg class="bottle" viewBox="0 0 14 28" aria-hidden="true"><clipPath id="bottle-clip"><path d="M4 1h6v3.5l2 3V25a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7.5l2-3z"/></clipPath><rect class="water" id="bottle-fill" x="0" y="27" width="14" height="27" clip-path="url(#bottle-clip)"/><path class="glass" d="M4 1h6v3.5l2 3V25a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7.5l2-3z"/></svg>
+      <img class="mini-icon water-icon" id="water-icon" alt="">
       <div><span class="mini-num" id="litres">—</span><span class="mini-label" id="litres-label"></span></div>
     </div>
     <div class="mini">
-      <svg class="signal" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="15" width="3" height="6" rx="1"/><rect x="8.5" y="11" width="3" height="10" rx="1"/><rect x="14" y="7" width="3" height="14" rx="1"/><rect x="19.5" y="3" width="3" height="18" rx="1"/></svg>
+      <svg class="mini-icon signal" id="data-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="15" width="3" height="6" rx="1"/><rect x="8.5" y="11" width="3" height="10" rx="1"/><rect x="14" y="7" width="3" height="14" rx="1"/><rect x="19.5" y="3" width="3" height="18" rx="1"/></svg>
       <div><span class="mini-num" id="gb">—</span><span class="mini-label" id="gb-label"></span></div>
     </div>
   </div>
@@ -51,6 +51,6 @@
 </aside>
 
 <script src="https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.js"></script>
-<script src="js/app.js?v=202609251834"></script>
+<script src="js/app.js?v=202609251840"></script>
 </body>
 </html>

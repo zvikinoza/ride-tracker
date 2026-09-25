@@ -17,15 +17,19 @@
   "sponsors": {
     "water": {
       "name": "Nabeghlavi",
-      "url": "",
+      "url": "https://nabeghlavi.ge/",
       "litres_per_100km": 8,
-      "litres_extra": 0
+      "litres_extra": 0,
+      "logo": "assets/nabeghlavi-wordmark.png",
+      "icon": "assets/nabeghlavi-bottle.png"
     },
     "data": {
       "name": "Cellfie",
-      "url": "",
+      "url": "https://cellfie.ge/en",
       "gb_per_day": 3,
-      "gb_extra": 0
+      "gb_extra": 0,
+      "logo": "assets/cellfie-logo.png",
+      "color": "#e6007e"
     },
     "bank": {
       "name": "Crystal",
