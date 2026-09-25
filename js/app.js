@@ -340,6 +340,8 @@
       $("last").textContent = "Waiting for the first fix…";
     }
 
+    renderSponsorStats(km, points);
+
     const parts = [];
     if (config.start_date) parts.push(`Left ${config.start_place ? config.start_place + " on " : ""}${fmtDate(config.start_date)}`);
     if (flights) parts.push(`${flights} flight${flights === 1 ? "" : "s"}`);
@@ -347,6 +349,30 @@
 
     const links = (config.links || []).filter((l) => l.url);
     $("links").innerHTML = links.map((l) => `<a href="${l.url}" target="_blank" rel="noopener">${l.label}</a>`).join("");
+  }
+
+  /* Estimated litres drunk and GB used, from configurable rates; the bottle fills through their local day. */
+  function renderSponsorStats(km, points) {
+    const sp = config.sponsors || {};
+    const box = $("sponsor-stats");
+    if (!sp.water && !sp.data) { box.hidden = true; return; }
+    const brand = (s) => (s.url ? `<a href="${s.url}" target="_blank" rel="noopener">${s.name}</a>` : s.name);
+    const days = dayCount(config.start_date);
+    if (sp.water) {
+      const litres = (km / 100) * (sp.water.litres_per_100km ?? 8) + (sp.water.litres_extra ?? 0);
+      $("litres").textContent = `≈ ${fmtInt(litres)} L`;
+      $("litres-label").innerHTML = `${brand(sp.water)} drunk`;
+      const lon = points.length ? points[points.length - 1].lon : 45;
+      const localH = ((Date.now() / 3.6e6 + lon / 15) % 24 + 24) % 24; // rough local hour from longitude
+      const pct = Math.min(1, Math.max(0.08, (localH - 7) / 14)); // empties over a 07:00–21:00 riding day
+      $("bottle-fill").setAttribute("y", String(27 - 26 * (1 - pct)));
+    }
+    if (sp.data) {
+      const gb = days * (sp.data.gb_per_day ?? 3) + (sp.data.gb_extra ?? 0);
+      $("gb").textContent = `≈ ${fmtInt(gb)} GB`;
+      $("gb-label").innerHTML = `${brand(sp.data)} data used`;
+    }
+    box.hidden = false;
   }
 
   async function refresh(first) {

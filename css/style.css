@@ -158,6 +158,35 @@ h1 {
   100% { box-shadow: 0 0 0 0 rgba(0,0,0,0); }
 }
 
+/* Sponsor stats: water drunk, data used */
+.sponsor-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+}
+.sponsor-stats[hidden] { display: none; }
+.mini { display: flex; align-items: center; gap: 10px; min-width: 0; }
+.mini > div { display: flex; flex-direction: column; min-width: 0; }
+.mini-num {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: 22px;
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+}
+.mini-label { font-size: 11.5px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.mini-label a { color: inherit; text-decoration: none; border-bottom: 1px solid var(--line); }
+.mini-label a:hover { color: var(--ink); }
+.bottle { width: 13px; height: 26px; flex: none; }
+.bottle .glass { fill: none; stroke: var(--ink); stroke-width: 1.4; }
+.bottle .water { fill: var(--accent); opacity: 0.85; transition: y 1s ease; }
+.signal { width: 18px; height: 18px; flex: none; fill: var(--accent); }
+.signal rect:nth-child(1) { opacity: 0.45; } .signal rect:nth-child(2) { opacity: 0.65; } .signal rect:nth-child(3) { opacity: 0.85; }
+
 .meta {
   margin: 10px 0 0;
   font-size: 12.5px;
@@ -341,6 +370,8 @@ h1 {
   .num { font-size: 30px; }
   .label { margin-top: 3px; font-size: 11.5px; }
   .last { margin-top: 10px; font-size: 14px; }
+  .sponsor-stats { margin-top: 10px; padding-top: 10px; gap: 10px; }
+  .mini-num { font-size: 20px; }
   .meta { margin-top: 6px; font-size: 12px; }
   .maplibregl-ctrl-top-right .maplibregl-ctrl-group:not(.theme-toggle):not(.view-toggle) { display: none; } /* no +/- on phones, keep the theme toggle */
   .maplibregl-ctrl-top-right { top: max(14px, env(safe-area-inset-top)); }
