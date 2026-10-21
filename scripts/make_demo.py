@@ -27,6 +27,10 @@ ROUTE = [  # (lat, lon, name) — FLIGHT marks a hop by plane between the neighb
     (41.2995, 69.2401, "Tashkent"), (40.1158, 67.8422, "Jizzakh"), (39.6270, 66.9750, "Samarkand"),
     (38.2667, 67.9000, "Denau"), (38.5598, 68.7870, "Dushanbe"), (37.9147, 69.7846, "Kulob"),
     (38.4562, 70.7973, "Kalai-Khumb"), (37.4897, 71.5546, "Khorog"),
+    (38.1700, 73.9700, "Murghab"), (39.0410, 73.5250, "Karakul"), (39.7300, 73.2500, "Sary-Tash"),
+    (39.6800, 73.9000, "Irkeshtam"), (39.4704, 75.9898, "Kashgar"), (41.1680, 80.2600, "Aksu"),
+    (41.7160, 82.9360, "Kuqa"), (41.7259, 86.1740, "Korla"), (42.9513, 89.1895, "Turpan"),
+    (43.8256, 87.6168, "Ürümqi"),
 ]
 
 
@@ -104,6 +108,6 @@ for p in points:
 
 (ROOT / "data" / "demo-track.json").write_text(json.dumps({"points": points}, separators=(",", ":")) + "\n")
 (ROOT / "data" / "demo-summary.json").write_text(json.dumps({
-    "updated": now.strftime("%Y-%m-%dT%H:%M:%SZ"), "fixes": len(points), "last": points[-1], "place": "Khorog, Tajikistan"
+    "updated": now.strftime("%Y-%m-%dT%H:%M:%SZ"), "fixes": len(points), "last": points[-1], "place": "Ürümqi, China"
 }, indent=2) + "\n")
 print(f"{len(points)} demo points, first {points[0]['t']}, last {points[-1]['t']}")

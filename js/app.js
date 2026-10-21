@@ -301,7 +301,7 @@
 
   const uiPadding = () => (window.innerWidth < 640
     ? { top: 110, left: 20, bottom: 260, right: 20 }
-    : { top: 80, left: 160, bottom: 40, right: 40 });
+    : { top: 80, left: 180, bottom: 40, right: 40 });
 
   /* First view: a regional look around where they are now (the whole route is a zoom-out away). */
   function fit(points) {
