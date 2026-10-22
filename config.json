@@ -4,6 +4,7 @@
   "start_date": "2026-06-21",
   "start_place": "St. Gilgen, Austria",
   "mapshare_id": "YOUR_MAPSHARE_NAME",
+  "source": "mapshare",
   "demo": true,
   "transfer_min_km": 15,
   "transfer_speed_kmh": 40,

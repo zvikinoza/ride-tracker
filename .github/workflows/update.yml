@@ -22,10 +22,13 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Fetch new points from MapShare
-        run: python scripts/fetch_track.py
+      - name: Fetch new points (Strava or MapShare, per config.json)
+        run: python scripts/fetch.py
         env:
           MAPSHARE_PASSWORD: ${{ secrets.MAPSHARE_PASSWORD }}
+          STRAVA_CLIENT_ID: ${{ secrets.STRAVA_CLIENT_ID }}
+          STRAVA_CLIENT_SECRET: ${{ secrets.STRAVA_CLIENT_SECRET }}
+          STRAVA_REFRESH_TOKEN: ${{ secrets.STRAVA_REFRESH_TOKEN }}
 
       - name: Commit if anything changed
         run: |

@@ -74,3 +74,22 @@ python3 scripts/fetch_track.py
 file (any value works, e.g. the short commit hash), otherwise visitors' browsers may keep the old copy for
 up to 10 minutes after GitHub Pages redeploys. The page itself can also be cached for 10 minutes, so use a
 hard reload (Cmd/Ctrl+Shift+R) right after a deploy.
+
+## Strava instead of MapShare (Garmin Edge riders)
+
+Set `"source": "strava"` in `config.json`. One-time setup:
+
+1. On your own Strava account open <https://www.strava.com/settings/api> and create an application
+   (any name, website `https://zvikinoza.github.io/ride-tracker/`, **Authorization Callback Domain**
+   `zvikinoza.github.io`). Note the Client ID and Client Secret.
+2. Make the rider's link: `python scripts/strava_auth.py url <client_id>` and send it to them. They tap
+   *Authorize* once and land on `strava.html`, which shows a code to send back.
+3. Exchange the code: `python scripts/strava_auth.py token <client_id> <client_secret> <code>` prints the
+   refresh token.
+4. GitHub → Settings → Secrets → Actions: add `STRAVA_CLIENT_ID`, `STRAVA_CLIENT_SECRET`, `STRAVA_REFRESH_TOKEN`.
+5. Run the *Update track* workflow once by hand; it back-fills every ride since `start_date`.
+
+Each ride's GPS line is thinned to one point per ~200 m with timestamps spread over the ride, so the map
+draws real roads; the kilometre total is the sum of Strava's ride distances (`data/summary.json`).
+Non-cycling activities are ignored. If the workflow log ever says Strava issued a new refresh token,
+update that secret.

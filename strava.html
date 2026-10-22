@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Strava connected</title>
+<script>try{var d=document.documentElement.dataset;d.theme=localStorage.getItem("theme")||"light";d.view="map"}catch(e){}</script>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<style>
+  body { overflow: auto; display: grid; place-items: center; min-height: 100%; padding: 24px; }
+  .card { position: static; width: min(420px, 100%); padding: 28px 26px; }
+  h1 { font-size: 30px; margin-bottom: 10px; }
+  p { margin: 0 0 14px; color: var(--muted); font-size: 15px; }
+  .code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 15px; word-break: break-all; padding: 12px 14px; border: 1px solid var(--line); border-radius: 10px; background: rgba(255,255,255,0.4); margin: 6px 0 14px; user-select: all; }
+  button { font: inherit; font-weight: 500; padding: 10px 16px; border-radius: 999px; border: 1px solid var(--line); background: var(--accent); color: #fff; cursor: pointer; }
+  button:active { transform: translateY(1px); }
+  .ok { color: var(--accent); font-weight: 500; }
+</style>
+</head>
+<body>
+<main class="panel card">
+  <p class="eyebrow">Around the world by bicycle</p>
+  <h1 id="h">Connecting…</h1>
+  <p id="msg"></p>
+  <div class="code" id="code" hidden></div>
+  <button id="copy" hidden type="button">Copy code</button>
+  <p id="done" class="ok" hidden>Copied. Now send it to Zviki.</p>
+</main>
+<script>
+  const q = new URLSearchParams(location.search);
+  const h = document.getElementById("h"), msg = document.getElementById("msg");
+  if (q.get("error")) {
+    h.textContent = "Not connected";
+    msg.textContent = "Strava access was declined. Open the link again and tap Authorize if you change your mind.";
+  } else if (q.get("code")) {
+    h.textContent = "Thank you!";
+    msg.textContent = "Strava is linked. One last step: copy this code and send it to Zviki, then you can close this page. You never need to do this again.";
+    const c = document.getElementById("code"); c.textContent = q.get("code"); c.hidden = false;
+    const b = document.getElementById("copy"); b.hidden = false;
+    b.onclick = async () => { try { await navigator.clipboard.writeText(q.get("code")); document.getElementById("done").hidden = false; } catch (e) { c.focus(); } };
+  } else {
+    h.textContent = "Strava link";
+    msg.textContent = "This page completes the Strava connection. Ask Zviki for the authorization link.";
+  }
+</script>
+</body>
+</html>

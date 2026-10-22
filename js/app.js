@@ -323,7 +323,9 @@
   }
 
   function render(points, summary) {
-    const { km, flights } = analyse(points, config);
+    const a = analyse(points, config);
+    const km = summary && typeof summary.total_km === "number" ? summary.total_km : a.km; // Strava's own total when we have it
+    const flights = a.flights;
     $("km").textContent = points.length ? fmtInt(km) : "—";
     $("days").textContent = fmtInt(dayCount(config.start_date));
 
