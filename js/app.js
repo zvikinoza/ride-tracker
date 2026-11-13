@@ -17,7 +17,8 @@
   const GROUND = { train: { svg: TRAIN_SVG, label: "Train" }, bus: { svg: BUS_SVG, label: "Bus" } };
   let map, config, lastFix, styleReady = false, earthStyleJSON = null;
   let markers = [];
-  let summaryData = null, activeRec = null, recPopup = null, peakMarker = null;
+  let summaryData = null, activeRec = null, recPopup = null, hoverPopup = null;
+  let recordsGeo = { type: "FeatureCollection", features: [] };
   let highlight = { type: "FeatureCollection", features: [] };
   let geo = { type: "FeatureCollection", features: [] };
 
@@ -226,6 +227,19 @@
     map.addControl(new ViewToggle(), "top-right");
     map.addControl(new ThemeToggle(), "top-right");
     map.on("style.load", addLayers);
+    map.on("mousemove", "records-hit", (e) => {
+      map.getCanvas().style.cursor = "pointer";
+      const f = e.features[0];
+      if (activeRec && f.properties.keys.split(",").includes(activeRec)) return; // its label is already pinned
+      if (!hoverPopup) hoverPopup = new maplibregl.Popup({ closeButton: false, closeOnClick: false, className: "quiet", offset: 14 });
+      hoverPopup.setLngLat(e.lngLat).setHTML(f.properties.html).addTo(map);
+    });
+    map.on("mouseleave", "records-hit", () => { map.getCanvas().style.cursor = ""; if (hoverPopup) hoverPopup.remove(); });
+    map.on("click", "records-hit", (e) => { // touch screens have no hover: a tap pins the label
+      const key = e.features[0].properties.keys.split(",")[0];
+      if (hoverPopup) hoverPopup.remove();
+      if (activeRec !== key) showRecord(key, false);
+    });
     if (isEarth()) applyStyle();
 
     // Compact attribution (phones) pops open once attributions arrive; fold it the first time, leave taps alone.
@@ -276,11 +290,15 @@
     map.addLayer({ id: "route-ride", type: "line", source: "route", filter: is("ride"),
       layout: { "line-join": "round", "line-cap": "round" },
       paint: { "line-color": accent, "line-width": 4, "line-opacity": 0.95 } });
+    // Record days: always drawn in their own colour on top of the route; a wide invisible line makes them easy to hover.
+    const record = css("--record"), round = { "line-join": "round", "line-cap": "round" };
+    if (!map.getSource("records")) map.addSource("records", { type: "geojson", data: recordsGeo });
+    map.addLayer({ id: "records-casing", type: "line", source: "records", layout: round, paint: { "line-color": "rgba(0,0,0,0.5)", "line-width": 6.5 } });
+    map.addLayer({ id: "records-line", type: "line", source: "records", layout: round, paint: { "line-color": record, "line-width": 4 } });
+    map.addLayer({ id: "records-hit", type: "line", source: "records", layout: round, paint: { "line-color": "#000", "line-opacity": 0.01, "line-width": 24 } });
     if (!map.getSource("highlight")) map.addSource("highlight", { type: "geojson", data: highlight });
-    map.addLayer({ id: "route-highlight-casing", type: "line", source: "highlight",
-      layout: { "line-join": "round", "line-cap": "round" }, paint: { "line-color": "rgba(0,0,0,0.45)", "line-width": 9 } });
-    map.addLayer({ id: "route-highlight", type: "line", source: "highlight",
-      layout: { "line-join": "round", "line-cap": "round" }, paint: { "line-color": "#ffd35c", "line-width": 5 } });
+    map.addLayer({ id: "route-highlight-casing", type: "line", source: "highlight", layout: round, paint: { "line-color": "rgba(0,0,0,0.55)", "line-width": 10.5 } });
+    map.addLayer({ id: "route-highlight", type: "line", source: "highlight", layout: round, paint: { "line-color": record, "line-width": 6.5 } });
     styleReady = true;
   }
 
@@ -323,6 +341,7 @@
     addMarker(st, [first.x, first.lat], `Started here · ${config.start_place || fmtDate(config.start_date)}`);
     const here = document.createElement("div"); here.className = "here"; here.innerHTML = '<span class="ring2"></span>';
     addMarker(here, [last.x, last.lat], `Latest position · ${relTime(last.t)}`);
+    drawRecords();
   }
 
   const uiPadding = () => (window.innerWidth < 640
@@ -434,49 +453,87 @@
     box.hidden = !any;
   }
 
-  function clearRecord() {
-    activeRec = null;
-    highlight = { type: "FeatureCollection", features: [] };
-    if (styleReady && map.getSource("highlight")) map.getSource("highlight").setData(highlight);
-    if (recPopup) { recPopup.remove(); recPopup = null; }
-    if (peakMarker) { peakMarker.remove(); peakMarker = null; }
-    document.querySelectorAll(".rec.on").forEach((el) => el.classList.remove("on"));
+  /* Records that fall on the same day share one segment and one label (e.g. furthest + longest). */
+  function recordGroups() {
+    const recs = (summaryData && summaryData.records) || {};
+    const groups = {};
+    for (const k of Object.keys(REC)) {
+      const r = recs[k];
+      if (!r) continue;
+      const id = `${r.from}|${r.to}`;
+      (groups[id] = groups[id] || { keys: [], from: r.from, to: r.to, date: r.date }).keys.push(k);
+    }
+    return Object.values(groups);
   }
-
-  /* Highlight the record day's ride(s), fly there and label it. Tapping the same tile again clears it. */
-  function showRecord(key) {
-    const r = summaryData && summaryData.records && summaryData.records[key];
-    if (!r) return;
-    if (activeRec === key) { clearRecord(); return; }
-    clearRecord();
-    const pts = unwrap(window.__points || []).filter((p) => p.t >= r.from && p.t <= r.to);
-    if (!pts.length) return;
+  function recordLabel(keys) {
+    const recs = summaryData.records;
+    const lines = keys.map((k) => `${REC[k].title} · ${REC[k].value(recs[k])}`);
+    const extras = [...new Set(keys.map((k) => (REC[k].extra ? REC[k].extra(recs[k]) : "")).filter(Boolean))];
+    return `${lines.join("<br>")}<br>${fmtDate(recs[keys[0]].date)}${extras.length ? " · " + extras.join(" · ") : ""}`;
+  }
+  function recordGeometry(g, all) {
+    const pts = all.filter((p) => p.t >= g.from && p.t <= g.to);
     const lines = [];
     for (const p of pts) {
       if (p.s === 1 || !lines.length) lines.push([]);
       lines[lines.length - 1].push([p.x, p.lat]);
     }
-    highlight = { type: "FeatureCollection", features: lines.filter((l) => l.length > 1).map((l) => ({
-      type: "Feature", properties: {}, geometry: { type: "LineString", coordinates: l } })) };
+    return { pts, lines: lines.filter((l) => l.length > 1) };
+  }
+  function peakPosition(pts, r) {
+    const near = pts.reduce((b, p) => (Math.abs(p.lat - r.lat) + Math.abs(p.lon - r.lon) < Math.abs(b.lat - r.lat) + Math.abs(b.lon - r.lon) ? p : b));
+    return [near.x, near.lat];
+  }
+
+  /* Colour every record day on the route and put a peak marker on the highest point. Called after each draw(). */
+  function drawRecords() {
+    const all = unwrap(window.__points || []);
+    const feats = [];
+    for (const g of recordGroups()) {
+      const { pts, lines } = recordGeometry(g, all);
+      if (!lines.length) continue;
+      const html = recordLabel(g.keys);
+      feats.push({ type: "Feature", properties: { keys: g.keys.join(","), html }, geometry: { type: "MultiLineString", coordinates: lines } });
+      const r = summaryData.records.highest;
+      if (g.keys.includes("highest") && r.lat != null) {
+        const el = document.createElement("div"); el.className = "peak";
+        addMarker(el, peakPosition(pts, r), html, { anchor: "bottom" });
+      }
+    }
+    recordsGeo = { type: "FeatureCollection", features: feats };
+    if (styleReady && map.getSource("records")) map.getSource("records").setData(recordsGeo);
+  }
+
+  function clearRecord() {
+    activeRec = null;
+    highlight = { type: "FeatureCollection", features: [] };
+    if (styleReady && map.getSource("highlight")) map.getSource("highlight").setData(highlight);
+    if (recPopup) { recPopup.remove(); recPopup = null; }
+    document.querySelectorAll(".rec.on").forEach((el) => el.classList.remove("on"));
+  }
+
+  /* Emphasise the record day's ride, label it, and (from a tile) fly there. The same tile again clears it. */
+  function showRecord(key, fly = true) {
+    const r = summaryData && summaryData.records && summaryData.records[key];
+    if (!r) return;
+    if (activeRec === key) { clearRecord(); return; }
+    clearRecord();
+    const g = recordGroups().find((x) => x.keys.includes(key));
+    const { pts, lines } = recordGeometry(g, unwrap(window.__points || []));
+    if (!pts.length) return;
+    highlight = { type: "FeatureCollection", features: [{ type: "Feature", properties: {}, geometry: { type: "MultiLineString", coordinates: lines } }] };
     if (styleReady) map.getSource("highlight").setData(highlight);
     activeRec = key;
     document.querySelector(`.rec[data-rec="${key}"]`).classList.add("on");
 
-    const xs = pts.map((p) => p.x), ys = pts.map((p) => p.lat);
-    map.fitBounds([[Math.min(...xs), Math.min(...ys)], [Math.max(...xs), Math.max(...ys)]], { padding: uiPadding(), maxZoom: 9.5, duration: 1600 });
-
-    let at = [pts[Math.floor(pts.length / 2)].x, pts[Math.floor(pts.length / 2)].lat];
-    if (key === "highest" && r.lat != null) {
-      const near = pts.reduce((b, p) => (Math.abs(p.lat - r.lat) + Math.abs(p.lon - r.lon) < Math.abs(b.lat - r.lat) + Math.abs(b.lon - r.lon) ? p : b));
-      at = [near.x, near.lat];
-      const el = document.createElement("div"); el.className = "peak";
-      peakMarker = new maplibregl.Marker({ element: el, anchor: "bottom", opacityWhenCovered: "0" }).setLngLat(at).addTo(map);
+    if (fly) {
+      const xs = pts.map((p) => p.x), ys = pts.map((p) => p.lat);
+      map.fitBounds([[Math.min(...xs), Math.min(...ys)], [Math.max(...xs), Math.max(...ys)]], { padding: uiPadding(), maxZoom: 9.5, duration: 1600 });
     }
-    const extra = REC[key].extra ? REC[key].extra(r) : "";
+    const mid = pts[Math.floor(pts.length / 2)];
+    const at = key === "highest" && r.lat != null ? peakPosition(pts, r) : [mid.x, mid.lat];
     recPopup = new maplibregl.Popup({ closeButton: false, closeOnClick: false, className: "quiet", offset: 16 })
-      .setLngLat(at)
-      .setHTML(`${REC[key].title} · ${REC[key].value(r)}<br>${fmtDate(r.date)}${extra ? " · " + extra : ""}`)
-      .addTo(map);
+      .setLngLat(at).setHTML(recordLabel(g.keys)).addTo(map);
   }
 
   async function refresh(first) {
