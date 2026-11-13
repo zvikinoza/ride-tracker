@@ -17,6 +17,8 @@
   const GROUND = { train: { svg: TRAIN_SVG, label: "Train" }, bus: { svg: BUS_SVG, label: "Bus" } };
   let map, config, lastFix, styleReady = false, earthStyleJSON = null;
   let markers = [];
+  let summaryData = null, activeRec = null, recPopup = null, peakMarker = null;
+  let highlight = { type: "FeatureCollection", features: [] };
   let geo = { type: "FeatureCollection", features: [] };
 
   // ---------- view (earth / map) and theme (light / dark chrome) ----------
@@ -274,6 +276,11 @@
     map.addLayer({ id: "route-ride", type: "line", source: "route", filter: is("ride"),
       layout: { "line-join": "round", "line-cap": "round" },
       paint: { "line-color": accent, "line-width": 4, "line-opacity": 0.95 } });
+    if (!map.getSource("highlight")) map.addSource("highlight", { type: "geojson", data: highlight });
+    map.addLayer({ id: "route-highlight-casing", type: "line", source: "highlight",
+      layout: { "line-join": "round", "line-cap": "round" }, paint: { "line-color": "rgba(0,0,0,0.45)", "line-width": 9 } });
+    map.addLayer({ id: "route-highlight", type: "line", source: "highlight",
+      layout: { "line-join": "round", "line-cap": "round" }, paint: { "line-color": "#ffd35c", "line-width": 5 } });
     styleReady = true;
   }
 
@@ -363,6 +370,7 @@
     }
 
     renderSponsorStats(km, points);
+    renderRecords(summary);
 
     const parts = [];
     if (config.start_date) parts.push(`Left ${config.start_place ? config.start_place + " on " : ""}${fmtDate(config.start_date)}`);
@@ -399,6 +407,78 @@
     box.hidden = false;
   }
 
+  // ---------- record days ----------
+  const shortDate = (d) => new Date(d + "T00:00:00").toLocaleDateString("en-GB", { day: "numeric", month: "short" });
+  const hm = (s) => `${Math.floor(s / 3600)}h ${String(Math.round((s % 3600) / 60)).padStart(2, "0")}m`;
+  const REC = {
+    furthest: { value: (r) => `${fmtInt(r.km)} km`, title: "Furthest day" },
+    longest: { value: (r) => hm(r.moving_s), title: "Longest day in the saddle", extra: (r) => `${fmtInt(r.km)} km` },
+    climb: { value: (r) => `${fmtInt(r.m)} m`, title: "Most climbing in a day", extra: (r) => `${fmtInt(r.km)} km` },
+    highest: { value: (r) => `${fmtInt(r.m)} m`, title: "Highest point", extra: (r) => r.place || "" },
+  };
+
+  function renderRecords(summary) {
+    summaryData = summary;
+    const recs = (summary && summary.records) || {};
+    const box = $("records");
+    let any = false;
+    box.querySelectorAll(".rec").forEach((el) => {
+      const r = recs[el.dataset.rec];
+      el.hidden = !r;
+      if (!r) return;
+      any = true;
+      el.querySelector(".rec-num").textContent = REC[el.dataset.rec].value(r);
+      el.querySelector(".rec-date").textContent = shortDate(r.date);
+      el.title = `${REC[el.dataset.rec].title} · ${fmtDate(r.date)} · tap to show on the map`;
+    });
+    box.hidden = !any;
+  }
+
+  function clearRecord() {
+    activeRec = null;
+    highlight = { type: "FeatureCollection", features: [] };
+    if (styleReady && map.getSource("highlight")) map.getSource("highlight").setData(highlight);
+    if (recPopup) { recPopup.remove(); recPopup = null; }
+    if (peakMarker) { peakMarker.remove(); peakMarker = null; }
+    document.querySelectorAll(".rec.on").forEach((el) => el.classList.remove("on"));
+  }
+
+  /* Highlight the record day's ride(s), fly there and label it. Tapping the same tile again clears it. */
+  function showRecord(key) {
+    const r = summaryData && summaryData.records && summaryData.records[key];
+    if (!r) return;
+    if (activeRec === key) { clearRecord(); return; }
+    clearRecord();
+    const pts = unwrap(window.__points || []).filter((p) => p.t >= r.from && p.t <= r.to);
+    if (!pts.length) return;
+    const lines = [];
+    for (const p of pts) {
+      if (p.s === 1 || !lines.length) lines.push([]);
+      lines[lines.length - 1].push([p.x, p.lat]);
+    }
+    highlight = { type: "FeatureCollection", features: lines.filter((l) => l.length > 1).map((l) => ({
+      type: "Feature", properties: {}, geometry: { type: "LineString", coordinates: l } })) };
+    if (styleReady) map.getSource("highlight").setData(highlight);
+    activeRec = key;
+    document.querySelector(`.rec[data-rec="${key}"]`).classList.add("on");
+
+    const xs = pts.map((p) => p.x), ys = pts.map((p) => p.lat);
+    map.fitBounds([[Math.min(...xs), Math.min(...ys)], [Math.max(...xs), Math.max(...ys)]], { padding: uiPadding(), maxZoom: 9.5, duration: 1600 });
+
+    let at = [pts[Math.floor(pts.length / 2)].x, pts[Math.floor(pts.length / 2)].lat];
+    if (key === "highest" && r.lat != null) {
+      const near = pts.reduce((b, p) => (Math.abs(p.lat - r.lat) + Math.abs(p.lon - r.lon) < Math.abs(b.lat - r.lat) + Math.abs(b.lon - r.lon) ? p : b));
+      at = [near.x, near.lat];
+      const el = document.createElement("div"); el.className = "peak";
+      peakMarker = new maplibregl.Marker({ element: el, anchor: "bottom", opacityWhenCovered: "0" }).setLngLat(at).addTo(map);
+    }
+    const extra = REC[key].extra ? REC[key].extra(r) : "";
+    recPopup = new maplibregl.Popup({ closeButton: false, closeOnClick: false, className: "quiet", offset: 16 })
+      .setLngLat(at)
+      .setHTML(`${REC[key].title} · ${REC[key].value(r)}<br>${fmtDate(r.date)}${extra ? " · " + extra : ""}`)
+      .addTo(map);
+  }
+
   async function refresh(first) {
     const base = config.demo ? "data/demo-" : "data/";
     const [track, summary] = await Promise.all([loadJSON(base + "track.json"), loadJSON(base + "summary.json", true)]);
@@ -414,7 +494,9 @@
     $("title").textContent = config.title || "Around the world by bicycle";
     $("rider").textContent = config.rider || "";
     initMap();
+    document.querySelectorAll(".rec").forEach((el) => el.addEventListener("click", () => showRecord(el.dataset.rec)));
     $("locate").addEventListener("click", () => {
+      clearRecord();
       if (lastFix) map.flyTo({ center: [lastFix.lon, lastFix.lat], zoom: Math.max(map.getZoom(), 9), duration: 1400 });
     });
     try {

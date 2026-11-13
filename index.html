@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.css">
-<link rel="stylesheet" href="css/style.css?v=202611130330b">
+<link rel="stylesheet" href="css/style.css?v=202611130338">
 </head>
 <body>
 <div id="map" aria-label="Map of the route"></div>
@@ -46,11 +46,17 @@
       <div><span class="mini-num" id="gb">—</span><span class="mini-label" id="gb-label"></span></div>
     </div>
   </div>
+  <div class="records" id="records" hidden>
+    <button class="rec" type="button" data-rec="furthest"><span class="rec-num">—</span><span class="rec-label">furthest day</span><span class="rec-date"></span></button>
+    <button class="rec" type="button" data-rec="longest"><span class="rec-num">—</span><span class="rec-label">longest day</span><span class="rec-date"></span></button>
+    <button class="rec" type="button" data-rec="climb"><span class="rec-num">—</span><span class="rec-label">most climbing</span><span class="rec-date"></span></button>
+    <button class="rec" type="button" data-rec="highest"><span class="rec-num">—</span><span class="rec-label">highest point</span><span class="rec-date"></span></button>
+  </div>
   <p class="meta" id="meta"></p>
   <p class="meta links" id="links"></p>
 </aside>
 
 <script src="https://unpkg.com/maplibre-gl@5/dist/maplibre-gl.js"></script>
-<script src="js/app.js?v=202611130330b"></script>
+<script src="js/app.js?v=202611130338"></script>
 </body>
 </html>
