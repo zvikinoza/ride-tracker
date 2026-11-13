@@ -494,7 +494,7 @@
     $("title").textContent = config.title || "Around the world by bicycle";
     $("rider").textContent = config.rider || "";
     initMap();
-    document.querySelectorAll(".rec").forEach((el) => el.addEventListener("click", () => showRecord(el.dataset.rec)));
+    document.querySelectorAll(".rec").forEach((el) => el.addEventListener("click", () => { showRecord(el.dataset.rec); el.blur(); }));
     $("locate").addEventListener("click", () => {
       clearRecord();
       if (lastFix) map.flyTo({ center: [lastFix.lon, lastFix.lat], zoom: Math.max(map.getZoom(), 9), duration: 1400 });

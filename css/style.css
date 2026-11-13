@@ -210,8 +210,13 @@ h1 {
   transition: background 0.15s ease;
 }
 .rec[hidden] { display: none; }
-.rec:hover { background: rgba(127, 127, 127, 0.12); }
-.rec.on { background: var(--accent-soft); }
+/* The rounded box appears only while hovering (mouse) or pressing (touch), on every tile alike.
+   The selected tile is marked by its number turning the route colour, not by a box. */
+@media (hover: hover) { .rec:hover { background: var(--accent-soft); } }
+.rec:active { background: var(--accent-soft); }
+.rec:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+.rec.on .rec-num { color: #2b6fd6; font-weight: 400; }
+:root[data-theme="dark"] .rec.on .rec-num { color: #8ab8ff; }
 .rec-num {
   font-family: var(--serif); font-weight: 300; font-size: 20px; line-height: 1.15;
   font-variant-numeric: tabular-nums; letter-spacing: -0.01em; white-space: nowrap;
