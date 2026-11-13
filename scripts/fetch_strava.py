@@ -109,9 +109,8 @@ def main():
     track = json.loads(TRACK.read_text()) if TRACK.exists() else {"points": []}
     points = {p["t"]: p for p in track.get("points", [])}
 
-    after = int(datetime.fromisoformat(cfg["start_date"]).replace(tzinfo=timezone.utc).timestamp())
-    if rides:
-        after = max(int(parse_time(r["start"]).timestamp()) for r in rides.values()) - 86400  # overlap a day; ids dedupe
+    # Always list from the trip start (a few cheap calls): rides uploaded late or back-dated are picked up too.
+    after = int(datetime.fromisoformat(cfg["start_date"]).replace(tzinfo=timezone.utc).timestamp()) - 86400
     page, new = 1, 0
     while True:
         batch = api(token, "/athlete/activities", after=after, per_page=100, page=page)
