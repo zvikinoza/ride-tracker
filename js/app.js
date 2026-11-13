@@ -15,6 +15,7 @@
   const TRAIN_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2c-4 0-8 .5-8 4v9.5C4 17.43 5.57 19 7.5 19L6 20.5v.5h2.23l2-2H14l2 2h2v-.5L16.5 19c1.93 0 3.5-1.57 3.5-3.5V6c0-3.5-3.58-4-8-4zM7.5 17c-.83 0-1.5-.67-1.5-1.5S6.67 14 7.5 14s1.5.67 1.5 1.5S8.33 17 7.5 17zm3.5-7H6V6h5v4zm2 0V6h5v4h-5zm3.5 7c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>';
   const BUS_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 16c0 .88.39 1.67 1 2.22V20c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h8v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1.78c.61-.55 1-1.34 1-2.22V6c0-3.5-3.58-4-8-4s-8 .5-8 4v10zm3.5 1c-.83 0-1.5-.67-1.5-1.5S6.67 14 7.5 14s1.5.67 1.5 1.5S8.33 17 7.5 17zm9 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm1.5-6H6V6h12v5z"/></svg>';
   const GROUND = { train: { svg: TRAIN_SVG, label: "Train" }, bus: { svg: BUS_SVG, label: "Bus" } };
+  const TROPHY_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 5h-2V3H7v2H5c-1.1 0-2 .9-2 2v1c0 2.55 1.92 4.63 4.39 4.94.63 1.5 1.98 2.63 3.61 2.96V19H7v2h10v-2h-4v-3.1c1.63-.33 2.98-1.46 3.61-2.96C19.08 12.63 21 10.55 21 8V7c0-1.1-.9-2-2-2zM5 8V7h2v3.82C5.84 10.4 5 9.3 5 8zm14 0c0 1.3-.84 2.4-2 2.82V7h2v1z"/></svg>';
   let map, config, lastFix, styleReady = false, earthStyleJSON = null;
   let markers = [];
   let summaryData = null, activeRec = null, recPopup = null, hoverPopup = null;
@@ -293,8 +294,9 @@
     // Record days: always drawn in their own colour on top of the route; a wide invisible line makes them easy to hover.
     const record = css("--record"), round = { "line-join": "round", "line-cap": "round" };
     if (!map.getSource("records")) map.addSource("records", { type: "geojson", data: recordsGeo });
-    map.addLayer({ id: "records-casing", type: "line", source: "records", layout: round, paint: { "line-color": "rgba(0,0,0,0.5)", "line-width": 6.5 } });
-    map.addLayer({ id: "records-line", type: "line", source: "records", layout: round, paint: { "line-color": record, "line-width": 4 } });
+    map.addLayer({ id: "records-glow", type: "line", source: "records", layout: round, paint: { "line-color": record, "line-width": 16, "line-blur": 10, "line-opacity": 0.55 } });
+    map.addLayer({ id: "records-casing", type: "line", source: "records", layout: round, paint: { "line-color": "rgba(60,35,0,0.65)", "line-width": 7.5 } });
+    map.addLayer({ id: "records-line", type: "line", source: "records", layout: round, paint: { "line-color": record, "line-width": 5 } });
     map.addLayer({ id: "records-hit", type: "line", source: "records", layout: round, paint: { "line-color": "#000", "line-opacity": 0.01, "line-width": 24 } });
     if (!map.getSource("highlight")) map.addSource("highlight", { type: "geojson", data: highlight });
     map.addLayer({ id: "route-highlight-casing", type: "line", source: "highlight", layout: round, paint: { "line-color": "rgba(0,0,0,0.55)", "line-width": 10.5 } });
@@ -494,11 +496,12 @@
       if (!lines.length) continue;
       const html = recordLabel(g.keys);
       feats.push({ type: "Feature", properties: { keys: g.keys.join(","), html }, geometry: { type: "MultiLineString", coordinates: lines } });
-      const r = summaryData.records.highest;
-      if (g.keys.includes("highest") && r.lat != null) {
-        const el = document.createElement("div"); el.className = "peak";
-        addMarker(el, peakPosition(pts, r), html, { anchor: "bottom" });
-      }
+      // A trophy on every record: at the summit for the highest point, otherwise mid-ride.
+      const r = summaryData.records.highest, mid = pts[Math.floor(pts.length / 2)];
+      const at = g.keys.includes("highest") && r.lat != null ? peakPosition(pts, r) : [mid.x, mid.lat];
+      const el = document.createElement("div"); el.className = "trophy"; el.innerHTML = TROPHY_SVG;
+      el.addEventListener("click", () => { if (activeRec !== g.keys[0]) showRecord(g.keys[0], false); });
+      addMarker(el, at, html);
     }
     recordsGeo = { type: "FeatureCollection", features: feats };
     if (styleReady && map.getSource("records")) map.getSource("records").setData(recordsGeo);

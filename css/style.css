@@ -11,7 +11,7 @@
   --accent: #2b6fd6;
   --accent-soft: rgba(43, 111, 214, 0.25);
   --transfer: #9a948a;
-  --record: #d98200;
+  --record: #f5b700;
   --casing: rgba(255, 255, 255, 0.9);
   --serif: "Fraunces", Georgia, serif;
   --sans: "Inter", system-ui, -apple-system, sans-serif;
@@ -29,7 +29,7 @@
     --accent: #6fa3ff;
     --accent-soft: rgba(111, 163, 255, 0.28);
     --transfer: #6f6a62;
-    --record: #ffd35c;
+    --record: #ffc800;
     --casing: rgba(20, 20, 22, 0.9);
 }
 
@@ -226,7 +226,17 @@ h1 {
 .rec-label { font-size: 11.5px; color: var(--muted); white-space: nowrap; }
 .rec-label::before { content: ""; display: inline-block; width: 6px; height: 6px; margin-right: 5px; border-radius: 50%; background: var(--record); vertical-align: 1px; } /* legend: same colour as the record days on the map */
 .rec-date { font-size: 10.5px; color: var(--muted); opacity: 0.8; white-space: nowrap; }
-.peak { width: 0; height: 0; border-left: 7px solid transparent; border-right: 7px solid transparent; border-bottom: 12px solid var(--record); cursor: pointer; filter: drop-shadow(0 1px 2px rgba(0,0,0,0.5)); }
+.trophy {
+  width: 30px; height: 30px;
+  display: grid; place-items: center;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #fff3b0, #ffc800 55%, #e09a00);
+  border: 1.5px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 0 0 1px rgba(90, 55, 0, 0.55), 0 0 14px 3px rgba(255, 200, 0, 0.6), 0 2px 6px rgba(0, 0, 0, 0.45);
+  color: #5a3700;
+  cursor: pointer;
+}
+.trophy svg { width: 17px; height: 17px; fill: currentColor; }
 
 .meta {
   margin: 10px 0 0;
@@ -271,7 +281,7 @@ h1 {
   --accent: #3d9bff;
   --casing: rgba(255, 255, 255, 0.85);
   --transfer: #e9e4da;
-  --record: #ffd35c;
+  --record: #ffc800;
 }
 :root:not([data-view="map"]) #map { background: #05070c; }
 :root:not([data-view="map"]) .plane { background: rgba(10, 12, 18, 0.7); border-color: rgba(255,255,255,0.25); color: #f3efe8; }
