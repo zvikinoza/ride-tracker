@@ -8,7 +8,10 @@
   "points": 190,
   "start_local": "2026-07-01T13:14:30Z",
   "moving_s": 20828,
-  "elev_high": 817.0
+  "elev_high": 817.0,
+  "descent_m": 486,
+  "alt_start": 544,
+  "alt_end": 797
  },
  "19350034371": {
   "name": "Morning Ride",
@@ -19,7 +22,10 @@
   "points": 294,
   "start_local": "2026-07-16T08:39:23Z",
   "moving_s": 26724,
-  "elev_high": 343.3
+  "elev_high": 343.3,
+  "descent_m": 998,
+  "alt_start": 150,
+  "alt_end": 35
  },
  "19353528799": {
   "name": "Morning Ride",
@@ -30,7 +36,10 @@
   "points": 300,
   "start_local": "2026-07-17T08:11:47Z",
   "moving_s": 25900,
-  "elev_high": 212.5
+  "elev_high": 212.5,
+  "descent_m": 1085,
+  "alt_start": 33,
+  "alt_end": 90
  },
  "19367169658": {
   "name": "Morning Ride",
@@ -41,7 +50,10 @@
   "points": 281,
   "start_local": "2026-07-18T08:13:10Z",
   "moving_s": 28205,
-  "elev_high": 338.5
+  "elev_high": 338.5,
+  "descent_m": 1064,
+  "alt_start": 90,
+  "alt_end": 70
  },
  "19381965272": {
   "name": "Morning Ride",
@@ -52,7 +64,10 @@
   "points": 433,
   "start_local": "2026-07-19T06:22:52Z",
   "moving_s": 41123,
-  "elev_high": 253.1
+  "elev_high": 253.1,
+  "descent_m": 1242,
+  "alt_start": 66,
+  "alt_end": 215
  },
  "19406940285": {
   "name": "Morning Ride",
@@ -63,7 +78,10 @@
   "points": 333,
   "start_local": "2026-07-21T05:25:00Z",
   "moving_s": 26001,
-  "elev_high": 8.0
+  "elev_high": 8.0,
+  "descent_m": 2,
+  "alt_start": 0,
+  "alt_end": 0
  },
  "19421182914": {
   "name": "Lunch Ride",
@@ -74,7 +92,10 @@
   "points": 227,
   "start_local": "2026-07-22T11:08:14Z",
   "moving_s": 16351,
-  "elev_high": 30.2
+  "elev_high": 30.2,
+  "descent_m": 132,
+  "alt_start": 6,
+  "alt_end": 8
  },
  "19550241373": {
   "name": "Lunch Ride",
@@ -85,7 +106,10 @@
   "points": 264,
   "start_local": "2026-07-31T11:22:39Z",
   "moving_s": 20367,
-  "elev_high": 893.2
+  "elev_high": 893.2,
+  "descent_m": 326,
+  "alt_start": 12,
+  "alt_end": 893
  },
  "19560249262": {
   "name": "Morning Ride",
@@ -96,7 +120,10 @@
   "points": 376,
   "start_local": "2026-08-01T09:33:03Z",
   "moving_s": 30929,
-  "elev_high": 2030.8
+  "elev_high": 2030.8,
+  "descent_m": 1798,
+  "alt_start": 889,
+  "alt_end": 1130
  },
  "19574424320": {
   "name": "Morning Ride",
@@ -107,7 +134,10 @@
   "points": 323,
   "start_local": "2026-08-02T10:02:45Z",
   "moving_s": 33516,
-  "elev_high": 2176.2
+  "elev_high": 2176.2,
+  "descent_m": 1197,
+  "alt_start": 1143,
+  "alt_end": 1479
  },
  "19583859857": {
   "name": "Morning Ride",
@@ -118,7 +148,10 @@
   "points": 251,
   "start_local": "2026-08-03T10:24:12Z",
   "moving_s": 21491,
-  "elev_high": 1646.8
+  "elev_high": 1646.8,
+  "descent_m": 2113,
+  "alt_start": 1470,
+  "alt_end": 599
  },
  "19810782354": {
   "name": "Morning Ride",
@@ -129,7 +162,10 @@
   "points": 209,
   "start_local": "2026-08-18T10:21:54Z",
   "moving_s": 19314,
-  "elev_high": 447.4
+  "elev_high": 447.4,
+  "descent_m": 380,
+  "alt_start": 438,
+  "alt_end": 254
  },
  "19810789447": {
   "name": "Morning Ride",
@@ -140,7 +176,10 @@
   "points": 243,
   "start_local": "2026-08-19T10:19:08Z",
   "moving_s": 23098,
-  "elev_high": 296.4
+  "elev_high": 296.4,
+  "descent_m": 87,
+  "alt_start": 259,
+  "alt_end": 295
  },
  "19848131003": {
   "name": "Morning Ride",
@@ -151,7 +190,10 @@
   "points": 230,
   "start_local": "2026-08-20T09:31:39Z",
   "moving_s": 22517,
-  "elev_high": 620.2
+  "elev_high": 620.2,
+  "descent_m": 37,
+  "alt_start": 264,
+  "alt_end": 607
  },
  "19848131380": {
   "name": "Morning Ride",
@@ -162,7 +204,10 @@
   "points": 291,
   "start_local": "2026-08-21T09:39:41Z",
   "moving_s": 27800,
-  "elev_high": 902.0
+  "elev_high": 902.0,
+  "descent_m": 446,
+  "alt_start": 608,
+  "alt_end": 879
  },
  "19848170394": {
   "name": "Morning Ride",
@@ -173,7 +218,10 @@
   "points": 118,
   "start_local": "2026-08-22T07:26:17Z",
   "moving_s": 10463,
-  "elev_high": 884.8
+  "elev_high": 884.8,
+  "descent_m": 246,
+  "alt_start": 878,
+  "alt_end": 712
  },
  "20037282401": {
   "name": "Afternoon Ride",
@@ -184,7 +232,10 @@
   "points": 117,
   "start_local": "2026-08-31T16:46:19Z",
   "moving_s": 11293,
-  "elev_high": 1436.2
+  "elev_high": 1436.2,
+  "descent_m": 89,
+  "alt_start": 800,
+  "alt_end": 1422
  },
  "20037287771": {
   "name": "Morning Ride",
@@ -195,7 +246,10 @@
   "points": 257,
   "start_local": "2026-09-01T07:49:58Z",
   "moving_s": 25673,
-  "elev_high": 1582.8
+  "elev_high": 1582.8,
+  "descent_m": 1950,
+  "alt_start": 1440,
+  "alt_end": 674
  },
  "20037287449": {
   "name": "Lunch Ride",
@@ -206,7 +260,10 @@
   "points": 181,
   "start_local": "2026-09-02T12:46:12Z",
   "moving_s": 15618,
-  "elev_high": 1154.8
+  "elev_high": 1154.8,
+  "descent_m": 1001,
+  "alt_start": 879,
+  "alt_end": 470
  },
  "20037293099": {
   "name": "Morning Ride",
@@ -217,7 +274,10 @@
   "points": 247,
   "start_local": "2026-09-03T08:55:18Z",
   "moving_s": 26127,
-  "elev_high": 1960.2
+  "elev_high": 1960.2,
+  "descent_m": 1333,
+  "alt_start": 455,
+  "alt_end": 891
  },
  "20037298400": {
   "name": "Morning Ride",
@@ -228,7 +288,10 @@
   "points": 312,
   "start_local": "2026-09-04T09:36:48Z",
   "moving_s": 24356,
-  "elev_high": 1271.4
+  "elev_high": 1271.4,
+  "descent_m": 969,
+  "alt_start": 849,
+  "alt_end": 1265
  },
  "20055637086": {
   "name": "Morning Ride",
@@ -239,7 +302,10 @@
   "points": 281,
   "start_local": "2026-09-05T09:42:50Z",
   "moving_s": 27110,
-  "elev_high": 1619.4
+  "elev_high": 1619.4,
+  "descent_m": 760,
+  "alt_start": 1254,
+  "alt_end": 1619
  },
  "20069173107": {
   "name": "Morning Ride",
@@ -250,7 +316,10 @@
   "points": 191,
   "start_local": "2026-09-06T08:40:48Z",
   "moving_s": 18876,
-  "elev_high": 1859.2
+  "elev_high": 1859.2,
+  "descent_m": 641,
+  "alt_start": 1632,
+  "alt_end": 1856
  },
  "20075787622": {
   "name": "Morning Ride",
@@ -261,7 +330,10 @@
   "points": 311,
   "start_local": "2026-09-07T08:13:31Z",
   "moving_s": 26482,
-  "elev_high": 2097.2
+  "elev_high": 2097.2,
+  "descent_m": 619,
+  "alt_start": 1838,
+  "alt_end": 2095
  },
  "20090316744": {
   "name": "Morning Ride",
@@ -272,7 +344,10 @@
   "points": 204,
   "start_local": "2026-09-08T10:28:16Z",
   "moving_s": 17585,
-  "elev_high": 2817.6
+  "elev_high": 2817.6,
+  "descent_m": 330,
+  "alt_start": 2088,
+  "alt_end": 2818
  },
  "20117229502": {
   "name": "Morning Ride",
@@ -283,7 +358,10 @@
   "points": 216,
   "start_local": "2026-09-09T08:28:09Z",
   "moving_s": 19910,
-  "elev_high": 3688.4
+  "elev_high": 3688.4,
+  "descent_m": 183,
+  "alt_start": 2818,
+  "alt_end": 3667
  },
  "20129945775": {
   "name": "Morning Ride",
@@ -294,7 +372,10 @@
   "points": 246,
   "start_local": "2026-09-10T09:39:16Z",
   "moving_s": 24054,
-  "elev_high": 4120.2
+  "elev_high": 4120.2,
+  "descent_m": 769,
+  "alt_start": 3542,
+  "alt_end": 3752
  },
  "20146618190": {
   "name": "Morning Ride",
@@ -305,7 +386,10 @@
   "points": 331,
   "start_local": "2026-09-11T09:50:37Z",
   "moving_s": 22530,
-  "elev_high": 3981.4
+  "elev_high": 3981.4,
+  "descent_m": 840,
+  "alt_start": 3723,
+  "alt_end": 3555
  },
  "20159988550": {
   "name": "Morning Ride",
@@ -316,7 +400,10 @@
   "points": 347,
   "start_local": "2026-09-12T08:45:20Z",
   "moving_s": 32401,
-  "elev_high": 4440.2
+  "elev_high": 4440.2,
+  "descent_m": 919,
+  "alt_start": 3523,
+  "alt_end": 3752
  },
  "20161977593": {
   "name": "Morning Ride",
@@ -327,7 +414,10 @@
   "points": 287,
   "start_local": "2026-09-13T09:30:44Z",
   "moving_s": 25747,
-  "elev_high": 4087.0
+  "elev_high": 4087.0,
+  "descent_m": 1519,
+  "alt_start": 3750,
+  "alt_end": 3015
  },
  "20179652421": {
   "name": "Lunch Ride",
@@ -338,7 +428,10 @@
   "points": 280,
   "start_local": "2026-09-14T11:04:06Z",
   "moving_s": 21018,
-  "elev_high": 3546.4
+  "elev_high": 3546.4,
+  "descent_m": 2314,
+  "alt_start": 3131,
+  "alt_end": 1572
  },
  "20208836997": {
   "name": "Morning Ride",
@@ -349,7 +442,10 @@
   "points": 201,
   "start_local": "2026-09-15T10:10:15Z",
   "moving_s": 18009,
-  "elev_high": 2388.8
+  "elev_high": 2388.8,
+  "descent_m": 1454,
+  "alt_start": 1566,
+  "alt_end": 993
  },
  "20238485744": {
   "name": "Morning Ride",
@@ -360,7 +456,10 @@
   "points": 293,
   "start_local": "2026-09-17T09:57:11Z",
   "moving_s": 24208,
-  "elev_high": 1124.8
+  "elev_high": 1124.8,
+  "descent_m": 969,
+  "alt_start": 980,
+  "alt_end": 893
  },
  "20251370861": {
   "name": "Morning Ride",
@@ -371,7 +470,10 @@
   "points": 198,
   "start_local": "2026-09-18T08:43:05Z",
   "moving_s": 20923,
-  "elev_high": 1765.0
+  "elev_high": 1765.0,
+  "descent_m": 521,
+  "alt_start": 896,
+  "alt_end": 1745
  },
  "20251373678": {
   "name": "Morning Ride",
@@ -382,7 +484,10 @@
   "points": 244,
   "start_local": "2026-09-19T07:10:53Z",
   "moving_s": 20933,
-  "elev_high": 2530.4
+  "elev_high": 2530.4,
+  "descent_m": 1627,
+  "alt_start": 1756,
+  "alt_end": 1239
  },
  "20262473669": {
   "name": "Morning Ride",
@@ -393,7 +498,10 @@
   "points": 302,
   "start_local": "2026-09-20T09:09:44Z",
   "moving_s": 23802,
-  "elev_high": 1736.0
+  "elev_high": 1736.0,
+  "descent_m": 1047,
+  "alt_start": 1237,
+  "alt_end": 1722
  },
  "20281957745": {
   "name": "Morning Ride",
@@ -404,7 +512,10 @@
   "points": 286,
   "start_local": "2026-09-21T08:58:32Z",
   "moving_s": 25070,
-  "elev_high": 2667.0
+  "elev_high": 2667.0,
+  "descent_m": 967,
+  "alt_start": 1717,
+  "alt_end": 1843
  },
  "20293420288": {
   "name": "Morning Ride",
@@ -415,7 +526,10 @@
   "points": 213,
   "start_local": "2026-09-22T09:39:13Z",
   "moving_s": 20618,
-  "elev_high": 1842.8
+  "elev_high": 1842.8,
+  "descent_m": 482,
+  "alt_start": 1841,
+  "alt_end": 1609
  },
  "20318865964": {
   "name": "Morning Ride",
@@ -426,7 +540,10 @@
   "points": 226,
   "start_local": "2026-09-23T09:03:52Z",
   "moving_s": 19470,
-  "elev_high": 1770.8
+  "elev_high": 1770.8,
+  "descent_m": 438,
+  "alt_start": 1616,
+  "alt_end": 1611
  },
  "20318865861": {
   "name": "Morning Ride",
@@ -437,7 +554,10 @@
   "points": 43,
   "start_local": "2026-09-24T09:15:31Z",
   "moving_s": 4800,
-  "elev_high": 1670.6
+  "elev_high": 1670.6,
+  "descent_m": 94,
+  "alt_start": 1616,
+  "alt_end": 1644
  },
  "20321432691": {
   "name": "Morning Ride",
@@ -448,7 +568,10 @@
   "points": 178,
   "start_local": "2026-09-25T09:00:27Z",
   "moving_s": 16846,
-  "elev_high": 1749.8
+  "elev_high": 1749.8,
+  "descent_m": 277,
+  "alt_start": 1615,
+  "alt_end": 1749
  },
  "20337793147": {
   "name": "Morning Ride",
@@ -459,7 +582,10 @@
   "points": 247,
   "start_local": "2026-09-26T09:51:51Z",
   "moving_s": 24830,
-  "elev_high": 2181.0
+  "elev_high": 2181.0,
+  "descent_m": 567,
+  "alt_start": 1754,
+  "alt_end": 2041
  },
  "20401757153": {
   "name": "Morning Ride",
@@ -470,7 +596,10 @@
   "points": 236,
   "start_local": "2026-09-27T10:07:31Z",
   "moving_s": 20180,
-  "elev_high": 2043.4
+  "elev_high": 2043.4,
+  "descent_m": 1345,
+  "alt_start": 2041,
+  "alt_end": 1313
  },
  "20401757237": {
   "name": "Morning Ride",
@@ -481,7 +610,10 @@
   "points": 249,
   "start_local": "2026-09-28T07:45:14Z",
   "moving_s": 25809,
-  "elev_high": 1323.2
+  "elev_high": 1323.2,
+  "descent_m": 916,
+  "alt_start": 1323,
+  "alt_end": 739
  },
  "20377462453": {
   "name": "Morning Ride",
@@ -492,7 +624,10 @@
   "points": 192,
   "start_local": "2026-09-29T07:45:45Z",
   "moving_s": 15015,
-  "elev_high": 905.2
+  "elev_high": 905.2,
+  "descent_m": 201,
+  "alt_start": 744,
+  "alt_end": 905
  },
  "20420073702": {
   "name": "Morning Ride",
@@ -503,7 +638,10 @@
   "points": 245,
   "start_local": "2026-10-01T09:45:27Z",
   "moving_s": 20426,
-  "elev_high": 909.0
+  "elev_high": 909.0,
+  "descent_m": 766,
+  "alt_start": 909,
+  "alt_end": 489
  },
  "20420073594": {
   "name": "Morning Ride",
@@ -514,7 +652,10 @@
   "points": 181,
   "start_local": "2026-10-02T07:59:18Z",
   "moving_s": 20618,
-  "elev_high": 1076.8
+  "elev_high": 1076.8,
+  "descent_m": 317,
+  "alt_start": 476,
+  "alt_end": 953
  },
  "20442307145": {
   "name": "Morning Ride",
@@ -525,7 +666,10 @@
   "points": 192,
   "start_local": "2026-10-03T08:58:50Z",
   "moving_s": 23524,
-  "elev_high": 1708.8
+  "elev_high": 1708.8,
+  "descent_m": 850,
+  "alt_start": 951,
+  "alt_end": 1012
  },
  "20457281057": {
   "name": "Morning Ride",
@@ -536,7 +680,10 @@
   "points": 265,
   "start_local": "2026-10-04T08:24:39Z",
   "moving_s": 27455,
-  "elev_high": 1303.2
+  "elev_high": 1303.2,
+  "descent_m": 891,
+  "alt_start": 1011,
+  "alt_end": 638
  },
  "20486258547": {
   "name": "Lunch Ride",
@@ -547,7 +694,10 @@
   "points": 166,
   "start_local": "2026-10-05T11:09:36Z",
   "moving_s": 15105,
-  "elev_high": 866.4
+  "elev_high": 866.4,
+  "descent_m": 309,
+  "alt_start": 625,
+  "alt_end": 697
  },
  "20484550853": {
   "name": "Morning Ride",
@@ -558,7 +708,10 @@
   "points": 262,
   "start_local": "2026-10-06T09:08:38Z",
   "moving_s": 22543,
-  "elev_high": 765.4
+  "elev_high": 765.4,
+  "descent_m": 312,
+  "alt_start": 693,
+  "alt_end": 765
  },
  "20567498539": {
   "name": "Morning Ride",
@@ -569,7 +722,10 @@
   "points": 261,
   "start_local": "2026-10-07T08:59:19Z",
   "moving_s": 21162,
-  "elev_high": 856.2
+  "elev_high": 856.2,
+  "descent_m": 414,
+  "alt_start": 754,
+  "alt_end": 769
  },
  "20576060451": {
   "name": "Morning Ride",
@@ -580,7 +736,10 @@
   "points": 203,
   "start_local": "2026-10-08T10:18:02Z",
   "moving_s": 19504,
-  "elev_high": 969.6
+  "elev_high": 969.6,
+  "descent_m": 231,
+  "alt_start": 766,
+  "alt_end": 966
  },
  "20581594654": {
   "name": "Morning Ride",
@@ -591,7 +750,10 @@
   "points": 231,
   "start_local": "2026-10-09T09:04:55Z",
   "moving_s": 22717,
-  "elev_high": 1685.0
+  "elev_high": 1685.0,
+  "descent_m": 179,
+  "alt_start": 974,
+  "alt_end": 1685
  },
  "20581601607": {
   "name": "Morning Ride",
@@ -602,7 +764,10 @@
   "points": 343,
   "start_local": "2026-10-10T07:54:43Z",
   "moving_s": 27608,
-  "elev_high": 1966.6
+  "elev_high": 1966.6,
+  "descent_m": 1312,
+  "alt_start": 1677,
+  "alt_end": 853
  },
  "20581601463": {
   "name": "Morning Ride",
@@ -613,7 +778,10 @@
   "points": 219,
   "start_local": "2026-10-13T08:18:42Z",
   "moving_s": 20024,
-  "elev_high": 1612.8
+  "elev_high": 1612.8,
+  "descent_m": 165,
+  "alt_start": 1497,
+  "alt_end": 1607
  },
  "20581674445": {
   "name": "Morning Ride",
@@ -624,7 +792,10 @@
   "points": 408,
   "start_local": "2026-10-14T09:34:44Z",
   "moving_s": 30573,
-  "elev_high": 1784.2
+  "elev_high": 1784.2,
+  "descent_m": 642,
+  "alt_start": 1609,
+  "alt_end": 1469
  },
  "20608085388": {
   "name": "Morning Ride",
@@ -635,7 +806,10 @@
   "points": 268,
   "start_local": "2026-10-15T09:40:15Z",
   "moving_s": 25232,
-  "elev_high": 1922.4
+  "elev_high": 1922.4,
+  "descent_m": 131,
+  "alt_start": 1472,
+  "alt_end": 1909
  },
  "20609047934": {
   "name": "Morning Ride",
@@ -646,7 +820,10 @@
   "points": 438,
   "start_local": "2026-10-16T09:20:21Z",
   "moving_s": 31625,
-  "elev_high": 2587.2
+  "elev_high": 2587.2,
+  "descent_m": 1231,
+  "alt_start": 1943,
+  "alt_end": 1547
  },
  "20620612080": {
   "name": "Lunch Ride",
@@ -657,7 +834,10 @@
   "points": 272,
   "start_local": "2026-10-17T11:06:45Z",
   "moving_s": 22073,
-  "elev_high": 1916.8
+  "elev_high": 1916.8,
+  "descent_m": 183,
+  "alt_start": 1564,
+  "alt_end": 1900
  },
  "20634129888": {
   "name": "Morning Ride",
@@ -668,7 +848,10 @@
   "points": 285,
   "start_local": "2026-10-18T10:26:14Z",
   "moving_s": 24661,
-  "elev_high": 2175.0
+  "elev_high": 2175.0,
+  "descent_m": 873,
+  "alt_start": 1926,
+  "alt_end": 1624
  },
  "20647663074": {
   "name": "Lunch Ride",
@@ -679,7 +862,10 @@
   "points": 388,
   "start_local": "2026-10-19T11:24:00Z",
   "moving_s": 29900,
-  "elev_high": 1965.8
+  "elev_high": 1965.8,
+  "descent_m": 1050,
+  "alt_start": 1667,
+  "alt_end": 1627
  },
  "20659524947": {
   "name": "Morning Ride",
@@ -690,7 +876,10 @@
   "points": 240,
   "start_local": "2026-10-20T10:39:31Z",
   "moving_s": 21349,
-  "elev_high": 1983.6
+  "elev_high": 1983.6,
+  "descent_m": 527,
+  "alt_start": 1623,
+  "alt_end": 1959
  },
  "20672418071": {
   "name": "Lunch Ride",
@@ -701,7 +890,10 @@
   "points": 214,
   "start_local": "2026-10-21T11:40:02Z",
   "moving_s": 16598,
-  "elev_high": 2088.8
+  "elev_high": 2088.8,
+  "descent_m": 472,
+  "alt_start": 1980,
+  "alt_end": 1941
  },
  "20688130862": {
   "name": "Morning Ride",
@@ -712,7 +904,10 @@
   "points": 329,
   "start_local": "2026-10-22T10:57:14Z",
   "moving_s": 26025,
-  "elev_high": 2282.8
+  "elev_high": 2282.8,
+  "descent_m": 1040,
+  "alt_start": 1950,
+  "alt_end": 1770
  },
  "20700489510": {
   "name": "Lunch Ride",
@@ -723,7 +918,10 @@
   "points": 282,
   "start_local": "2026-10-23T12:22:37Z",
   "moving_s": 22369,
-  "elev_high": 1827.4
+  "elev_high": 1827.4,
+  "descent_m": 1320,
+  "alt_start": 1790,
+  "alt_end": 1173
  },
  "20719277882": {
   "name": "Lunch Ride",
@@ -734,7 +932,10 @@
   "points": 304,
   "start_local": "2026-10-24T11:33:29Z",
   "moving_s": 24701,
-  "elev_high": 1738.6
+  "elev_high": 1738.6,
+  "descent_m": 376,
+  "alt_start": 1190,
+  "alt_end": 1583
  },
  "20726361818": {
   "name": "Morning Ride",
@@ -745,7 +946,10 @@
   "points": 401,
   "start_local": "2026-10-25T10:46:42Z",
   "moving_s": 33441,
-  "elev_high": 1992.6
+  "elev_high": 1992.6,
+  "descent_m": 2045,
+  "alt_start": 1614,
+  "alt_end": 999
  },
  "20736943516": {
   "name": "Lunch Ride",
@@ -756,7 +960,10 @@
   "points": 279,
   "start_local": "2026-10-26T11:22:25Z",
   "moving_s": 24338,
-  "elev_high": 2044.6
+  "elev_high": 2044.6,
+  "descent_m": 1283,
+  "alt_start": 997,
+  "alt_end": 1082
  },
  "20750484432": {
   "name": "Morning Ride",
@@ -767,7 +974,10 @@
   "points": 316,
   "start_local": "2026-10-27T09:17:33Z",
   "moving_s": 26614,
-  "elev_high": 1083.6
+  "elev_high": 1083.6,
+  "descent_m": 1589,
+  "alt_start": 1080,
+  "alt_end": 778
  },
  "20766389062": {
   "name": "Lunch Ride",
@@ -778,7 +988,10 @@
   "points": 308,
   "start_local": "2026-10-28T11:21:42Z",
   "moving_s": 25354,
-  "elev_high": 1036.8
+  "elev_high": 1036.8,
+  "descent_m": 1291,
+  "alt_start": 803,
+  "alt_end": 637
  },
  "20778346650": {
   "name": "Morning Ride",
@@ -789,7 +1002,10 @@
   "points": 257,
   "start_local": "2026-10-29T07:31:23Z",
   "moving_s": 20809,
-  "elev_high": 660.6
+  "elev_high": 660.6,
+  "descent_m": 666,
+  "alt_start": 634,
+  "alt_end": 497
  },
  "20794255574": {
   "name": "Lunch Ride",
@@ -800,6 +1016,9 @@
   "points": 407,
   "start_local": "2026-10-30T12:49:14Z",
   "moving_s": 32899,
-  "elev_high": 618.8
+  "elev_high": 618.8,
+  "descent_m": 518,
+  "alt_start": 506,
+  "alt_end": 500
  }
 }
