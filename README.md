@@ -100,3 +100,10 @@ With Strava, any hop between the end of one ride and the start of the next (over
 counted. Hops of `flight_min_km` or more get a plane. To label a specific gap, add it to `transfers` in
 `config.json` by the UTC date of the last ride before it: `{"from": "2026-10-10", "mode": "train"}`
 (`mode` is `train`, `bus`, `flight` or `transfer`).
+
+### Record days
+
+`fetch_strava.py` writes `records` into `data/summary.json` on every run that brings a new or edited ride:
+furthest day (km), longest day (moving time), most climbing (m gained) and the highest point reached
+(Strava's `elev_high`, located once with a single streams call). Days are grouped by the riders' local date.
+The site shows them as four tiles; tapping one highlights that day's ride and flies to it.
