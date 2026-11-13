@@ -281,7 +281,8 @@
     return new maplibregl.Popup({ closeButton: false, closeOnClick: false, className: "quiet", offset: 14 }).setHTML(html);
   }
   function addMarker(el, lngLat, html, opts = {}) {
-    const m = new maplibregl.Marker({ element: el, ...opts }).setLngLat(lngLat).setPopup(popup(html)).addTo(map);
+    // opacityWhenCovered "0": fully hidden on the far side of the globe (MapLibre's default leaves a faded ghost)
+    const m = new maplibregl.Marker({ element: el, opacityWhenCovered: "0", ...opts }).setLngLat(lngLat).setPopup(popup(html)).addTo(map);
     el.addEventListener("mouseenter", () => { if (!m.getPopup().isOpen()) m.togglePopup(); });
     el.addEventListener("mouseleave", () => { if (m.getPopup().isOpen()) m.togglePopup(); });
     markers.push(m);

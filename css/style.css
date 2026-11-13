@@ -255,6 +255,7 @@ h1 {
 :root[data-theme="dark"] .theme-toggle .moon { display: block; }
 
 /* Markers */
+.maplibregl-marker[style*="opacity: 0;"] { pointer-events: none; } /* far side of the globe: no hover either */
 .here {
   position: relative;
   width: 16px; height: 16px;
