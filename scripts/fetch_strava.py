@@ -131,6 +131,10 @@ def main():
             log(f"+ {act['start_date'][:10]} {act.get('name')} {rides[aid]['km']} km ({len(pts)} pts)")
         page += 1
 
+    if new == 0 and SUMMARY.exists() and TRACK.exists():
+        log(f"{len(rides)} rides, nothing new")  # leave the files untouched so the workflow makes no empty commits
+        return 0
+
     pts = sorted(points.values(), key=lambda p: p["t"])
     TRACK.write_text(json.dumps({"points": pts}, separators=(",", ":")) + "\n")
     RIDES.write_text(json.dumps(rides, indent=1, ensure_ascii=False) + "\n")
