@@ -1,0 +1,586 @@
+{
+ "19142907922": {
+  "name": "Afternoon Ride",
+  "start": "2026-07-01T11:14:30Z",
+  "km": 69.0,
+  "elapsed_s": 36547,
+  "elev_m": 738.6,
+  "points": 190
+ },
+ "19350034371": {
+  "name": "Morning Ride",
+  "start": "2026-07-16T05:39:23Z",
+  "km": 124.9,
+  "elapsed_s": 49111,
+  "elev_m": 883.4,
+  "points": 294
+ },
+ "19353528799": {
+  "name": "Morning Ride",
+  "start": "2026-07-17T05:11:47Z",
+  "km": 119.09,
+  "elapsed_s": 48136,
+  "elev_m": 1141.6,
+  "points": 300
+ },
+ "19367169658": {
+  "name": "Morning Ride",
+  "start": "2026-07-18T05:13:10Z",
+  "km": 117.28,
+  "elapsed_s": 49153,
+  "elev_m": 1042.7,
+  "points": 281
+ },
+ "19381965272": {
+  "name": "Morning Ride",
+  "start": "2026-07-19T03:22:52Z",
+  "km": 186.87,
+  "elapsed_s": 62963,
+  "elev_m": 1391.3,
+  "points": 433
+ },
+ "19406940285": {
+  "name": "Morning Ride",
+  "start": "2026-07-21T02:25:00Z",
+  "km": 129.87,
+  "elapsed_s": 54696,
+  "elev_m": 2.0,
+  "points": 333
+ },
+ "19421182914": {
+  "name": "Lunch Ride",
+  "start": "2026-07-22T08:08:14Z",
+  "km": 81.7,
+  "elapsed_s": 34225,
+  "elev_m": 134.0,
+  "points": 227
+ },
+ "19550241373": {
+  "name": "Lunch Ride",
+  "start": "2026-07-31T07:22:39Z",
+  "km": 86.63,
+  "elapsed_s": 31629,
+  "elev_m": 1207.0,
+  "points": 264
+ },
+ "19560249262": {
+  "name": "Morning Ride",
+  "start": "2026-08-01T05:33:03Z",
+  "km": 125.1,
+  "elapsed_s": 48349,
+  "elev_m": 2039.0,
+  "points": 376
+ },
+ "19574424320": {
+  "name": "Morning Ride",
+  "start": "2026-08-02T06:02:45Z",
+  "km": 119.69,
+  "elapsed_s": 46198,
+  "elev_m": 1533.0,
+  "points": 323
+ },
+ "19583859857": {
+  "name": "Morning Ride",
+  "start": "2026-08-03T06:24:12Z",
+  "km": 85.02,
+  "elapsed_s": 30459,
+  "elev_m": 1242.0,
+  "points": 251
+ },
+ "19810782354": {
+  "name": "Morning Ride",
+  "start": "2026-08-18T05:21:54Z",
+  "km": 86.19,
+  "elapsed_s": 36569,
+  "elev_m": 196.0,
+  "points": 209
+ },
+ "19810789447": {
+  "name": "Morning Ride",
+  "start": "2026-08-19T05:19:08Z",
+  "km": 98.37,
+  "elapsed_s": 34822,
+  "elev_m": 123.0,
+  "points": 243
+ },
+ "19848131003": {
+  "name": "Morning Ride",
+  "start": "2026-08-20T04:31:39Z",
+  "km": 84.42,
+  "elapsed_s": 86852,
+  "elev_m": 380.0,
+  "points": 230
+ },
+ "19848131380": {
+  "name": "Morning Ride",
+  "start": "2026-08-21T04:39:41Z",
+  "km": 103.43,
+  "elapsed_s": 54191,
+  "elev_m": 717.0,
+  "points": 291
+ },
+ "19848170394": {
+  "name": "Morning Ride",
+  "start": "2026-08-22T02:26:17Z",
+  "km": 44.87,
+  "elapsed_s": 27960,
+  "elev_m": 80.0,
+  "points": 118
+ },
+ "20037282401": {
+  "name": "Afternoon Ride",
+  "start": "2026-08-31T11:46:19Z",
+  "km": 41.8,
+  "elapsed_s": 15771,
+  "elev_m": 711.0,
+  "points": 117
+ },
+ "20037287771": {
+  "name": "Morning Ride",
+  "start": "2026-09-01T02:49:58Z",
+  "km": 101.03,
+  "elapsed_s": 45811,
+  "elev_m": 1184.0,
+  "points": 257
+ },
+ "20037287449": {
+  "name": "Lunch Ride",
+  "start": "2026-09-02T07:46:12Z",
+  "km": 66.49,
+  "elapsed_s": 24668,
+  "elev_m": 592.0,
+  "points": 181
+ },
+ "20037293099": {
+  "name": "Morning Ride",
+  "start": "2026-09-03T03:55:18Z",
+  "km": 86.51,
+  "elapsed_s": 42563,
+  "elev_m": 1769.0,
+  "points": 247
+ },
+ "20037298400": {
+  "name": "Morning Ride",
+  "start": "2026-09-04T04:36:48Z",
+  "km": 105.03,
+  "elapsed_s": 38259,
+  "elev_m": 1385.0,
+  "points": 312
+ },
+ "20055637086": {
+  "name": "Morning Ride",
+  "start": "2026-09-05T04:42:50Z",
+  "km": 90.71,
+  "elapsed_s": 40492,
+  "elev_m": 1126.0,
+  "points": 281
+ },
+ "20069173107": {
+  "name": "Morning Ride",
+  "start": "2026-09-06T03:40:48Z",
+  "km": 61.12,
+  "elapsed_s": 36671,
+  "elev_m": 866.0,
+  "points": 191
+ },
+ "20075787622": {
+  "name": "Morning Ride",
+  "start": "2026-09-07T03:13:31Z",
+  "km": 101.46,
+  "elapsed_s": 45983,
+  "elev_m": 877.0,
+  "points": 311
+ },
+ "20090316744": {
+  "name": "Morning Ride",
+  "start": "2026-09-08T05:28:16Z",
+  "km": 68.72,
+  "elapsed_s": 32881,
+  "elev_m": 1060.0,
+  "points": 204
+ },
+ "20117229502": {
+  "name": "Morning Ride",
+  "start": "2026-09-09T03:28:09Z",
+  "km": 70.74,
+  "elapsed_s": 38556,
+  "elev_m": 1032.0,
+  "points": 216
+ },
+ "20129945775": {
+  "name": "Morning Ride",
+  "start": "2026-09-10T04:39:16Z",
+  "km": 80.48,
+  "elapsed_s": 40726,
+  "elev_m": 979.0,
+  "points": 246
+ },
+ "20146618190": {
+  "name": "Morning Ride",
+  "start": "2026-09-11T04:50:37Z",
+  "km": 112.97,
+  "elapsed_s": 38124,
+  "elev_m": 672.0,
+  "points": 331
+ },
+ "20159988550": {
+  "name": "Morning Ride",
+  "start": "2026-09-12T03:45:20Z",
+  "km": 124.0,
+  "elapsed_s": 45030,
+  "elev_m": 1148.0,
+  "points": 347
+ },
+ "20161977593": {
+  "name": "Morning Ride",
+  "start": "2026-09-13T04:30:44Z",
+  "km": 98.73,
+  "elapsed_s": 37235,
+  "elev_m": 784.0,
+  "points": 287
+ },
+ "20179652421": {
+  "name": "Lunch Ride",
+  "start": "2026-09-14T05:04:06Z",
+  "km": 104.18,
+  "elapsed_s": 31933,
+  "elev_m": 755.0,
+  "points": 280
+ },
+ "20208836997": {
+  "name": "Morning Ride",
+  "start": "2026-09-15T04:10:15Z",
+  "km": 81.44,
+  "elapsed_s": 25626,
+  "elev_m": 881.0,
+  "points": 201
+ },
+ "20238485744": {
+  "name": "Morning Ride",
+  "start": "2026-09-17T03:57:11Z",
+  "km": 110.75,
+  "elapsed_s": 39630,
+  "elev_m": 882.0,
+  "points": 293
+ },
+ "20251370861": {
+  "name": "Morning Ride",
+  "start": "2026-09-18T02:43:05Z",
+  "km": 75.78,
+  "elapsed_s": 39040,
+  "elev_m": 1369.0,
+  "points": 198
+ },
+ "20251373678": {
+  "name": "Morning Ride",
+  "start": "2026-09-19T01:10:53Z",
+  "km": 84.99,
+  "elapsed_s": 44290,
+  "elev_m": 1110.0,
+  "points": 244
+ },
+ "20262473669": {
+  "name": "Morning Ride",
+  "start": "2026-09-20T03:09:44Z",
+  "km": 102.87,
+  "elapsed_s": 38519,
+  "elev_m": 1532.0,
+  "points": 302
+ },
+ "20281957745": {
+  "name": "Morning Ride",
+  "start": "2026-09-21T02:58:32Z",
+  "km": 119.64,
+  "elapsed_s": 39011,
+  "elev_m": 1092.0,
+  "points": 286
+ },
+ "20293420288": {
+  "name": "Morning Ride",
+  "start": "2026-09-22T03:39:13Z",
+  "km": 106.34,
+  "elapsed_s": 36210,
+  "elev_m": 251.0,
+  "points": 213
+ },
+ "20318865964": {
+  "name": "Morning Ride",
+  "start": "2026-09-23T03:03:52Z",
+  "km": 102.32,
+  "elapsed_s": 32576,
+  "elev_m": 433.0,
+  "points": 226
+ },
+ "20318865861": {
+  "name": "Morning Ride",
+  "start": "2026-09-24T03:15:31Z",
+  "km": 16.33,
+  "elapsed_s": 10374,
+  "elev_m": 122.0,
+  "points": 43
+ },
+ "20321432691": {
+  "name": "Morning Ride",
+  "start": "2026-09-25T03:00:27Z",
+  "km": 64.83,
+  "elapsed_s": 24136,
+  "elev_m": 411.0,
+  "points": 178
+ },
+ "20337793147": {
+  "name": "Morning Ride",
+  "start": "2026-09-26T03:51:51Z",
+  "km": 87.27,
+  "elapsed_s": 36301,
+  "elev_m": 854.0,
+  "points": 247
+ },
+ "20401757153": {
+  "name": "Morning Ride",
+  "start": "2026-09-27T04:07:31Z",
+  "km": 91.62,
+  "elapsed_s": 31148,
+  "elev_m": 616.0,
+  "points": 236
+ },
+ "20401757237": {
+  "name": "Morning Ride",
+  "start": "2026-09-28T02:45:14Z",
+  "km": 130.11,
+  "elapsed_s": 36886,
+  "elev_m": 332.0,
+  "points": 249
+ },
+ "20377462453": {
+  "name": "Morning Ride",
+  "start": "2026-09-29T02:45:45Z",
+  "km": 74.3,
+  "elapsed_s": 34703,
+  "elev_m": 362.0,
+  "points": 192
+ },
+ "20420073702": {
+  "name": "Morning Ride",
+  "start": "2026-10-01T04:45:27Z",
+  "km": 100.94,
+  "elapsed_s": 30166,
+  "elev_m": 346.0,
+  "points": 245
+ },
+ "20420073594": {
+  "name": "Morning Ride",
+  "start": "2026-10-02T02:59:18Z",
+  "km": 88.87,
+  "elapsed_s": 37831,
+  "elev_m": 794.0,
+  "points": 181
+ },
+ "20442307145": {
+  "name": "Morning Ride",
+  "start": "2026-10-03T03:58:50Z",
+  "km": 76.83,
+  "elapsed_s": 35889,
+  "elev_m": 911.0,
+  "points": 192
+ },
+ "20457281057": {
+  "name": "Morning Ride",
+  "start": "2026-10-04T03:24:39Z",
+  "km": 116.89,
+  "elapsed_s": 40877,
+  "elev_m": 518.0,
+  "points": 265
+ },
+ "20486258547": {
+  "name": "Lunch Ride",
+  "start": "2026-10-05T06:09:36Z",
+  "km": 66.72,
+  "elapsed_s": 32887,
+  "elev_m": 381.0,
+  "points": 166
+ },
+ "20484550853": {
+  "name": "Morning Ride",
+  "start": "2026-10-06T03:08:38Z",
+  "km": 103.73,
+  "elapsed_s": 33754,
+  "elev_m": 384.0,
+  "points": 262
+ },
+ "20567498539": {
+  "name": "Morning Ride",
+  "start": "2026-10-07T02:59:19Z",
+  "km": 102.76,
+  "elapsed_s": 34161,
+  "elev_m": 429.0,
+  "points": 261
+ },
+ "20576060451": {
+  "name": "Morning Ride",
+  "start": "2026-10-08T04:18:02Z",
+  "km": 88.89,
+  "elapsed_s": 29519,
+  "elev_m": 430.0,
+  "points": 203
+ },
+ "20581594654": {
+  "name": "Morning Ride",
+  "start": "2026-10-09T03:04:55Z",
+  "km": 94.65,
+  "elapsed_s": 34348,
+  "elev_m": 890.0,
+  "points": 231
+ },
+ "20581601607": {
+  "name": "Morning Ride",
+  "start": "2026-10-10T01:54:43Z",
+  "km": 137.87,
+  "elapsed_s": 41897,
+  "elev_m": 488.0,
+  "points": 343
+ },
+ "20581601463": {
+  "name": "Morning Ride",
+  "start": "2026-10-13T00:18:42Z",
+  "km": 83.35,
+  "elapsed_s": 45889,
+  "elev_m": 276.0,
+  "points": 219
+ },
+ "20581674445": {
+  "name": "Morning Ride",
+  "start": "2026-10-14T01:34:44Z",
+  "km": 152.95,
+  "elapsed_s": 40892,
+  "elev_m": 502.0,
+  "points": 408
+ },
+ "20608085388": {
+  "name": "Morning Ride",
+  "start": "2026-10-15T01:40:15Z",
+  "km": 98.31,
+  "elapsed_s": 39608,
+  "elev_m": 568.0,
+  "points": 268
+ },
+ "20609047934": {
+  "name": "Morning Ride",
+  "start": "2026-10-16T01:20:21Z",
+  "km": 169.13,
+  "elapsed_s": 40489,
+  "elev_m": 835.0,
+  "points": 438
+ },
+ "20620612080": {
+  "name": "Lunch Ride",
+  "start": "2026-10-17T03:06:45Z",
+  "km": 94.79,
+  "elapsed_s": 32586,
+  "elev_m": 519.0,
+  "points": 272
+ },
+ "20634129888": {
+  "name": "Morning Ride",
+  "start": "2026-10-18T02:26:14Z",
+  "km": 95.68,
+  "elapsed_s": 34020,
+  "elev_m": 571.0,
+  "points": 285
+ },
+ "20647663074": {
+  "name": "Lunch Ride",
+  "start": "2026-10-19T03:24:00Z",
+  "km": 130.96,
+  "elapsed_s": 39076,
+  "elev_m": 1010.0,
+  "points": 388
+ },
+ "20659524947": {
+  "name": "Morning Ride",
+  "start": "2026-10-20T02:39:31Z",
+  "km": 76.42,
+  "elapsed_s": 32246,
+  "elev_m": 863.0,
+  "points": 240
+ },
+ "20672418071": {
+  "name": "Lunch Ride",
+  "start": "2026-10-21T03:40:02Z",
+  "km": 71.45,
+  "elapsed_s": 23542,
+  "elev_m": 433.0,
+  "points": 214
+ },
+ "20688130862": {
+  "name": "Morning Ride",
+  "start": "2026-10-22T02:57:14Z",
+  "km": 110.03,
+  "elapsed_s": 36239,
+  "elev_m": 860.0,
+  "points": 329
+ },
+ "20700489510": {
+  "name": "Lunch Ride",
+  "start": "2026-10-23T04:22:37Z",
+  "km": 102.72,
+  "elapsed_s": 27829,
+  "elev_m": 703.0,
+  "points": 282
+ },
+ "20719277882": {
+  "name": "Lunch Ride",
+  "start": "2026-10-24T03:33:29Z",
+  "km": 102.1,
+  "elapsed_s": 33808,
+  "elev_m": 769.0,
+  "points": 304
+ },
+ "20726361818": {
+  "name": "Morning Ride",
+  "start": "2026-10-25T02:46:42Z",
+  "km": 130.23,
+  "elapsed_s": 40020,
+  "elev_m": 1430.0,
+  "points": 401
+ },
+ "20736943516": {
+  "name": "Lunch Ride",
+  "start": "2026-10-26T03:22:25Z",
+  "km": 89.56,
+  "elapsed_s": 33480,
+  "elev_m": 1368.0,
+  "points": 279
+ },
+ "20750484432": {
+  "name": "Morning Ride",
+  "start": "2026-10-27T01:17:33Z",
+  "km": 103.17,
+  "elapsed_s": 41098,
+  "elev_m": 1287.0,
+  "points": 316
+ },
+ "20766389062": {
+  "name": "Lunch Ride",
+  "start": "2026-10-28T03:21:42Z",
+  "km": 102.69,
+  "elapsed_s": 43736,
+  "elev_m": 1126.0,
+  "points": 308
+ },
+ "20778346650": {
+  "name": "Morning Ride",
+  "start": "2026-10-28T23:31:23Z",
+  "km": 87.39,
+  "elapsed_s": 43333,
+  "elev_m": 529.0,
+  "points": 257
+ },
+ "20794255574": {
+  "name": "Lunch Ride",
+  "start": "2026-10-30T04:49:14Z",
+  "km": 137.31,
+  "elapsed_s": 47462,
+  "elev_m": 512.0,
+  "points": 407
+ }
+}

@@ -4,7 +4,7 @@
 Standard library only. Env:
     STRAVA_CLIENT_ID, STRAVA_CLIENT_SECRET, STRAVA_REFRESH_TOKEN   (GitHub secrets)
     NO_GEOCODE=1  skip the place-name lookup
-Each ride's GPS line is thinned to ~one point per 200 m and given interpolated timestamps, so the site
+Each ride's GPS line is thinned to ~one point per 300 m and given interpolated timestamps, so the site
 draws exact roads while the total distance comes straight from Strava (data/summary.json: total_km).
 """
 import json
@@ -28,7 +28,7 @@ RIDES = ROOT / "data" / "rides.json"
 SUMMARY = ROOT / "data" / "summary.json"
 API = "https://www.strava.com/api/v3"
 RIDE_TYPES = {"Ride", "GravelRide", "MountainBikeRide", "EBikeRide", "EMountainBikeRide", "Handcycle", "Velomobile"}
-THIN_KM = 0.2
+THIN_KM = 0.3
 
 
 def decode_polyline(s):
@@ -57,7 +57,8 @@ def access_token():
     with urllib.request.urlopen(urllib.request.Request(f"{API.replace('/api/v3', '')}/oauth/token", data=data), timeout=30) as r:
         j = json.load(r)
     if j.get("refresh_token") and j["refresh_token"] != rt:
-        log("NOTE: Strava issued a new refresh token; update the STRAVA_REFRESH_TOKEN secret:", j["refresh_token"])
+        # Never print the token: this log is public. If fetches start failing with 401, re-authorize (README).
+        log("NOTE: Strava rotated the refresh token; the stored secret may stop working. Re-authorize if runs begin to fail.")
     return j["access_token"]
 
 
@@ -95,8 +96,10 @@ def ride_points(act, detail):
     for a, b in zip(kept, kept[1:]):
         dist.append(dist[-1] + haversine({"lat": a[0], "lon": a[1]}, {"lat": b[0], "lon": b[1]}))
     total = dist[-1] or 1.0
-    return [{"t": iso(datetime.fromtimestamp(t0 + span * d / total, timezone.utc)), "lat": round(la, 6), "lon": round(lo, 6)}
-            for (la, lo), d in zip(kept, dist)]
+    out = [{"t": iso(datetime.fromtimestamp(t0 + span * d / total, timezone.utc)), "lat": round(la, 5), "lon": round(lo, 5)}
+           for (la, lo), d in zip(kept, dist)]
+    out[0]["s"] = 1  # first point of a ride: the site treats the hop from the previous ride as a gap, not riding
+    return out
 
 
 def main():

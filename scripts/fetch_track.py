@@ -97,6 +97,18 @@ def total_km(points, min_km, max_kmh):
 
 
 def reverse_geocode(lat, lon):
+    """City-level name for a position. Photon first (it resolves districts to their city), Nominatim as fallback."""
+    try:
+        q = urllib.parse.urlencode({"lat": lat, "lon": lon, "lang": "en"})
+        req = urllib.request.Request(f"https://photon.komoot.io/reverse?{q}", headers={"User-Agent": UA})
+        with urllib.request.urlopen(req, timeout=20) as r:
+            props = json.load(r)["features"][0]["properties"]
+        town = props.get("city") or props.get("county") or props.get("state")
+        name = ", ".join(x for x in (town, props.get("country")) if x)
+        if name:
+            return name
+    except Exception as e:
+        log("photon geocode failed:", e)
     q = urllib.parse.urlencode({"format": "jsonv2", "lat": lat, "lon": lon, "zoom": 10, "accept-language": "en"})
     req = urllib.request.Request(f"https://nominatim.openstreetmap.org/reverse?{q}", headers={"User-Agent": UA})
     try:

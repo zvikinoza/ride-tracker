@@ -161,7 +161,8 @@
       const prev = pts[i - 1];
       const d = haversine(prev, p);
       const hours = Math.max((Date.parse(p.t) - Date.parse(prev.t)) / 3.6e6, 1 / 60);
-      if (d > minKm && d / hours > maxKmh) {
+      const gap = p.s === 1 && d > 3; // Strava: a new ride starting away from where the last one ended
+      if (gap || (d > minKm && d / hours > maxKmh)) {
         if (cur.coords.length > 1) segments.push(cur);
         if (d >= flightKm) {
           flights++;
@@ -169,7 +170,7 @@
           const mid = coords[Math.floor(coords.length / 2)];
           segments.push({ type: "flight", coords, km: d, mid, heading: bearing({ lat: mid[1], lon: mid[0] }, p) });
         } else {
-          segments.push({ type: "transfer", coords: [[prev.x, prev.lat], [p.x, p.lat]], km: d });
+          segments.push({ type: "transfer", coords: d > 100 ? arc(prev, p, 32) : [[prev.x, prev.lat], [p.x, p.lat]], km: d });
         }
         cur = { type: "ride", coords: [[p.x, p.lat]] };
       } else {
@@ -296,7 +297,7 @@
     const st = document.createElement("div"); st.className = "start";
     addMarker(st, [first.x, first.lat], `Started here · ${config.start_place || fmtDate(config.start_date)}`);
     const here = document.createElement("div"); here.className = "here"; here.innerHTML = '<span class="ring2"></span>';
-    addMarker(here, [last.x, last.lat], `Latest fix · ${relTime(last.t)}`);
+    addMarker(here, [last.x, last.lat], `Latest position · ${relTime(last.t)}`);
   }
 
   const uiPadding = () => (window.innerWidth < 640
@@ -335,7 +336,8 @@
       const ageH = (Date.now() - Date.parse(lastFix.t)) / 3.6e6;
       dot.classList.toggle("stale", ageH > 36);
       const place = summary && summary.place ? ` · near ${summary.place}` : "";
-      $("last").textContent = `Last seen ${relTime(lastFix.t)}${place}`;
+      const verb = summary && summary.source === "strava" ? "Last ride" : "Last seen";
+      $("last").textContent = `${verb} ${relTime(lastFix.t)}${place}`;
       $("locate").title = `${lastFix.lat.toFixed(4)}, ${lastFix.lon.toFixed(4)}`;
     } else {
       dot.classList.add("stale");

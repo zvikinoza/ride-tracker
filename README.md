@@ -89,7 +89,7 @@ Set `"source": "strava"` in `config.json`. One-time setup:
 4. GitHub → Settings → Secrets → Actions: add `STRAVA_CLIENT_ID`, `STRAVA_CLIENT_SECRET`, `STRAVA_REFRESH_TOKEN`.
 5. Run the *Update track* workflow once by hand; it back-fills every ride since `start_date`.
 
-Each ride's GPS line is thinned to one point per ~200 m with timestamps spread over the ride, so the map
+Each ride's GPS line is thinned to one point per ~300 m with timestamps spread over the ride, so the map
 draws real roads; the kilometre total is the sum of Strava's ride distances (`data/summary.json`).
 Non-cycling activities are ignored. If the workflow log ever says Strava issued a new refresh token,
 update that secret.
