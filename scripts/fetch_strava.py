@@ -20,6 +20,7 @@ from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+import countries  # noqa: E402
 from fetch_track import haversine, iso, parse_time, reverse_geocode, log  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -122,39 +123,12 @@ def highest_point(token, aid):
         return None
 
 
-def ride_descent(token, aid, gain):
-    """Metres descended on a ride. Strava reports climbing but not descent, so derive it:
-    descent = climbing - (finish altitude - start altitude), from the ride's altitude stream."""
-    st = api(token, f"/activities/{aid}/streams", keys="altitude", key_by_type="true", resolution="low")
-    alt = st["altitude"]["data"]
-    return max(0, round((gain or 0) - (alt[-1] - alt[0]))), round(alt[0]), round(alt[-1])
-
-
-def backfill_descent(token, rides, limit=85):
-    """Fill in descent for rides that lack it (new rides, or all of them the first time). Stops quietly on a
-    rate limit; the next run carries on. Returns how many rides were updated."""
-    done = 0
-    for aid in [a for a, r in rides.items() if "descent_m" not in r][:limit]:
-        try:
-            rides[aid]["descent_m"], rides[aid]["alt_start"], rides[aid]["alt_end"] = ride_descent(token, aid, rides[aid].get("elev_m"))
-        except urllib.error.HTTPError as e:
-            if e.code == 429:
-                log("rate limited while back-filling descent; will continue next run")
-                break
-            rides[aid]["descent_m"] = None
-        except (KeyError, IndexError, TypeError):
-            rides[aid]["descent_m"] = None  # no altitude data for this ride
-        done += 1
-    return done
-
-
 def compute_records(rides, token, old):
     """Record days (grouped by the riders' local date) and the highest point reached."""
-    days = defaultdict(lambda: {"km": 0.0, "moving_s": 0, "elev_m": 0.0, "descent_m": 0.0, "from": None, "to": None})
+    days = defaultdict(lambda: {"km": 0.0, "moving_s": 0, "elev_m": 0.0, "from": None, "to": None})
     for r in rides.values():
         d = days[(r.get("start_local") or r["start"])[:10]]
         d["km"] += r["km"]; d["moving_s"] += r.get("moving_s") or 0; d["elev_m"] += r.get("elev_m") or 0
-        d["descent_m"] += r.get("descent_m") or 0
         t0 = parse_time(r["start"]); t1 = t0 + timedelta(seconds=r.get("elapsed_s") or 0)
         d["from"] = min(d["from"], iso(t0)) if d["from"] else iso(t0)
         d["to"] = max(d["to"], iso(t1)) if d["to"] else iso(t1)
@@ -173,10 +147,6 @@ def compute_records(rides, token, old):
     date, d = best("elev_m")
     if d["elev_m"]:
         rec["climb"] = {"date": date, "m": round(d["elev_m"]), "km": round(d["km"], 1), "from": d["from"], "to": d["to"]}
-
-    date, d = best("descent_m")
-    if d["descent_m"]:
-        rec["descent"] = {"date": date, "m": round(d["descent_m"]), "km": round(d["km"], 1), "from": d["from"], "to": d["to"]}
 
     high = [(r["elev_high"], aid) for aid, r in rides.items() if r.get("elev_high") is not None]
     if high:
@@ -232,13 +202,13 @@ def main():
             log(f"+ {act['start_date'][:10]} {act.get('name')} {meta['km']} km ({len(pts)} pts)")
         page += 1
 
-    changed += backfill_descent(token, rides)
+    pts = sorted(points.values(), key=lambda p: p["t"])
+    changed += countries.annotate(rides, pts)  # only rides not looked up yet (two lookups per new ride)
 
-    if new == 0 and changed == 0 and old.get("records") and TRACK.exists():
+    if new == 0 and changed == 0 and old.get("records") and old.get("countries") and TRACK.exists():
         log(f"{len(rides)} rides, nothing new")  # leave the files untouched so the workflow makes no empty commits
         return 0
 
-    pts = sorted(points.values(), key=lambda p: p["t"])
     if new:
         TRACK.write_text(json.dumps({"points": pts}, separators=(",", ":")) + "\n")
     RIDES.write_text(json.dumps(rides, indent=1, ensure_ascii=False) + "\n")
@@ -248,7 +218,6 @@ def main():
     summary = {"updated": iso(now), "source": "strava", "rides": len(rides), "riding_days": riding_days,
                "total_km": round(sum(r["km"] for r in rides.values()), 1),
                "elev_m": round(sum(r.get("elev_m") or 0 for r in rides.values())),
-               "descent_m": round(sum(r.get("descent_m") or 0 for r in rides.values())),
                "moving_h": round(sum(r.get("moving_s") or 0 for r in rides.values()) / 3600, 1)}
     if pts:
         last = pts[-1]
@@ -261,6 +230,7 @@ def main():
         elif not os.environ.get("NO_GEOCODE"):
             summary["place"] = reverse_geocode(last["lat"], last["lon"])
     summary["records"] = compute_records(rides, token, old)
+    summary["countries"] = countries.sequence(rides, pts)
     SUMMARY.write_text(json.dumps(summary, indent=2, ensure_ascii=False) + "\n")
     log(f"{len(rides)} rides ({new} new, {changed} updated), {len(pts)} points, {summary['total_km']} km")
     return 0

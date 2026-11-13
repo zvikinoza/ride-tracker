@@ -115,6 +115,8 @@ h1 {
   border-bottom: 1px solid var(--line);
 }
 .stat { display: flex; flex-direction: column; }
+.stat[hidden] { display: none; }
+.stat:nth-child(n+3) .num { font-size: 30px; }
 .num {
   font-family: var(--serif);
   font-weight: 300;
@@ -197,8 +199,8 @@ h1 {
 /* Record days: tap a tile to fly to that ride */
 .records {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px 10px;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px 14px;
   margin-top: 14px;
   padding-top: 14px;
   border-top: 1px solid var(--line);
@@ -226,6 +228,14 @@ h1 {
 .rec-label { font-size: 11px; color: var(--muted); white-space: nowrap; }
 .rec-label::before { content: ""; display: inline-block; width: 6px; height: 6px; margin-right: 5px; border-radius: 50%; background: var(--record); vertical-align: 1px; } /* legend: same colour as the record days on the map */
 .rec-date { font-size: 10.5px; color: var(--muted); opacity: 0.8; white-space: nowrap; }
+.flag {
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  background: #888 center / cover no-repeat;
+  border: 1.5px solid rgba(255, 255, 255, 0.95);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.35), 0 1px 4px rgba(0, 0, 0, 0.45);
+  cursor: pointer;
+}
 .trophy {
   width: 23px; height: 23px;
   display: grid; place-items: center;
@@ -422,10 +432,12 @@ h1 {
   }
   .stats { gap: 14px; padding-bottom: 10px; }
   .num { font-size: 30px; }
+  .stat:nth-child(n+3) .num { font-size: 24px; }
+  .stats { row-gap: 8px; }
   .label { margin-top: 3px; font-size: 11.5px; }
   .last { margin-top: 10px; font-size: 14px; }
   .sponsor-stats { margin-top: 10px; padding-top: 10px; gap: 10px; }
-  .records { grid-template-columns: repeat(3, 1fr); gap: 8px 6px; margin-top: 10px; padding-top: 10px; }
+  .records { grid-template-columns: repeat(4, 1fr); gap: 4px; margin-top: 10px; padding-top: 10px; }
   .rec { padding: 4px 4px; margin: -4px 0; }
   .rec-num { font-size: 16px; }
   .rec-label { font-size: 10px; }

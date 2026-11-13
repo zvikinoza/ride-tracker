@@ -104,7 +104,13 @@ counted. Hops of `flight_min_km` or more get a plane. To label a specific gap, a
 ### Record days
 
 `fetch_strava.py` writes `records` into `data/summary.json` on every run that brings a new or edited ride:
-furthest day (km), longest day (moving time), most climbing (m gained), most descent (Strava has no descent
-figure, so it is climbing minus the ride's net altitude change, from one altitude-stream call per ride) and the highest point reached
+furthest day (km), longest day (moving time), most climbing (m gained) and the highest point reached
 (Strava's `elev_high`, located once with a single streams call). Days are grouped by the riders' local date.
 The site shows them as four tiles; tapping one highlights that day's ride and flies to it.
+
+### Countries
+
+`scripts/countries.py` works out which countries the route has entered, from the stored track: each ride's start
+and end are reverse-geocoded once (cached in `rides.json`), and a border crossed mid-ride is located by bisecting
+along that ride. `summary.json` gets `countries` in order of first entry; the site shows a small flag at each
+entry point and the count in the footer. Only recorded rides count, so a stretch missing from Strava adds nothing.

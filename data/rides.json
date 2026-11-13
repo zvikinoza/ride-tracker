@@ -11,7 +11,16 @@
   "elev_high": 817.0,
   "descent_m": 486,
   "alt_start": 544,
-  "alt_end": 797
+  "alt_end": 797,
+  "c_start": {
+   "code": "AT",
+   "name": "Austria"
+  },
+  "c_end": {
+   "code": "AT",
+   "name": "Austria"
+  },
+  "crossings": []
  },
  "19350034371": {
   "name": "Morning Ride",
@@ -25,7 +34,24 @@
   "elev_high": 343.3,
   "descent_m": 998,
   "alt_start": 150,
-  "alt_end": 35
+  "alt_end": 35,
+  "c_start": {
+   "code": "BG",
+   "name": "Bulgaria"
+  },
+  "c_end": {
+   "code": "TR",
+   "name": "Turkey"
+  },
+  "crossings": [
+   {
+    "code": "TR",
+    "name": "Turkey",
+    "t": "2026-07-16T13:59:17Z",
+    "lat": 41.95965,
+    "lon": 26.60859
+   }
+  ]
  },
  "19353528799": {
   "name": "Morning Ride",
@@ -39,7 +65,16 @@
   "elev_high": 212.5,
   "descent_m": 1085,
   "alt_start": 33,
-  "alt_end": 90
+  "alt_end": 90,
+  "c_start": {
+   "code": "TR",
+   "name": "Turkey"
+  },
+  "c_end": {
+   "code": "TR",
+   "name": "Turkey"
+  },
+  "crossings": []
  },
  "19367169658": {
   "name": "Morning Ride",
@@ -53,7 +88,16 @@
   "elev_high": 338.5,
   "descent_m": 1064,
   "alt_start": 90,
-  "alt_end": 70
+  "alt_end": 70,
+  "c_start": {
+   "code": "TR",
+   "name": "Turkey"
+  },
+  "c_end": {
+   "code": "TR",
+   "name": "Turkey"
+  },
+  "crossings": []
  },
  "19381965272": {
   "name": "Morning Ride",
@@ -67,7 +111,16 @@
   "elev_high": 253.1,
   "descent_m": 1242,
   "alt_start": 66,
-  "alt_end": 215
+  "alt_end": 215,
+  "c_start": {
+   "code": "TR",
+   "name": "Turkey"
+  },
+  "c_end": {
+   "code": "TR",
+   "name": "Turkey"
+  },
+  "crossings": []
  },
  "19406940285": {
   "name": "Morning Ride",
@@ -81,7 +134,16 @@
   "elev_high": 8.0,
   "descent_m": 2,
   "alt_start": 0,
-  "alt_end": 0
+  "alt_end": 0,
+  "c_start": {
+   "code": "TR",
+   "name": "Turkey"
+  },
+  "c_end": {
+   "code": "TR",
+   "name": "Turkey"
+  },
+  "crossings": []
  },
  "19421182914": {
   "name": "Lunch Ride",
@@ -95,7 +157,24 @@
   "elev_high": 30.2,
   "descent_m": 132,
   "alt_start": 6,
-  "alt_end": 8
+  "alt_end": 8,
+  "c_start": {
+   "code": "TR",
+   "name": "Turkey"
+  },
+  "c_end": {
+   "code": "GE",
+   "name": "Georgia"
+  },
+  "crossings": [
+   {
+    "code": "GE",
+    "name": "Georgia",
+    "t": "2026-07-22T14:51:47Z",
+    "lat": 41.52075,
+    "lon": 41.5494
+   }
+  ]
  },
  "19550241373": {
   "name": "Lunch Ride",
@@ -109,7 +188,16 @@
   "elev_high": 893.2,
   "descent_m": 326,
   "alt_start": 12,
-  "alt_end": 893
+  "alt_end": 893,
+  "c_start": {
+   "code": "GE",
+   "name": "Georgia"
+  },
+  "c_end": {
+   "code": "GE",
+   "name": "Georgia"
+  },
+  "crossings": []
  },
  "19560249262": {
   "name": "Morning Ride",
@@ -123,7 +211,16 @@
   "elev_high": 2030.8,
   "descent_m": 1798,
   "alt_start": 889,
-  "alt_end": 1130
+  "alt_end": 1130,
+  "c_start": {
+   "code": "GE",
+   "name": "Georgia"
+  },
+  "c_end": {
+   "code": "GE",
+   "name": "Georgia"
+  },
+  "crossings": []
  },
  "19574424320": {
   "name": "Morning Ride",
@@ -137,7 +234,16 @@
   "elev_high": 2176.2,
   "descent_m": 1197,
   "alt_start": 1143,
-  "alt_end": 1479
+  "alt_end": 1479,
+  "c_start": {
+   "code": "GE",
+   "name": "Georgia"
+  },
+  "c_end": {
+   "code": "GE",
+   "name": "Georgia"
+  },
+  "crossings": []
  },
  "19583859857": {
   "name": "Morning Ride",
@@ -151,7 +257,16 @@
   "elev_high": 1646.8,
   "descent_m": 2113,
   "alt_start": 1470,
-  "alt_end": 599
+  "alt_end": 599,
+  "c_start": {
+   "code": "GE",
+   "name": "Georgia"
+  },
+  "c_end": {
+   "code": "GE",
+   "name": "Georgia"
+  },
+  "crossings": []
  },
  "19810782354": {
   "name": "Morning Ride",
@@ -165,7 +280,16 @@
   "elev_high": 447.4,
   "descent_m": 380,
   "alt_start": 438,
-  "alt_end": 254
+  "alt_end": 254,
+  "c_start": {
+   "code": "UZ",
+   "name": "Uzbekistan"
+  },
+  "c_end": {
+   "code": "UZ",
+   "name": "Uzbekistan"
+  },
+  "crossings": []
  },
  "19810789447": {
   "name": "Morning Ride",
@@ -179,7 +303,16 @@
   "elev_high": 296.4,
   "descent_m": 87,
   "alt_start": 259,
-  "alt_end": 295
+  "alt_end": 295,
+  "c_start": {
+   "code": "UZ",
+   "name": "Uzbekistan"
+  },
+  "c_end": {
+   "code": "UZ",
+   "name": "Uzbekistan"
+  },
+  "crossings": []
  },
  "19848131003": {
   "name": "Morning Ride",
@@ -193,7 +326,16 @@
   "elev_high": 620.2,
   "descent_m": 37,
   "alt_start": 264,
-  "alt_end": 607
+  "alt_end": 607,
+  "c_start": {
+   "code": "UZ",
+   "name": "Uzbekistan"
+  },
+  "c_end": {
+   "code": "UZ",
+   "name": "Uzbekistan"
+  },
+  "crossings": []
  },
  "19848131380": {
   "name": "Morning Ride",
@@ -207,7 +349,16 @@
   "elev_high": 902.0,
   "descent_m": 446,
   "alt_start": 608,
-  "alt_end": 879
+  "alt_end": 879,
+  "c_start": {
+   "code": "UZ",
+   "name": "Uzbekistan"
+  },
+  "c_end": {
+   "code": "UZ",
+   "name": "Uzbekistan"
+  },
+  "crossings": []
  },
  "19848170394": {
   "name": "Morning Ride",
@@ -221,7 +372,16 @@
   "elev_high": 884.8,
   "descent_m": 246,
   "alt_start": 878,
-  "alt_end": 712
+  "alt_end": 712,
+  "c_start": {
+   "code": "UZ",
+   "name": "Uzbekistan"
+  },
+  "c_end": {
+   "code": "UZ",
+   "name": "Uzbekistan"
+  },
+  "crossings": []
  },
  "20037282401": {
   "name": "Afternoon Ride",
@@ -235,7 +395,16 @@
   "elev_high": 1436.2,
   "descent_m": 89,
   "alt_start": 800,
-  "alt_end": 1422
+  "alt_end": 1422,
+  "c_start": {
+   "code": "TJ",
+   "name": "Tajikistan"
+  },
+  "c_end": {
+   "code": "TJ",
+   "name": "Tajikistan"
+  },
+  "crossings": []
  },
  "20037287771": {
   "name": "Morning Ride",
@@ -249,7 +418,16 @@
   "elev_high": 1582.8,
   "descent_m": 1950,
   "alt_start": 1440,
-  "alt_end": 674
+  "alt_end": 674,
+  "c_start": {
+   "code": "TJ",
+   "name": "Tajikistan"
+  },
+  "c_end": {
+   "code": "TJ",
+   "name": "Tajikistan"
+  },
+  "crossings": []
  },
  "20037287449": {
   "name": "Lunch Ride",
@@ -263,7 +441,16 @@
   "elev_high": 1154.8,
   "descent_m": 1001,
   "alt_start": 879,
-  "alt_end": 470
+  "alt_end": 470,
+  "c_start": {
+   "code": "TJ",
+   "name": "Tajikistan"
+  },
+  "c_end": {
+   "code": "TJ",
+   "name": "Tajikistan"
+  },
+  "crossings": []
  },
  "20037293099": {
   "name": "Morning Ride",
@@ -277,7 +464,16 @@
   "elev_high": 1960.2,
   "descent_m": 1333,
   "alt_start": 455,
-  "alt_end": 891
+  "alt_end": 891,
+  "c_start": {
+   "code": "TJ",
+   "name": "Tajikistan"
+  },
+  "c_end": {
+   "code": "TJ",
+   "name": "Tajikistan"
+  },
+  "crossings": []
  },
  "20037298400": {
   "name": "Morning Ride",
@@ -291,7 +487,16 @@
   "elev_high": 1271.4,
   "descent_m": 969,
   "alt_start": 849,
-  "alt_end": 1265
+  "alt_end": 1265,
+  "c_start": {
+   "code": "TJ",
+   "name": "Tajikistan"
+  },
+  "c_end": {
+   "code": "TJ",
+   "name": "Tajikistan"
+  },
+  "crossings": []
  },
  "20055637086": {
   "name": "Morning Ride",
@@ -305,7 +510,16 @@
   "elev_high": 1619.4,
   "descent_m": 760,
   "alt_start": 1254,
-  "alt_end": 1619
+  "alt_end": 1619,
+  "c_start": {
+   "code": "TJ",
+   "name": "Tajikistan"
+  },
+  "c_end": {
+   "code": "TJ",
+   "name": "Tajikistan"
+  },
+  "crossings": []
  },
  "20069173107": {
   "name": "Morning Ride",
@@ -319,7 +533,16 @@
   "elev_high": 1859.2,
   "descent_m": 641,
   "alt_start": 1632,
-  "alt_end": 1856
+  "alt_end": 1856,
+  "c_start": {
+   "code": "TJ",
+   "name": "Tajikistan"
+  },
+  "c_end": {
+   "code": "TJ",
+   "name": "Tajikistan"
+  },
+  "crossings": []
  },
  "20075787622": {
   "name": "Morning Ride",
@@ -333,7 +556,16 @@
   "elev_high": 2097.2,
   "descent_m": 619,
   "alt_start": 1838,
-  "alt_end": 2095
+  "alt_end": 2095,
+  "c_start": {
+   "code": "TJ",
+   "name": "Tajikistan"
+  },
+  "c_end": {
+   "code": "TJ",
+   "name": "Tajikistan"
+  },
+  "crossings": []
  },
  "20090316744": {
   "name": "Morning Ride",
@@ -347,7 +579,16 @@
   "elev_high": 2817.6,
   "descent_m": 330,
   "alt_start": 2088,
-  "alt_end": 2818
+  "alt_end": 2818,
+  "c_start": {
+   "code": "TJ",
+   "name": "Tajikistan"
+  },
+  "c_end": {
+   "code": "TJ",
+   "name": "Tajikistan"
+  },
+  "crossings": []
  },
  "20117229502": {
   "name": "Morning Ride",
@@ -361,7 +602,16 @@
   "elev_high": 3688.4,
   "descent_m": 183,
   "alt_start": 2818,
-  "alt_end": 3667
+  "alt_end": 3667,
+  "c_start": {
+   "code": "TJ",
+   "name": "Tajikistan"
+  },
+  "c_end": {
+   "code": "TJ",
+   "name": "Tajikistan"
+  },
+  "crossings": []
  },
  "20129945775": {
   "name": "Morning Ride",
@@ -375,7 +625,16 @@
   "elev_high": 4120.2,
   "descent_m": 769,
   "alt_start": 3542,
-  "alt_end": 3752
+  "alt_end": 3752,
+  "c_start": {
+   "code": "TJ",
+   "name": "Tajikistan"
+  },
+  "c_end": {
+   "code": "TJ",
+   "name": "Tajikistan"
+  },
+  "crossings": []
  },
  "20146618190": {
   "name": "Morning Ride",
@@ -389,7 +648,16 @@
   "elev_high": 3981.4,
   "descent_m": 840,
   "alt_start": 3723,
-  "alt_end": 3555
+  "alt_end": 3555,
+  "c_start": {
+   "code": "TJ",
+   "name": "Tajikistan"
+  },
+  "c_end": {
+   "code": "TJ",
+   "name": "Tajikistan"
+  },
+  "crossings": []
  },
  "20159988550": {
   "name": "Morning Ride",
@@ -403,7 +671,16 @@
   "elev_high": 4440.2,
   "descent_m": 919,
   "alt_start": 3523,
-  "alt_end": 3752
+  "alt_end": 3752,
+  "c_start": {
+   "code": "TJ",
+   "name": "Tajikistan"
+  },
+  "c_end": {
+   "code": "TJ",
+   "name": "Tajikistan"
+  },
+  "crossings": []
  },
  "20161977593": {
   "name": "Morning Ride",
@@ -417,7 +694,24 @@
   "elev_high": 4087.0,
   "descent_m": 1519,
   "alt_start": 3750,
-  "alt_end": 3015
+  "alt_end": 3015,
+  "c_start": {
+   "code": "TJ",
+   "name": "Tajikistan"
+  },
+  "c_end": {
+   "code": "KG",
+   "name": "Kyrgyzstan"
+  },
+  "crossings": [
+   {
+    "code": "KG",
+    "name": "Kyrgyzstan",
+    "t": "2026-09-13T10:15:28Z",
+    "lat": 39.38639,
+    "lon": 73.31481
+   }
+  ]
  },
  "20179652421": {
   "name": "Lunch Ride",
@@ -431,7 +725,16 @@
   "elev_high": 3546.4,
   "descent_m": 2314,
   "alt_start": 3131,
-  "alt_end": 1572
+  "alt_end": 1572,
+  "c_start": {
+   "code": "KG",
+   "name": "Kyrgyzstan"
+  },
+  "c_end": {
+   "code": "KG",
+   "name": "Kyrgyzstan"
+  },
+  "crossings": []
  },
  "20208836997": {
   "name": "Morning Ride",
@@ -445,7 +748,16 @@
   "elev_high": 2388.8,
   "descent_m": 1454,
   "alt_start": 1566,
-  "alt_end": 993
+  "alt_end": 993,
+  "c_start": {
+   "code": "KG",
+   "name": "Kyrgyzstan"
+  },
+  "c_end": {
+   "code": "KG",
+   "name": "Kyrgyzstan"
+  },
+  "crossings": []
  },
  "20238485744": {
   "name": "Morning Ride",
@@ -459,7 +771,16 @@
   "elev_high": 1124.8,
   "descent_m": 969,
   "alt_start": 980,
-  "alt_end": 893
+  "alt_end": 893,
+  "c_start": {
+   "code": "KG",
+   "name": "Kyrgyzstan"
+  },
+  "c_end": {
+   "code": "KG",
+   "name": "Kyrgyzstan"
+  },
+  "crossings": []
  },
  "20251370861": {
   "name": "Morning Ride",
@@ -473,7 +794,16 @@
   "elev_high": 1765.0,
   "descent_m": 521,
   "alt_start": 896,
-  "alt_end": 1745
+  "alt_end": 1745,
+  "c_start": {
+   "code": "KG",
+   "name": "Kyrgyzstan"
+  },
+  "c_end": {
+   "code": "KG",
+   "name": "Kyrgyzstan"
+  },
+  "crossings": []
  },
  "20251373678": {
   "name": "Morning Ride",
@@ -487,7 +817,16 @@
   "elev_high": 2530.4,
   "descent_m": 1627,
   "alt_start": 1756,
-  "alt_end": 1239
+  "alt_end": 1239,
+  "c_start": {
+   "code": "KG",
+   "name": "Kyrgyzstan"
+  },
+  "c_end": {
+   "code": "KG",
+   "name": "Kyrgyzstan"
+  },
+  "crossings": []
  },
  "20262473669": {
   "name": "Morning Ride",
@@ -501,7 +840,16 @@
   "elev_high": 1736.0,
   "descent_m": 1047,
   "alt_start": 1237,
-  "alt_end": 1722
+  "alt_end": 1722,
+  "c_start": {
+   "code": "KG",
+   "name": "Kyrgyzstan"
+  },
+  "c_end": {
+   "code": "KG",
+   "name": "Kyrgyzstan"
+  },
+  "crossings": []
  },
  "20281957745": {
   "name": "Morning Ride",
@@ -515,7 +863,16 @@
   "elev_high": 2667.0,
   "descent_m": 967,
   "alt_start": 1717,
-  "alt_end": 1843
+  "alt_end": 1843,
+  "c_start": {
+   "code": "KG",
+   "name": "Kyrgyzstan"
+  },
+  "c_end": {
+   "code": "KG",
+   "name": "Kyrgyzstan"
+  },
+  "crossings": []
  },
  "20293420288": {
   "name": "Morning Ride",
@@ -529,7 +886,16 @@
   "elev_high": 1842.8,
   "descent_m": 482,
   "alt_start": 1841,
-  "alt_end": 1609
+  "alt_end": 1609,
+  "c_start": {
+   "code": "KG",
+   "name": "Kyrgyzstan"
+  },
+  "c_end": {
+   "code": "KG",
+   "name": "Kyrgyzstan"
+  },
+  "crossings": []
  },
  "20318865964": {
   "name": "Morning Ride",
@@ -543,7 +909,16 @@
   "elev_high": 1770.8,
   "descent_m": 438,
   "alt_start": 1616,
-  "alt_end": 1611
+  "alt_end": 1611,
+  "c_start": {
+   "code": "KG",
+   "name": "Kyrgyzstan"
+  },
+  "c_end": {
+   "code": "KG",
+   "name": "Kyrgyzstan"
+  },
+  "crossings": []
  },
  "20318865861": {
   "name": "Morning Ride",
@@ -557,7 +932,16 @@
   "elev_high": 1670.6,
   "descent_m": 94,
   "alt_start": 1616,
-  "alt_end": 1644
+  "alt_end": 1644,
+  "c_start": {
+   "code": "KG",
+   "name": "Kyrgyzstan"
+  },
+  "c_end": {
+   "code": "KG",
+   "name": "Kyrgyzstan"
+  },
+  "crossings": []
  },
  "20321432691": {
   "name": "Morning Ride",
@@ -571,7 +955,16 @@
   "elev_high": 1749.8,
   "descent_m": 277,
   "alt_start": 1615,
-  "alt_end": 1749
+  "alt_end": 1749,
+  "c_start": {
+   "code": "KG",
+   "name": "Kyrgyzstan"
+  },
+  "c_end": {
+   "code": "KG",
+   "name": "Kyrgyzstan"
+  },
+  "crossings": []
  },
  "20337793147": {
   "name": "Morning Ride",
@@ -585,7 +978,16 @@
   "elev_high": 2181.0,
   "descent_m": 567,
   "alt_start": 1754,
-  "alt_end": 2041
+  "alt_end": 2041,
+  "c_start": {
+   "code": "KG",
+   "name": "Kyrgyzstan"
+  },
+  "c_end": {
+   "code": "KG",
+   "name": "Kyrgyzstan"
+  },
+  "crossings": []
  },
  "20401757153": {
   "name": "Morning Ride",
@@ -599,7 +1001,24 @@
   "elev_high": 2043.4,
   "descent_m": 1345,
   "alt_start": 2041,
-  "alt_end": 1313
+  "alt_end": 1313,
+  "c_start": {
+   "code": "KG",
+   "name": "Kyrgyzstan"
+  },
+  "c_end": {
+   "code": "KZ",
+   "name": "Kazakhstan"
+  },
+  "crossings": [
+   {
+    "code": "KZ",
+    "name": "Kazakhstan",
+    "t": "2026-09-27T04:50:19Z",
+    "lat": 42.80129,
+    "lon": 79.18177
+   }
+  ]
  },
  "20401757237": {
   "name": "Morning Ride",
@@ -613,7 +1032,16 @@
   "elev_high": 1323.2,
   "descent_m": 916,
   "alt_start": 1323,
-  "alt_end": 739
+  "alt_end": 739,
+  "c_start": {
+   "code": "KZ",
+   "name": "Kazakhstan"
+  },
+  "c_end": {
+   "code": "KZ",
+   "name": "Kazakhstan"
+  },
+  "crossings": []
  },
  "20377462453": {
   "name": "Morning Ride",
@@ -627,7 +1055,16 @@
   "elev_high": 905.2,
   "descent_m": 201,
   "alt_start": 744,
-  "alt_end": 905
+  "alt_end": 905,
+  "c_start": {
+   "code": "KZ",
+   "name": "Kazakhstan"
+  },
+  "c_end": {
+   "code": "KZ",
+   "name": "Kazakhstan"
+  },
+  "crossings": []
  },
  "20420073702": {
   "name": "Morning Ride",
@@ -641,7 +1078,16 @@
   "elev_high": 909.0,
   "descent_m": 766,
   "alt_start": 909,
-  "alt_end": 489
+  "alt_end": 489,
+  "c_start": {
+   "code": "KZ",
+   "name": "Kazakhstan"
+  },
+  "c_end": {
+   "code": "KZ",
+   "name": "Kazakhstan"
+  },
+  "crossings": []
  },
  "20420073594": {
   "name": "Morning Ride",
@@ -655,7 +1101,16 @@
   "elev_high": 1076.8,
   "descent_m": 317,
   "alt_start": 476,
-  "alt_end": 953
+  "alt_end": 953,
+  "c_start": {
+   "code": "KZ",
+   "name": "Kazakhstan"
+  },
+  "c_end": {
+   "code": "KZ",
+   "name": "Kazakhstan"
+  },
+  "crossings": []
  },
  "20442307145": {
   "name": "Morning Ride",
@@ -669,7 +1124,16 @@
   "elev_high": 1708.8,
   "descent_m": 850,
   "alt_start": 951,
-  "alt_end": 1012
+  "alt_end": 1012,
+  "c_start": {
+   "code": "KZ",
+   "name": "Kazakhstan"
+  },
+  "c_end": {
+   "code": "KZ",
+   "name": "Kazakhstan"
+  },
+  "crossings": []
  },
  "20457281057": {
   "name": "Morning Ride",
@@ -683,7 +1147,16 @@
   "elev_high": 1303.2,
   "descent_m": 891,
   "alt_start": 1011,
-  "alt_end": 638
+  "alt_end": 638,
+  "c_start": {
+   "code": "KZ",
+   "name": "Kazakhstan"
+  },
+  "c_end": {
+   "code": "KZ",
+   "name": "Kazakhstan"
+  },
+  "crossings": []
  },
  "20486258547": {
   "name": "Lunch Ride",
@@ -697,7 +1170,24 @@
   "elev_high": 866.4,
   "descent_m": 309,
   "alt_start": 625,
-  "alt_end": 697
+  "alt_end": 697,
+  "c_start": {
+   "code": "KZ",
+   "name": "Kazakhstan"
+  },
+  "c_end": {
+   "code": "CN",
+   "name": "China"
+  },
+  "crossings": [
+   {
+    "code": "CN",
+    "name": "China",
+    "t": "2026-10-05T13:34:07Z",
+    "lat": 44.15703,
+    "lon": 80.40645
+   }
+  ]
  },
  "20484550853": {
   "name": "Morning Ride",
@@ -711,7 +1201,16 @@
   "elev_high": 765.4,
   "descent_m": 312,
   "alt_start": 693,
-  "alt_end": 765
+  "alt_end": 765,
+  "c_start": {
+   "code": "CN",
+   "name": "China"
+  },
+  "c_end": {
+   "code": "CN",
+   "name": "China"
+  },
+  "crossings": []
  },
  "20567498539": {
   "name": "Morning Ride",
@@ -725,7 +1224,16 @@
   "elev_high": 856.2,
   "descent_m": 414,
   "alt_start": 754,
-  "alt_end": 769
+  "alt_end": 769,
+  "c_start": {
+   "code": "CN",
+   "name": "China"
+  },
+  "c_end": {
+   "code": "CN",
+   "name": "China"
+  },
+  "crossings": []
  },
  "20576060451": {
   "name": "Morning Ride",
@@ -739,7 +1247,16 @@
   "elev_high": 969.6,
   "descent_m": 231,
   "alt_start": 766,
-  "alt_end": 966
+  "alt_end": 966,
+  "c_start": {
+   "code": "CN",
+   "name": "China"
+  },
+  "c_end": {
+   "code": "CN",
+   "name": "China"
+  },
+  "crossings": []
  },
  "20581594654": {
   "name": "Morning Ride",
@@ -753,7 +1270,16 @@
   "elev_high": 1685.0,
   "descent_m": 179,
   "alt_start": 974,
-  "alt_end": 1685
+  "alt_end": 1685,
+  "c_start": {
+   "code": "CN",
+   "name": "China"
+  },
+  "c_end": {
+   "code": "CN",
+   "name": "China"
+  },
+  "crossings": []
  },
  "20581601607": {
   "name": "Morning Ride",
@@ -767,7 +1293,16 @@
   "elev_high": 1966.6,
   "descent_m": 1312,
   "alt_start": 1677,
-  "alt_end": 853
+  "alt_end": 853,
+  "c_start": {
+   "code": "CN",
+   "name": "China"
+  },
+  "c_end": {
+   "code": "CN",
+   "name": "China"
+  },
+  "crossings": []
  },
  "20581601463": {
   "name": "Morning Ride",
@@ -781,7 +1316,16 @@
   "elev_high": 1612.8,
   "descent_m": 165,
   "alt_start": 1497,
-  "alt_end": 1607
+  "alt_end": 1607,
+  "c_start": {
+   "code": "CN",
+   "name": "China"
+  },
+  "c_end": {
+   "code": "CN",
+   "name": "China"
+  },
+  "crossings": []
  },
  "20581674445": {
   "name": "Morning Ride",
@@ -795,7 +1339,16 @@
   "elev_high": 1784.2,
   "descent_m": 642,
   "alt_start": 1609,
-  "alt_end": 1469
+  "alt_end": 1469,
+  "c_start": {
+   "code": "CN",
+   "name": "China"
+  },
+  "c_end": {
+   "code": "CN",
+   "name": "China"
+  },
+  "crossings": []
  },
  "20608085388": {
   "name": "Morning Ride",
@@ -809,7 +1362,16 @@
   "elev_high": 1922.4,
   "descent_m": 131,
   "alt_start": 1472,
-  "alt_end": 1909
+  "alt_end": 1909,
+  "c_start": {
+   "code": "CN",
+   "name": "China"
+  },
+  "c_end": {
+   "code": "CN",
+   "name": "China"
+  },
+  "crossings": []
  },
  "20609047934": {
   "name": "Morning Ride",
@@ -823,7 +1385,16 @@
   "elev_high": 2587.2,
   "descent_m": 1231,
   "alt_start": 1943,
-  "alt_end": 1547
+  "alt_end": 1547,
+  "c_start": {
+   "code": "CN",
+   "name": "China"
+  },
+  "c_end": {
+   "code": "CN",
+   "name": "China"
+  },
+  "crossings": []
  },
  "20620612080": {
   "name": "Lunch Ride",
@@ -837,7 +1408,16 @@
   "elev_high": 1916.8,
   "descent_m": 183,
   "alt_start": 1564,
-  "alt_end": 1900
+  "alt_end": 1900,
+  "c_start": {
+   "code": "CN",
+   "name": "China"
+  },
+  "c_end": {
+   "code": "CN",
+   "name": "China"
+  },
+  "crossings": []
  },
  "20634129888": {
   "name": "Morning Ride",
@@ -851,7 +1431,16 @@
   "elev_high": 2175.0,
   "descent_m": 873,
   "alt_start": 1926,
-  "alt_end": 1624
+  "alt_end": 1624,
+  "c_start": {
+   "code": "CN",
+   "name": "China"
+  },
+  "c_end": {
+   "code": "CN",
+   "name": "China"
+  },
+  "crossings": []
  },
  "20647663074": {
   "name": "Lunch Ride",
@@ -865,7 +1454,16 @@
   "elev_high": 1965.8,
   "descent_m": 1050,
   "alt_start": 1667,
-  "alt_end": 1627
+  "alt_end": 1627,
+  "c_start": {
+   "code": "CN",
+   "name": "China"
+  },
+  "c_end": {
+   "code": "CN",
+   "name": "China"
+  },
+  "crossings": []
  },
  "20659524947": {
   "name": "Morning Ride",
@@ -879,7 +1477,16 @@
   "elev_high": 1983.6,
   "descent_m": 527,
   "alt_start": 1623,
-  "alt_end": 1959
+  "alt_end": 1959,
+  "c_start": {
+   "code": "CN",
+   "name": "China"
+  },
+  "c_end": {
+   "code": "CN",
+   "name": "China"
+  },
+  "crossings": []
  },
  "20672418071": {
   "name": "Lunch Ride",
@@ -893,7 +1500,16 @@
   "elev_high": 2088.8,
   "descent_m": 472,
   "alt_start": 1980,
-  "alt_end": 1941
+  "alt_end": 1941,
+  "c_start": {
+   "code": "CN",
+   "name": "China"
+  },
+  "c_end": {
+   "code": "CN",
+   "name": "China"
+  },
+  "crossings": []
  },
  "20688130862": {
   "name": "Morning Ride",
@@ -907,7 +1523,16 @@
   "elev_high": 2282.8,
   "descent_m": 1040,
   "alt_start": 1950,
-  "alt_end": 1770
+  "alt_end": 1770,
+  "c_start": {
+   "code": "CN",
+   "name": "China"
+  },
+  "c_end": {
+   "code": "CN",
+   "name": "China"
+  },
+  "crossings": []
  },
  "20700489510": {
   "name": "Lunch Ride",
@@ -921,7 +1546,16 @@
   "elev_high": 1827.4,
   "descent_m": 1320,
   "alt_start": 1790,
-  "alt_end": 1173
+  "alt_end": 1173,
+  "c_start": {
+   "code": "CN",
+   "name": "China"
+  },
+  "c_end": {
+   "code": "CN",
+   "name": "China"
+  },
+  "crossings": []
  },
  "20719277882": {
   "name": "Lunch Ride",
@@ -935,7 +1569,16 @@
   "elev_high": 1738.6,
   "descent_m": 376,
   "alt_start": 1190,
-  "alt_end": 1583
+  "alt_end": 1583,
+  "c_start": {
+   "code": "CN",
+   "name": "China"
+  },
+  "c_end": {
+   "code": "CN",
+   "name": "China"
+  },
+  "crossings": []
  },
  "20726361818": {
   "name": "Morning Ride",
@@ -949,7 +1592,16 @@
   "elev_high": 1992.6,
   "descent_m": 2045,
   "alt_start": 1614,
-  "alt_end": 999
+  "alt_end": 999,
+  "c_start": {
+   "code": "CN",
+   "name": "China"
+  },
+  "c_end": {
+   "code": "CN",
+   "name": "China"
+  },
+  "crossings": []
  },
  "20736943516": {
   "name": "Lunch Ride",
@@ -963,7 +1615,16 @@
   "elev_high": 2044.6,
   "descent_m": 1283,
   "alt_start": 997,
-  "alt_end": 1082
+  "alt_end": 1082,
+  "c_start": {
+   "code": "CN",
+   "name": "China"
+  },
+  "c_end": {
+   "code": "CN",
+   "name": "China"
+  },
+  "crossings": []
  },
  "20750484432": {
   "name": "Morning Ride",
@@ -977,7 +1638,16 @@
   "elev_high": 1083.6,
   "descent_m": 1589,
   "alt_start": 1080,
-  "alt_end": 778
+  "alt_end": 778,
+  "c_start": {
+   "code": "CN",
+   "name": "China"
+  },
+  "c_end": {
+   "code": "CN",
+   "name": "China"
+  },
+  "crossings": []
  },
  "20766389062": {
   "name": "Lunch Ride",
@@ -991,7 +1661,16 @@
   "elev_high": 1036.8,
   "descent_m": 1291,
   "alt_start": 803,
-  "alt_end": 637
+  "alt_end": 637,
+  "c_start": {
+   "code": "CN",
+   "name": "China"
+  },
+  "c_end": {
+   "code": "CN",
+   "name": "China"
+  },
+  "crossings": []
  },
  "20778346650": {
   "name": "Morning Ride",
@@ -1005,7 +1684,16 @@
   "elev_high": 660.6,
   "descent_m": 666,
   "alt_start": 634,
-  "alt_end": 497
+  "alt_end": 497,
+  "c_start": {
+   "code": "CN",
+   "name": "China"
+  },
+  "c_end": {
+   "code": "CN",
+   "name": "China"
+  },
+  "crossings": []
  },
  "20794255574": {
   "name": "Lunch Ride",
@@ -1019,6 +1707,15 @@
   "elev_high": 618.8,
   "descent_m": 518,
   "alt_start": 506,
-  "alt_end": 500
+  "alt_end": 500,
+  "c_start": {
+   "code": "CN",
+   "name": "China"
+  },
+  "c_end": {
+   "code": "CN",
+   "name": "China"
+  },
+  "crossings": []
  }
 }

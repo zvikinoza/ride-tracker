@@ -375,6 +375,14 @@
     const flights = a.flights;
     $("km").textContent = points.length ? fmtInt(km) : "—";
     $("days").textContent = fmtInt(dayCount(config.start_date));
+    const hours = summary && summary.moving_h, climbed = summary && summary.elev_m;
+    $("stat-hours").hidden = !hours;
+    if (hours) $("hours").textContent = fmtInt(hours);
+    $("stat-everest").hidden = !climbed;
+    if (climbed) {
+      $("everest").textContent = (climbed / 8849).toFixed(1) + "×";
+      $("stat-everest").title = `${fmtInt(climbed)} m climbed in total; Everest is 8,849 m`;
+    }
 
     const dot = document.querySelector(".dot");
     if (points.length) {
@@ -395,6 +403,8 @@
 
     const parts = [];
     if (config.start_date) parts.push(`Left ${config.start_place ? config.start_place + " on " : ""}${fmtDate(config.start_date)}`);
+    const nCountries = summary && summary.countries ? summary.countries.length : 0;
+    if (nCountries) parts.push(`${nCountries} countries`);
     if (flights) parts.push(`${flights} flight${flights === 1 ? "" : "s"}`);
     for (const [mode, n] of Object.entries(a.ground)) parts.push(`${n} ${mode}${n === 1 ? "" : mode === "bus" ? "es" : "s"}`);
     $("meta").textContent = parts.join(" · ");
@@ -435,7 +445,6 @@
     furthest: { value: (r) => `${fmtInt(r.km)} km`, title: "Furthest day" },
     longest: { value: (r) => hm(r.moving_s), title: "Longest day in the saddle", extra: (r) => `${fmtInt(r.km)} km` },
     climb: { value: (r) => `${fmtInt(r.m)} m`, title: "Most climbing in a day", extra: (r) => `${fmtInt(r.km)} km` },
-    descent: { value: (r) => `${fmtInt(r.m)} m`, title: "Most descent in a day", extra: (r) => `${fmtInt(r.km)} km` },
     highest: { value: (r) => `${fmtInt(r.m)} m`, title: "Highest point", extra: (r) => r.place || "" },
   };
 
@@ -504,8 +513,23 @@
       el.addEventListener("click", () => { if (activeRec !== g.keys[0]) showRecord(g.keys[0], false); });
       addMarker(el, at, html);
     }
+    drawCountries(all);
     recordsGeo = { type: "FeatureCollection", features: feats };
     if (styleReady && map.getSource("records")) map.getSource("records").setData(recordsGeo);
+  }
+
+  /* A small round flag where the route first entered each country. */
+  function drawCountries(all) {
+    const list = (summaryData && summaryData.countries) || [];
+    const byTime = new Map(all.map((p) => [p.t, p]));
+    list.forEach((c, i) => {
+      const p = byTime.get(c.t);
+      if (!p) return;
+      const el = document.createElement("div"); el.className = "flag";
+      el.style.backgroundImage = `url(https://cdn.jsdelivr.net/npm/flag-icons@7/flags/1x1/${c.code.toLowerCase()}.svg)`;
+      const how = i === 0 ? "started here" : "entered";
+      addMarker(el, [p.x, p.lat], `${c.name} · country ${i + 1} of ${list.length}<br>${how} ${fmtDate(c.date)}`);
+    });
   }
 
   function clearRecord() {
