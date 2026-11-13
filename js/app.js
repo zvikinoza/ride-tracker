@@ -435,6 +435,7 @@
     furthest: { value: (r) => `${fmtInt(r.km)} km`, title: "Furthest day" },
     longest: { value: (r) => hm(r.moving_s), title: "Longest day in the saddle", extra: (r) => `${fmtInt(r.km)} km` },
     climb: { value: (r) => `${fmtInt(r.m)} m`, title: "Most climbing in a day", extra: (r) => `${fmtInt(r.km)} km` },
+    descent: { value: (r) => `${fmtInt(r.m)} m`, title: "Most descent in a day", extra: (r) => `${fmtInt(r.km)} km` },
     highest: { value: (r) => `${fmtInt(r.m)} m`, title: "Highest point", extra: (r) => r.place || "" },
   };
 
