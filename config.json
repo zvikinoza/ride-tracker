@@ -36,5 +36,15 @@
       "name": "Crystal",
       "url": "https://ir.crystal.ge"
     }
-  }
+  },
+  "transfers": [
+    {
+      "from": "2026-07-19",
+      "mode": "bus"
+    },
+    {
+      "from": "2026-10-10",
+      "mode": "train"
+    }
+  ]
 }

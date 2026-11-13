@@ -93,3 +93,10 @@ Each ride's GPS line is thinned to one point per ~300 m with timestamps spread o
 draws real roads; the kilometre total is the sum of Strava's ride distances (`data/summary.json`).
 Non-cycling activities are ignored. If the workflow log ever says Strava issued a new refresh token,
 update that secret.
+
+### Trains, buses and other gaps
+
+With Strava, any hop between the end of one ride and the start of the next (over 3 km) is drawn dotted and not
+counted. Hops of `flight_min_km` or more get a plane. To label a specific gap, add it to `transfers` in
+`config.json` by the UTC date of the last ride before it: `{"from": "2026-10-10", "mode": "train"}`
+(`mode` is `train`, `bus`, `flight` or `transfer`).

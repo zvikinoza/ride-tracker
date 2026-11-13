@@ -12,6 +12,9 @@
   const PLANE_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg>';
 
   const ESRI = "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}";
+  const TRAIN_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2c-4 0-8 .5-8 4v9.5C4 17.43 5.57 19 7.5 19L6 20.5v.5h2.23l2-2H14l2 2h2v-.5L16.5 19c1.93 0 3.5-1.57 3.5-3.5V6c0-3.5-3.58-4-8-4zM7.5 17c-.83 0-1.5-.67-1.5-1.5S6.67 14 7.5 14s1.5.67 1.5 1.5S8.33 17 7.5 17zm3.5-7H6V6h5v4zm2 0V6h5v4h-5zm3.5 7c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>';
+  const BUS_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 16c0 .88.39 1.67 1 2.22V20c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h8v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1.78c.61-.55 1-1.34 1-2.22V6c0-3.5-3.58-4-8-4s-8 .5-8 4v10zm3.5 1c-.83 0-1.5-.67-1.5-1.5S6.67 14 7.5 14s1.5.67 1.5 1.5S8.33 17 7.5 17zm9 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm1.5-6H6V6h12v5z"/></svg>';
+  const GROUND = { train: { svg: TRAIN_SVG, label: "Train" }, bus: { svg: BUS_SVG, label: "Bus" } };
   let map, config, lastFix, styleReady = false, earthStyleJSON = null;
   let markers = [];
   let geo = { type: "FeatureCollection", features: [] };
@@ -155,6 +158,8 @@
     const segments = [];
     let cur = { type: "ride", coords: [] };
     let km = 0, flights = 0;
+    const ground = {}; // count of labelled ground transfers by mode: { train: 1, bus: 1 }
+    const known = cfg.transfers || []; // e.g. [{ "from": "2026-10-10", "mode": "train" }], matched on the UTC date the gap starts
     for (let i = 0; i < pts.length; i++) {
       const p = pts[i];
       if (i === 0) { cur.coords.push([p.x, p.lat]); continue; }
@@ -164,13 +169,16 @@
       const gap = p.s === 1 && d > 3; // Strava: a new ride starting away from where the last one ended
       if (gap || (d > minKm && d / hours > maxKmh)) {
         if (cur.coords.length > 1) segments.push(cur);
-        if (d >= flightKm) {
+        const override = known.find((k) => k.from === prev.t.slice(0, 10));
+        const mode = override ? override.mode : (d >= flightKm ? "flight" : "transfer");
+        const coords = d > 100 ? arc(prev, p, mode === "flight" ? 64 : 32) : [[prev.x, prev.lat], [p.x, p.lat]];
+        const mid = coords[Math.floor(coords.length / 2)];
+        if (mode === "flight") {
           flights++;
-          const coords = arc(prev, p);
-          const mid = coords[Math.floor(coords.length / 2)];
           segments.push({ type: "flight", coords, km: d, mid, heading: bearing({ lat: mid[1], lon: mid[0] }, p) });
         } else {
-          segments.push({ type: "transfer", coords: d > 100 ? arc(prev, p, 32) : [[prev.x, prev.lat], [p.x, p.lat]], km: d });
+          if (GROUND[mode]) ground[mode] = (ground[mode] || 0) + 1;
+          segments.push({ type: mode, coords, km: d, mid });
         }
         cur = { type: "ride", coords: [[p.x, p.lat]] };
       } else {
@@ -179,7 +187,7 @@
       }
     }
     if (cur.coords.length > 1) segments.push(cur);
-    return { segments, km, flights, pts };
+    return { segments, km, flights, ground, pts };
   }
 
   // ---------- formatting ----------
@@ -258,6 +266,9 @@
       paint: { "line-color": casing, "line-width": 8, "line-opacity": 0.9 } });
     map.addLayer({ id: "route-transfer", type: "line", source: "route", filter: is("transfer"),
       paint: { "line-color": transfer, "line-width": 1.5, "line-dasharray": [1, 4], "line-opacity": 0.9 } });
+    map.addLayer({ id: "route-train", type: "line", source: "route", filter: ["in", ["get", "type"], ["literal", Object.keys(GROUND)]],
+      layout: { "line-cap": "round" },
+      paint: { "line-color": transfer, "line-width": 2.6, "line-dasharray": [0.2, 2.2], "line-opacity": 0.95 } });
     map.addLayer({ id: "route-flight", type: "line", source: "route", filter: is("flight"),
       paint: { "line-color": transfer, "line-width": 2.6, "line-dasharray": [2.2, 1.8], "line-opacity": 0.95 } });
     map.addLayer({ id: "route-ride", type: "line", source: "route", filter: is("ride"),
@@ -289,10 +300,16 @@
     const first = pts[0], last = pts[pts.length - 1];
 
     for (const s of segments) {
-      if (s.type !== "flight") continue;
-      const el = document.createElement("div"); el.className = "plane"; el.innerHTML = PLANE_SVG;
-      el.firstChild.style.transform = `rotate(${Math.round(s.heading)}deg)`;
-      addMarker(el, s.mid, `Flight · ${fmtInt(s.km)} km, not counted`);
+      if (s.type !== "flight" && !GROUND[s.type]) continue;
+      const el = document.createElement("div"); el.className = "plane";
+      if (s.type === "flight") {
+        el.innerHTML = PLANE_SVG;
+        el.firstChild.style.transform = `rotate(${Math.round(s.heading)}deg)`;
+        addMarker(el, s.mid, `Flight · ${fmtInt(s.km)} km, not counted`);
+      } else {
+        el.innerHTML = GROUND[s.type].svg;
+        addMarker(el, s.mid, `${GROUND[s.type].label} · ${fmtInt(s.km)} km, not counted`);
+      }
     }
     const st = document.createElement("div"); st.className = "start";
     addMarker(st, [first.x, first.lat], `Started here · ${config.start_place || fmtDate(config.start_date)}`);
@@ -349,6 +366,7 @@
     const parts = [];
     if (config.start_date) parts.push(`Left ${config.start_place ? config.start_place + " on " : ""}${fmtDate(config.start_date)}`);
     if (flights) parts.push(`${flights} flight${flights === 1 ? "" : "s"}`);
+    for (const [mode, n] of Object.entries(a.ground)) parts.push(`${n} ${mode}${n === 1 ? "" : mode === "bus" ? "es" : "s"}`);
     $("meta").textContent = parts.join(" · ");
 
     const links = (config.links || []).filter((l) => l.url);
