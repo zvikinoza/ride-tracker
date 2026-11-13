@@ -1717,5 +1717,65 @@
    "name": "China"
   },
   "crossings": []
+ },
+ "20972568888": {
+  "name": "Morning Ride",
+  "start": "2026-11-09T02:15:09Z",
+  "start_local": "2026-11-09T10:15:09Z",
+  "km": 143.4,
+  "elapsed_s": 44897,
+  "moving_s": 32760,
+  "elev_m": 916.0,
+  "elev_high": 405.0,
+  "points": 419,
+  "c_start": {
+   "code": "CN",
+   "name": "China"
+  },
+  "c_end": {
+   "code": "CN",
+   "name": "China"
+  },
+  "crossings": []
+ },
+ "20972574146": {
+  "name": "Lunch Ride",
+  "start": "2026-11-10T03:25:00Z",
+  "start_local": "2026-11-10T11:25:00Z",
+  "km": 103.24,
+  "elapsed_s": 31686,
+  "moving_s": 23682,
+  "elev_m": 1112.0,
+  "elev_high": 471.0,
+  "points": 307,
+  "c_start": {
+   "code": "CN",
+   "name": "China"
+  },
+  "c_end": {
+   "code": "CN",
+   "name": "China"
+  },
+  "crossings": []
+ },
+ "20972585556": {
+  "name": "Morning Ride",
+  "start": "2026-11-11T02:31:09Z",
+  "start_local": "2026-11-11T10:31:09Z",
+  "km": 123.47,
+  "elapsed_s": 49373,
+  "moving_s": 37423,
+  "elev_m": 2420.0,
+  "elev_high": 1772.6,
+  "points": 382,
+  "c_start": {
+   "code": "CN",
+   "name": "China"
+  },
+  "c_end": {
+   "code": "CN",
+   "name": "China"
+  },
+  "crossings": []
  }
 }

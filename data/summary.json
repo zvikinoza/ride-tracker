@@ -1,22 +1,22 @@
 {
-  "updated": "2026-11-13T03:56:38Z",
+  "updated": "2026-11-13T17:43:30Z",
   "source": "strava",
-  "rides": 73,
-  "riding_days": 73,
-  "total_km": 7141.4,
-  "elev_m": 57770,
-  "moving_h": 470.3,
+  "rides": 76,
+  "riding_days": 76,
+  "total_km": 7511.5,
+  "elev_m": 62218,
+  "moving_h": 496.4,
   "last": {
-    "t": "2026-10-30T18:00:16Z",
-    "lat": 30.6503,
-    "lon": 104.01366
+    "t": "2026-11-11T16:14:02Z",
+    "lat": 27.63088,
+    "lon": 104.04954
   },
   "last_ride": {
-    "name": "Lunch Ride",
-    "start": "2026-10-30T04:49:14Z",
-    "km": 137.31
+    "name": "Morning Ride",
+    "start": "2026-11-11T02:31:09Z",
+    "km": 123.47
   },
-  "place": "Chengdu, China",
+  "place": "Zhaotong, China",
   "records": {
     "furthest": {
       "date": "2026-07-19",
@@ -32,11 +32,11 @@
       "to": "2026-07-19T20:52:15Z"
     },
     "climb": {
-      "date": "2026-08-01",
-      "m": 2039,
-      "km": 125.1,
-      "from": "2026-08-01T05:33:03Z",
-      "to": "2026-08-01T18:58:52Z"
+      "date": "2026-11-11",
+      "m": 2420,
+      "km": 123.5,
+      "from": "2026-11-11T02:31:09Z",
+      "to": "2026-11-11T16:14:02Z"
     },
     "highest": {
       "ride": "20159988550",
