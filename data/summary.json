@@ -1,11 +1,11 @@
 {
-  "updated": "2026-11-14T02:47:47Z",
+  "updated": "2026-11-14T02:49:26Z",
   "source": "strava",
-  "rides": 90,
-  "riding_days": 90,
-  "total_km": 9158.5,
-  "elev_m": 68709,
-  "moving_h": 589.7,
+  "rides": 91,
+  "riding_days": 91,
+  "total_km": 9315.5,
+  "elev_m": 69508,
+  "moving_h": 599.0,
   "last": {
     "t": "2026-11-11T16:14:02Z",
     "lat": 27.63088,

@@ -2125,5 +2125,25 @@
    "name": "Bulgaria"
   },
   "crossings": []
+ },
+ "20978282433": {
+  "name": "Morning Ride",
+  "start": "2026-11-08T01:03:12Z",
+  "start_local": "2026-11-08T09:03:12Z",
+  "km": 156.97,
+  "elapsed_s": 45778,
+  "moving_s": 33315,
+  "elev_m": 799.0,
+  "elev_high": 516.2,
+  "points": 452,
+  "c_start": {
+   "code": "CN",
+   "name": "China"
+  },
+  "c_end": {
+   "code": "CN",
+   "name": "China"
+  },
+  "crossings": []
  }
 }
