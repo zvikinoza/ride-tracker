@@ -1777,5 +1777,353 @@
    "name": "China"
   },
   "crossings": []
+ },
+ "g23469099598": {
+  "source": "garmin",
+  "url": "https://connect.garmin.com/app/activity/23469099598",
+  "name": "Bruck an der Mur Road Cycling",
+  "start": "2026-07-03T09:21:20Z",
+  "start_local": "2026-07-03T11:21:20Z",
+  "km": 123.45,
+  "moving_s": 22688,
+  "elapsed_s": 38607,
+  "elev_m": 482,
+  "elev_high": 495,
+  "points": 359,
+  "c_start": {
+   "code": "AT",
+   "name": "Austria"
+  },
+  "c_end": {
+   "code": "SI",
+   "name": "Slovenia"
+  },
+  "crossings": [
+   {
+    "code": "SI",
+    "name": "Slovenia",
+    "t": "2026-07-03T18:57:33Z",
+    "lat": 46.69001,
+    "lon": 15.64304
+   }
+  ]
+ },
+ "g23457383774": {
+  "source": "garmin",
+  "url": "https://connect.garmin.com/app/activity/23457383774",
+  "name": "Bad Mitterndorf Road Cycling",
+  "start": "2026-07-02T07:15:26Z",
+  "start_local": "2026-07-02T09:15:26Z",
+  "km": 119.46,
+  "moving_s": 21190,
+  "elapsed_s": 39440,
+  "elev_m": 563,
+  "elev_high": 852,
+  "points": 336,
+  "c_start": {
+   "code": "AT",
+   "name": "Austria"
+  },
+  "c_end": {
+   "code": "AT",
+   "name": "Austria"
+  },
+  "crossings": []
+ },
+ "g23480864744": {
+  "source": "garmin",
+  "url": "https://connect.garmin.com/app/activity/23480864744",
+  "name": "Pesnica Road Cycling",
+  "start": "2026-07-04T07:46:55Z",
+  "start_local": "2026-07-04T09:46:55Z",
+  "km": 119.42,
+  "moving_s": 25399,
+  "elapsed_s": 44594,
+  "elev_m": 412,
+  "elev_high": 314,
+  "points": 339,
+  "c_start": {
+   "code": "SI",
+   "name": "Slovenia"
+  },
+  "c_end": {
+   "code": "HR",
+   "name": "Croatia"
+  },
+  "crossings": [
+   {
+    "code": "HR",
+    "name": "Croatia",
+    "t": "2026-07-04T14:03:55Z",
+    "lat": 46.40114,
+    "lon": 16.15323
+   }
+  ]
+ },
+ "g23495755907": {
+  "source": "garmin",
+  "url": "https://connect.garmin.com/app/activity/23495755907",
+  "name": "Rasinja Road Cycling",
+  "start": "2026-07-05T07:26:39Z",
+  "start_local": "2026-07-05T09:26:39Z",
+  "km": 107.42,
+  "moving_s": 18766,
+  "elapsed_s": 30106,
+  "elev_m": 232,
+  "elev_high": 177,
+  "points": 260,
+  "c_start": {
+   "code": "HR",
+   "name": "Croatia"
+  },
+  "c_end": {
+   "code": "HR",
+   "name": "Croatia"
+  },
+  "crossings": []
+ },
+ "g23502691457": {
+  "source": "garmin",
+  "url": "https://connect.garmin.com/app/activity/23502691457",
+  "name": "Slatina Road Cycling",
+  "start": "2026-07-06T07:43:55Z",
+  "start_local": "2026-07-06T09:43:55Z",
+  "km": 128.39,
+  "moving_s": 24967,
+  "elapsed_s": 41571,
+  "elev_m": 612,
+  "elev_high": 164,
+  "points": 314,
+  "c_start": {
+   "code": "HR",
+   "name": "Croatia"
+  },
+  "c_end": {
+   "code": "HR",
+   "name": "Croatia"
+  },
+  "crossings": []
+ },
+ "g23515161980": {
+  "source": "garmin",
+  "url": "https://connect.garmin.com/app/activity/23515161980",
+  "name": "Nustar Road Cycling",
+  "start": "2026-07-07T07:21:39Z",
+  "start_local": "2026-07-07T09:21:39Z",
+  "km": 101.06,
+  "moving_s": 21431,
+  "elapsed_s": 43944,
+  "elev_m": 362,
+  "elev_high": 137,
+  "points": 264,
+  "c_start": {
+   "code": "HR",
+   "name": "Croatia"
+  },
+  "c_end": {
+   "code": "RS",
+   "name": "Serbia"
+  },
+  "crossings": [
+   {
+    "code": "RS",
+    "name": "Serbia",
+    "t": "2026-07-07T13:40:45Z",
+    "lat": 45.2367,
+    "lon": 19.40223
+   }
+  ]
+ },
+ "g23527825045": {
+  "source": "garmin",
+  "url": "https://connect.garmin.com/app/activity/23527825045",
+  "name": "Novi Sad Road Cycling",
+  "start": "2026-07-08T07:37:43Z",
+  "start_local": "2026-07-08T09:37:43Z",
+  "km": 137.22,
+  "moving_s": 26062,
+  "elapsed_s": 43561,
+  "elev_m": 232,
+  "elev_high": 131,
+  "points": 303,
+  "c_start": {
+   "code": "RS",
+   "name": "Serbia"
+  },
+  "c_end": {
+   "code": "RS",
+   "name": "Serbia"
+  },
+  "crossings": []
+ },
+ "g23538878848": {
+  "source": "garmin",
+  "url": "https://connect.garmin.com/app/activity/23538878848",
+  "name": "Alibunar Road Cycling",
+  "start": "2026-07-09T07:20:31Z",
+  "start_local": "2026-07-09T09:20:31Z",
+  "km": 96.84,
+  "moving_s": 20328,
+  "elapsed_s": 38775,
+  "elev_m": 492,
+  "elev_high": 193,
+  "points": 254,
+  "c_start": {
+   "code": "RS",
+   "name": "Serbia"
+  },
+  "c_end": {
+   "code": "RO",
+   "name": "Romania"
+  },
+  "crossings": [
+   {
+    "code": "RO",
+    "name": "Romania",
+    "t": "2026-07-09T13:50:37Z",
+    "lat": 44.88059,
+    "lon": 21.56508
+   }
+  ]
+ },
+ "g23550201166": {
+  "source": "garmin",
+  "url": "https://connect.garmin.com/app/activity/23550201166",
+  "name": "Pojejena Road Cycling",
+  "start": "2026-07-10T07:08:10Z",
+  "start_local": "2026-07-10T10:08:10Z",
+  "km": 119.92,
+  "moving_s": 25342,
+  "elapsed_s": 36442,
+  "elev_m": 729,
+  "elev_high": 227,
+  "points": 348,
+  "c_start": {
+   "code": "RO",
+   "name": "Romania"
+  },
+  "c_end": {
+   "code": "RO",
+   "name": "Romania"
+  },
+  "crossings": []
+ },
+ "g23561458063": {
+  "source": "garmin",
+  "url": "https://connect.garmin.com/app/activity/23561458063",
+  "name": "Orsova Road Cycling",
+  "start": "2026-07-11T07:02:27Z",
+  "start_local": "2026-07-11T10:02:27Z",
+  "km": 115.53,
+  "moving_s": 22671,
+  "elapsed_s": 34358,
+  "elev_m": 492,
+  "elev_high": 203,
+  "points": 279,
+  "c_start": {
+   "code": "RO",
+   "name": "Romania"
+  },
+  "c_end": {
+   "code": "RO",
+   "name": "Romania"
+  },
+  "crossings": []
+ },
+ "g23573401847": {
+  "source": "garmin",
+  "url": "https://connect.garmin.com/app/activity/23573401847",
+  "name": "Maglavit Road Cycling",
+  "start": "2026-07-12T06:07:16Z",
+  "start_local": "2026-07-12T09:07:16Z",
+  "km": 135.08,
+  "moving_s": 26935,
+  "elapsed_s": 40414,
+  "elev_m": 288,
+  "elev_high": 72,
+  "points": 319,
+  "c_start": {
+   "code": "RO",
+   "name": "Romania"
+  },
+  "c_end": {
+   "code": "RO",
+   "name": "Romania"
+  },
+  "crossings": []
+ },
+ "g23598367619": {
+  "source": "garmin",
+  "url": "https://connect.garmin.com/app/activity/23598367619",
+  "name": "Orlea Road Cycling",
+  "start": "2026-07-13T06:36:29Z",
+  "start_local": "2026-07-13T09:36:29Z",
+  "km": 107.62,
+  "moving_s": 23738,
+  "elapsed_s": 46063,
+  "elev_m": 389,
+  "elev_high": 95,
+  "points": 240,
+  "c_start": {
+   "code": "RO",
+   "name": "Romania"
+  },
+  "c_end": {
+   "code": "BG",
+   "name": "Bulgaria"
+  },
+  "crossings": [
+   {
+    "code": "BG",
+    "name": "Bulgaria",
+    "t": "2026-07-13T18:23:49Z",
+    "lat": 43.62193,
+    "lon": 25.36821
+   }
+  ]
+ },
+ "g23598374921": {
+  "source": "garmin",
+  "url": "https://connect.garmin.com/app/activity/23598374921",
+  "name": "Svishtov Road Cycling",
+  "start": "2026-07-14T05:13:18Z",
+  "start_local": "2026-07-14T08:13:18Z",
+  "km": 119.58,
+  "moving_s": 29591,
+  "elapsed_s": 47338,
+  "elev_m": 1206,
+  "elev_high": 295,
+  "points": 315,
+  "c_start": {
+   "code": "BG",
+   "name": "Bulgaria"
+  },
+  "c_end": {
+   "code": "BG",
+   "name": "Bulgaria"
+  },
+  "crossings": []
+ },
+ "g23611261366": {
+  "source": "garmin",
+  "url": "https://connect.garmin.com/app/activity/23611261366",
+  "name": "Elena Road Cycling",
+  "start": "2026-07-15T06:58:57Z",
+  "start_local": "2026-07-15T09:58:57Z",
+  "km": 116.05,
+  "moving_s": 26848,
+  "elapsed_s": 42436,
+  "elev_m": 0,
+  "elev_high": 0,
+  "points": 299,
+  "c_start": {
+   "code": "BG",
+   "name": "Bulgaria"
+  },
+  "c_end": {
+   "code": "BG",
+   "name": "Bulgaria"
+  },
+  "crossings": []
  }
 }

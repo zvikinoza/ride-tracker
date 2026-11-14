@@ -114,3 +114,13 @@ The site shows them as four tiles; tapping one highlights that day's ride and fl
 and end are reverse-geocoded once (cached in `rides.json`), and a border crossed mid-ride is located by bisecting
 along that ride. `summary.json` gets `countries` in order of first entry; the site shows a small flag at each
 entry point and the count in the footer. Only recorded rides count, so a stretch missing from Strava adds nothing.
+
+### Rides imported from Garmin Connect (`data/garmin.json`)
+
+Fourteen rides from 2 to 15 July 2026 (Austria to Bulgaria) were recorded on the Edge but never reached Strava.
+They were read once from their public Garmin Connect pages and stored in `data/garmin.json`, each with its stats
+and a compact GPS line. That file is the source of truth for those rides: every fetch re-applies it, the Strava
+sync never edits it, and a Strava activity that starts inside one of those rides' time windows is skipped so
+nothing is counted twice. To add another ride by hand, append an entry in the same shape.
+`python scripts/fetch_strava.py --local` rebuilds track, stats, records and countries from the stored files
+without contacting Strava. One imported ride (15 July) has no elevation data on Garmin, so it adds 0 m of climbing.

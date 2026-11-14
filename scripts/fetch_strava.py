@@ -27,6 +27,8 @@ ROOT = Path(__file__).resolve().parent.parent
 CONFIG = ROOT / "config.json"
 TRACK = ROOT / "data" / "track.json"
 RIDES = ROOT / "data" / "rides.json"
+GARMIN = ROOT / "data" / "garmin.json"  # rides imported by hand from Garmin Connect; never modified here
+B64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_"
 SUMMARY = ROOT / "data" / "summary.json"
 API = "https://www.strava.com/api/v3"
 RIDE_TYPES = {"Ride", "GravelRide", "MountainBikeRide", "EBikeRide", "EMountainBikeRide", "Handcycle", "Velomobile"}
@@ -104,6 +106,59 @@ def ride_points(act, detail):
     return out
 
 
+def decode_compact(enc):
+    """The delta-encoded line stored in garmin.json (polyline algorithm over a URL-safe alphabet) -> [(lat, lon)]."""
+    out, i, lat, lon = [], 0, 0, 0
+    while i < len(enc):
+        for which in (0, 1):
+            shift = result = 0
+            while True:
+                b = B64.index(enc[i]); i += 1
+                result |= (b & 0x1F) << shift; shift += 5
+                if b < 0x20:
+                    break
+            d = ~(result >> 1) if result & 1 else result >> 1
+            if which == 0: lat += d
+            else: lon += d
+        out.append((lat / 1e5, lon / 1e5))
+    return out
+
+
+def timed_points(coords, start_iso, elapsed_s):
+    """Spread timestamps along a line by distance; mark the first point as a ride start."""
+    t0 = parse_time(start_iso).timestamp()
+    span = max(float(elapsed_s or 3600), 60.0)
+    dist = [0.0]
+    for a, b in zip(coords, coords[1:]):
+        dist.append(dist[-1] + haversine({"lat": a[0], "lon": a[1]}, {"lat": b[0], "lon": b[1]}))
+    total = dist[-1] or 1.0
+    out = [{"t": iso(datetime.fromtimestamp(t0 + span * d / total, timezone.utc)), "lat": round(la, 5), "lon": round(lo, 5)}
+           for (la, lo), d in zip(coords, dist)]
+    out[0]["s"] = 1
+    return out
+
+
+def merge_garmin(rides, points):
+    """Fold the hand-imported Garmin rides into the working set. garmin.json is the source of truth: its rides are
+    re-applied on every run, so nothing the Strava sync does can drop or alter them. Returns (changed, windows)."""
+    if not GARMIN.exists():
+        return 0, []
+    changed, windows = 0, []
+    for gid, g in json.loads(GARMIN.read_text()).get("rides", {}).items():
+        meta = {k: v for k, v in g.items() if k != "enc"}
+        merged = {**rides.get(gid, {}), **meta}
+        if merged != rides.get(gid):
+            rides[gid] = merged; changed += 1
+        pts = timed_points(decode_compact(g["enc"]), g["start"], g.get("elapsed_s"))
+        if any(points.get(q["t"]) != q for q in pts):
+            for q in pts:
+                points[q["t"]] = q
+            changed += 1
+        t0 = parse_time(g["start"])
+        windows.append((t0 - timedelta(minutes=10), t0 + timedelta(seconds=g.get("elapsed_s") or 0)))
+    return changed, windows
+
+
 def ride_meta(act):
     """Per-ride facts kept in rides.json (all available from the activity list, no extra API call)."""
     return {"name": act.get("name"), "start": act["start_date"], "start_local": act.get("start_date_local") or act["start_date"],
@@ -159,7 +214,7 @@ def compute_records(rides, token, old):
         if prev.get("ride") == aid and prev.get("lat") is not None:
             h.update({k: prev[k] for k in ("lat", "lon", "place") if k in prev})  # already located; don't ask again
         else:
-            ll = highest_point(token, aid)
+            ll = highest_point(token, aid) if token and not aid.startswith("g") else None
             if ll:
                 h["lat"], h["lon"] = ll
                 if not os.environ.get("NO_GEOCODE"):
@@ -170,7 +225,8 @@ def compute_records(rides, token, old):
 
 def main():
     cfg = json.loads(CONFIG.read_text())
-    token = access_token()
+    local = "--local" in sys.argv  # rebuild from the stored files without contacting Strava
+    token = None if local else access_token()
     rides = json.loads(RIDES.read_text()) if RIDES.exists() else {}
     track = json.loads(TRACK.read_text()) if TRACK.exists() else {"points": []}
     points = {p["t"]: p for p in track.get("points", [])}
@@ -178,8 +234,10 @@ def main():
 
     # Always list from the trip start (a few cheap calls): rides uploaded late or back-dated are picked up too.
     after = int(datetime.fromisoformat(cfg["start_date"]).replace(tzinfo=timezone.utc).timestamp()) - 86400
-    page, new, changed = 1, 0, 0
-    while True:
+    page, new = 1, 0
+    changed, garmin_windows = merge_garmin(rides, points)
+    rebuilt = changed > 0
+    while not local:
         batch = api(token, "/athlete/activities", after=after, per_page=100, page=page)
         if not batch:
             break
@@ -187,6 +245,9 @@ def main():
             aid = str(act["id"])
             if act.get("type") not in RIDE_TYPES:
                 continue
+            t_act = parse_time(act["start_date"])
+            if aid not in rides and any(a <= t_act <= b for a, b in garmin_windows):
+                continue  # the same ride is already held from Garmin; never count it twice
             meta = ride_meta(act)
             if aid in rides:  # keep stored facts in step with Strava (edits, and fields added to this script later)
                 merged = {**rides[aid], **meta}
@@ -209,7 +270,7 @@ def main():
         log(f"{len(rides)} rides, nothing new")  # leave the files untouched so the workflow makes no empty commits
         return 0
 
-    if new:
+    if new or rebuilt:
         TRACK.write_text(json.dumps({"points": pts}, separators=(",", ":")) + "\n")
     RIDES.write_text(json.dumps(rides, indent=1, ensure_ascii=False) + "\n")
 
