@@ -312,9 +312,13 @@ h1 {
 :root[data-theme="dark"] .theme-toggle .moon { display: block; }
 
 /* Markers */
+/* Stacking when markers overlap: flags at the back, then transport badges, trophies, and the live position on top. */
+.maplibregl-marker.flag, .maplibregl-marker.start { z-index: 1; }
+.maplibregl-marker.plane { z-index: 2; }
+.maplibregl-marker.trophy { z-index: 3; }
+.maplibregl-marker.here { z-index: 4; }
 .maplibregl-marker[style*="opacity: 0;"] { pointer-events: none; } /* far side of the globe: no hover either */
 .here {
-  position: relative;
   width: 16px; height: 16px;
   cursor: pointer;
 }

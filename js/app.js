@@ -428,7 +428,6 @@
         const bottles = days * sp.water.bottles_per_day + (sp.water.bottles_extra ?? 0);
         $("litres").textContent = `≈ ${fmtInt(bottles)}`;
         $("litres-label").innerHTML = `${brand(sp.water, "water")} <span>bottles drunk</span>`;
-        $("litres").title = `${sp.water.bottles_per_day} bottles a day on average × ${days} days`;
       } else {
         const litres = (km / 100) * (sp.water.litres_per_100km ?? 8) + (sp.water.litres_extra ?? 0);
         $("litres").textContent = `≈ ${fmtInt(litres)} L`;
