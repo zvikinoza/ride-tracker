@@ -261,6 +261,8 @@ h1 {
   text-underline-offset: 3px;
 }
 .links a:hover { color: var(--ink); }
+.brand .links { margin: 8px 0 0; font-size: 12.5px; pointer-events: auto; }
+.brand .links:empty { display: none; }
 .links a + a { margin-left: 14px; }
 .links a { display: inline-flex; align-items: center; gap: 5px; text-decoration: none; }
 .links a:hover { text-decoration: underline; }
