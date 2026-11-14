@@ -194,11 +194,17 @@ def compute_records(rides, token, old):
         date, d = max(days.items(), key=lambda kv: kv[1][key])
         return date, d
 
+    def ride_rec(r):
+        t0 = parse_time(r["start"])
+        return {"date": (r.get("start_local") or r["start"])[:10], "km": round(r["km"], 1), "name": r.get("name"),
+                "from": iso(t0), "to": iso(t0 + timedelta(seconds=r.get("elapsed_s") or 0))}
+
+    # Furthest and longest are single rides; most climbing stays per day.
     rec = {}
-    date, d = best("km");       rec["furthest"] = {"date": date, "km": round(d["km"], 1), "from": d["from"], "to": d["to"]}
-    date, d = best("moving_s")
-    if d["moving_s"]:
-        rec["longest"] = {"date": date, "moving_s": int(d["moving_s"]), "km": round(d["km"], 1), "from": d["from"], "to": d["to"]}
+    r = max(rides.values(), key=lambda r: r["km"]); rec["furthest"] = ride_rec(r)
+    r = max(rides.values(), key=lambda r: r.get("moving_s") or 0)
+    if r.get("moving_s"):
+        rec["longest"] = {**ride_rec(r), "moving_s": int(r["moving_s"])}
     date, d = best("elev_m")
     if d["elev_m"]:
         rec["climb"] = {"date": date, "m": round(d["elev_m"]), "km": round(d["km"], 1), "from": d["from"], "to": d["to"]}

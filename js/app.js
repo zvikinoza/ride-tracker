@@ -476,8 +476,8 @@
   const shortDate = (d) => new Date(d + "T00:00:00").toLocaleDateString("en-GB", { day: "numeric", month: "short" });
   const hm = (s) => `${Math.floor(s / 3600)}h ${String(Math.round((s % 3600) / 60)).padStart(2, "0")}m`;
   const REC = {
-    furthest: { value: (r) => `${fmtInt(r.km)} km`, title: "Furthest day" },
-    longest: { value: (r) => hm(r.moving_s), title: "Longest day in the saddle", extra: (r) => `${fmtInt(r.km)} km` },
+    furthest: { value: (r) => `${fmtInt(r.km)} km`, title: "Furthest ride" },
+    longest: { value: (r) => hm(r.moving_s), title: "Longest ride", extra: (r) => `${fmtInt(r.km)} km` },
     climb: { value: (r) => `${fmtInt(r.m)} m`, title: "Most climbing in a day", extra: (r) => `${fmtInt(r.km)} km` },
     highest: { value: (r) => `${fmtInt(r.m)} m`, title: "Highest point", extra: (r) => r.place || "" },
   };

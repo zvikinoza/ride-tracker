@@ -104,7 +104,7 @@ counted. Hops of `flight_min_km` or more get a plane. To label a specific gap, a
 ### Record days
 
 `fetch_strava.py` writes `records` into `data/summary.json` on every run that brings a new or edited ride:
-furthest day (km), longest day (moving time), most climbing (m gained) and the highest point reached
+furthest ride (km), longest ride (moving time), most climbing (m gained) and the highest point reached
 (Strava's `elev_high`, located once with a single streams call). Days are grouped by the riders' local date.
 The site shows them as four tiles; tapping one highlights that day's ride and flies to it.
 
