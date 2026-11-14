@@ -239,9 +239,9 @@
     });
     map.on("mouseleave", "records-hit", () => { map.getCanvas().style.cursor = ""; if (hoverPopup) hoverPopup.remove(); });
     map.on("click", "records-hit", (e) => { // touch screens have no hover: a tap pins the label
-      const key = e.features[0].properties.keys.split(",")[0];
+      const keys = e.features[0].properties.keys.split(",");
       if (hoverPopup) hoverPopup.remove();
-      if (activeRec !== key) showRecord(key, false);
+      if (keys.includes(activeRec)) clearRecord(); else showRecord(keys[0], false); // click again to unpin
     });
     if (isEarth()) applyStyle();
 
@@ -368,9 +368,14 @@
     drawRecords();
   }
 
-  const uiPadding = () => (window.innerWidth < 640
-    ? { top: 110, left: 20, bottom: 260, right: 20 }
-    : { top: 80, left: 180, bottom: 40, right: 40 });
+  /* Room to leave for the title and stats card. Shrinks on short or narrow screens (a phone held sideways),
+     where the full padding would not leave any map to fit things into. */
+  const uiPadding = () => {
+    const p = window.innerWidth < 640 ? { top: 110, left: 20, bottom: 260, right: 20 } : { top: 80, left: 180, bottom: 40, right: 40 };
+    const c = map.getCanvas(), w = c.clientWidth || 1, h = c.clientHeight || 1;
+    const fx = Math.max(0, Math.min(1, (w - 80) / (p.left + p.right))), fy = Math.max(0, Math.min(1, (h - 80) / (p.top + p.bottom)));
+    return { top: Math.round(p.top * fy), bottom: Math.round(p.bottom * fy), left: Math.round(p.left * fx), right: Math.round(p.right * fx) };
+  };
 
   /* First view: a regional look around where they are now (the whole route is a zoom-out away). */
   function fit(points) {
@@ -540,7 +545,7 @@
       const el = document.createElement("div"); el.className = "trophy"; el.innerHTML = TROPHY_SVG;
       addMarker(el, at, html, {
         quiet: () => g.keys.includes(activeRec), // its label is already pinned
-        onClick: () => { if (!g.keys.includes(activeRec)) showRecord(g.keys[0], false); },
+        onClick: () => { if (g.keys.includes(activeRec)) clearRecord(); else showRecord(g.keys[0], false); }, // click again to unpin
       });
     }
     drawCountries(all);
@@ -584,14 +589,16 @@
     activeRec = key;
     document.querySelector(`.rec[data-rec="${key}"]`).classList.add("on");
 
-    if (fly) {
-      const xs = pts.map((p) => p.x), ys = pts.map((p) => p.lat);
-      map.fitBounds([[Math.min(...xs), Math.min(...ys)], [Math.max(...xs), Math.max(...ys)]], { padding: uiPadding(), maxZoom: 9.5, duration: 1600 });
-    }
     const mid = pts[Math.floor(pts.length / 2)];
     const at = key === "highest" && r.lat != null ? peakPosition(pts, r) : [mid.x, mid.lat];
     recPopup = new maplibregl.Popup({ closeButton: false, closeOnClick: false, className: "quiet", offset: 16 })
       .setLngLat(at).setHTML(recordLabel(g.keys)).addTo(map);
+    if (fly) {
+      const xs = pts.map((p) => p.x), ys = pts.map((p) => p.lat);
+      try {
+        map.fitBounds([[Math.min(...xs), Math.min(...ys)], [Math.max(...xs), Math.max(...ys)]], { padding: uiPadding(), maxZoom: 9.5, duration: 1600 });
+      } catch (e) { map.flyTo({ center: at, zoom: 8, duration: 1600 }); } // no room to fit: just go there
+    }
   }
 
   async function refresh(first) {
