@@ -261,7 +261,11 @@ h1 {
   text-underline-offset: 3px;
 }
 .links a:hover { color: var(--ink); }
-.links a + a { margin-left: 12px; }
+.links a + a { margin-left: 14px; }
+.links a { display: inline-flex; align-items: center; gap: 5px; text-decoration: none; }
+.links a:hover { text-decoration: underline; }
+.links svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 1.8; }
+.links svg .dotfill { fill: currentColor; stroke: none; }
 
 /* Map chrome */
 .maplibregl-map { font-family: var(--sans); }

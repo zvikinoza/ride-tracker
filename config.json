@@ -11,8 +11,14 @@
   "flight_min_km": 1500,
   "links": [
     {
-      "label": "Instagram",
-      "url": ""
+      "label": "Irakli",
+      "url": "https://www.instagram.com/irakli_khukhunaishvili/",
+      "icon": "instagram"
+    },
+    {
+      "label": "Richie",
+      "url": "https://www.instagram.com/nomad_by_nature/",
+      "icon": "instagram"
     }
   ],
   "sponsors": {

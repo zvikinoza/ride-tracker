@@ -437,7 +437,8 @@
     $("meta").textContent = parts.join(" · ");
 
     const links = (config.links || []).filter((l) => l.url);
-    $("links").innerHTML = links.map((l) => `<a href="${l.url}" target="_blank" rel="noopener">${l.label}</a>`).join("");
+    const IG = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" class="dotfill"/></svg>';
+    $("links").innerHTML = links.map((l) => `<a href="${l.url}" target="_blank" rel="noopener" title="${l.label} on Instagram">${l.icon === "instagram" ? IG : ""}${l.label}</a>`).join("");
   }
 
   /* Estimated litres drunk and GB used, from configurable rates; the bottle fills through their local day. */
