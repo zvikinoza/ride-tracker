@@ -317,6 +317,7 @@ h1 {
 .maplibregl-marker.plane { z-index: 2; }
 .maplibregl-marker.trophy { z-index: 3; }
 .maplibregl-marker.here { z-index: 4; }
+.maplibregl-popup { z-index: 10; } /* labels always sit above every marker */
 .maplibregl-marker[style*="opacity: 0;"] { pointer-events: none; } /* far side of the globe: no hover either */
 .here {
   width: 16px; height: 16px;
