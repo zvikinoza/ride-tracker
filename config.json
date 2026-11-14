@@ -43,6 +43,11 @@
       "mode": "bus"
     },
     {
+      "from": "2026-08-03",
+      "mode": "flight",
+      "note": "The only way east was by air: Azerbaijan's land border is closed to Georgians, Iran was at war, and crossing Russia was not an option."
+    },
+    {
       "from": "2026-10-10",
       "mode": "train"
     }

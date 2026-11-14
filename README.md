@@ -99,7 +99,7 @@ update that secret.
 With Strava, any hop between the end of one ride and the start of the next (over 3 km) is drawn dotted and not
 counted. Hops of `flight_min_km` or more get a plane. To label a specific gap, add it to `transfers` in
 `config.json` by the UTC date of the last ride before it: `{"from": "2026-10-10", "mode": "train"}`
-(`mode` is `train`, `bus`, `flight` or `transfer`).
+(`mode` is `train`, `bus`, `flight` or `transfer`). An optional `note` adds a line of explanation to that marker's label.
 
 ### Record days
 

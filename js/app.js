@@ -20,6 +20,7 @@
   let markers = [];
   let summaryData = null, activeRec = null, recPopup = null, hoverPopup = null;
   let recordsGeo = { type: "FeatureCollection", features: [] };
+  let overMarker = false;
   let highlight = { type: "FeatureCollection", features: [] };
   let geo = { type: "FeatureCollection", features: [] };
 
@@ -179,10 +180,10 @@
         const mid = coords[Math.floor(coords.length / 2)];
         if (mode === "flight") {
           flights++;
-          segments.push({ type: "flight", coords, km: d, mid, heading: bearing({ lat: mid[1], lon: mid[0] }, p) });
+          segments.push({ type: "flight", coords, km: d, mid, heading: bearing({ lat: mid[1], lon: mid[0] }, p), note: override && override.note });
         } else {
           if (GROUND[mode]) ground[mode] = (ground[mode] || 0) + 1;
-          segments.push({ type: mode, coords, km: d, mid });
+          segments.push({ type: mode, coords, km: d, mid, note: override && override.note });
         }
         cur = { type: "ride", coords: [[p.x, p.lat]] };
       } else {
@@ -230,6 +231,7 @@
     map.on("style.load", addLayers);
     map.on("mousemove", "records-hit", (e) => {
       map.getCanvas().style.cursor = "pointer";
+      if (overMarker) { if (hoverPopup) hoverPopup.remove(); return; } // the marker under the pointer shows its own label
       const f = e.features[0];
       if (activeRec && f.properties.keys.split(",").includes(activeRec)) return; // its label is already pinned
       if (!hoverPopup) hoverPopup = new maplibregl.Popup({ closeButton: false, closeOnClick: false, className: "quiet", offset: 14 });
@@ -305,15 +307,34 @@
   }
 
   function popup(html) {
-    return new maplibregl.Popup({ closeButton: false, closeOnClick: false, className: "quiet", offset: 14 }).setHTML(html);
+    return new maplibregl.Popup({ closeButton: false, closeOnClick: false, className: "quiet", offset: 14, maxWidth: "270px" }).setHTML(html);
   }
-  function addMarker(el, lngLat, html, opts = {}) {
+  /* A marker with a hover label. Only one label shows at a time: while the pointer is on a marker the route's own
+     hover label is suppressed, and `quiet()` lets a marker stay silent (e.g. when its record is already pinned).
+     Clicking runs `onClick` if given, otherwise toggles the label (for touch screens, which have no hover). */
+  function addMarker(el, lngLat, html, { quiet, onClick } = {}) {
     // opacityWhenCovered "0": fully hidden on the far side of the globe (MapLibre's default leaves a faded ghost)
-    const m = new maplibregl.Marker({ element: el, opacityWhenCovered: "0", ...opts }).setLngLat(lngLat).setPopup(popup(html)).addTo(map);
-    el.addEventListener("mouseenter", () => { if (!m.getPopup().isOpen()) m.togglePopup(); });
-    el.addEventListener("mouseleave", () => { if (m.getPopup().isOpen()) m.togglePopup(); });
+    const m = new maplibregl.Marker({ element: el, opacityWhenCovered: "0" }).setLngLat(lngLat).addTo(map);
+    const pop = popup(html);
+    let openedAt = 0;
+    const open = () => {
+      if (hoverPopup) hoverPopup.remove();
+      if (quiet && quiet()) return;
+      pop.setLngLat(lngLat).addTo(map); openedAt = Date.now();
+    };
+    el.addEventListener("mouseenter", () => { overMarker = true; open(); });
+    el.addEventListener("mouseleave", () => { overMarker = false; pop.remove(); });
+    el.addEventListener("click", (e) => {
+      e.stopPropagation();
+      if (onClick) { pop.remove(); onClick(); }
+      else if (pop.isOpen() && Date.now() - openedAt > 400) pop.remove();
+      else if (!pop.isOpen()) open();
+    });
+    m.__pop = pop;
     markers.push(m);
   }
+
+  const note = (s) => (s.note ? `<span class="note">${s.note}</span>` : "");
 
   function draw(points) {
     const { segments, pts } = analyse(points, config);
@@ -322,7 +343,8 @@
     window.__points = points;
     if (styleReady) map.getSource("route").setData(geo);
 
-    markers.forEach((m) => m.remove());
+    markers.forEach((m) => { m.__pop.remove(); m.remove(); });
+    overMarker = false;
     markers = [];
     if (!pts.length) return;
     const first = pts[0], last = pts[pts.length - 1];
@@ -333,10 +355,10 @@
       if (s.type === "flight") {
         el.innerHTML = PLANE_SVG;
         el.firstChild.style.transform = `rotate(${Math.round(s.heading)}deg)`;
-        addMarker(el, s.mid, `Flight · ${fmtInt(s.km)} km, not counted`);
+        addMarker(el, s.mid, `Flight · ${fmtInt(s.km)} km, not counted${note(s)}`);
       } else {
         el.innerHTML = GROUND[s.type].svg;
-        addMarker(el, s.mid, `${GROUND[s.type].label} · ${fmtInt(s.km)} km, not counted`);
+        addMarker(el, s.mid, `${GROUND[s.type].label} · ${fmtInt(s.km)} km, not counted${note(s)}`);
       }
     }
     const st = document.createElement("div"); st.className = "start";
@@ -516,8 +538,10 @@
       const r = summaryData.records.highest, mid = pts[Math.floor(pts.length / 2)];
       const at = g.keys.includes("highest") && r.lat != null ? peakPosition(pts, r) : [mid.x, mid.lat];
       const el = document.createElement("div"); el.className = "trophy"; el.innerHTML = TROPHY_SVG;
-      el.addEventListener("click", () => { if (activeRec !== g.keys[0]) showRecord(g.keys[0], false); });
-      addMarker(el, at, html);
+      addMarker(el, at, html, {
+        quiet: () => g.keys.includes(activeRec), // its label is already pinned
+        onClick: () => { if (!g.keys.includes(activeRec)) showRecord(g.keys[0], false); },
+      });
     }
     drawCountries(all);
     recordsGeo = { type: "FeatureCollection", features: feats };

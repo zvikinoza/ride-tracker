@@ -397,6 +397,7 @@ h1 {
   -webkit-backdrop-filter: blur(10px);
 }
 .maplibregl-popup.quiet .maplibregl-popup-tip { display: none; }
+.maplibregl-popup.quiet .note { display: block; margin-top: 5px; color: var(--muted); line-height: 1.4; }
 .maplibregl-popup.quiet { pointer-events: none; } /* labels never steal the hover from what they describe */
 
 /* Mobile */
