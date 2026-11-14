@@ -424,9 +424,16 @@
     };
     const days = dayCount(config.start_date);
     if (sp.water) {
-      const litres = (km / 100) * (sp.water.litres_per_100km ?? 8) + (sp.water.litres_extra ?? 0);
-      $("litres").textContent = `≈ ${fmtInt(litres)} L`;
-      $("litres-label").innerHTML = `${brand(sp.water, "water")} <span>drunk</span>`;
+      if (sp.water.bottles_per_day != null) { // bottles a day on average, counted over every day on the road
+        const bottles = days * sp.water.bottles_per_day + (sp.water.bottles_extra ?? 0);
+        $("litres").textContent = `≈ ${fmtInt(bottles)}`;
+        $("litres-label").innerHTML = `${brand(sp.water, "water")} <span>bottles drunk</span>`;
+        $("litres").title = `${sp.water.bottles_per_day} bottles a day on average × ${days} days`;
+      } else {
+        const litres = (km / 100) * (sp.water.litres_per_100km ?? 8) + (sp.water.litres_extra ?? 0);
+        $("litres").textContent = `≈ ${fmtInt(litres)} L`;
+        $("litres-label").innerHTML = `${brand(sp.water, "water")} <span>drunk</span>`;
+      }
       if (sp.water.icon) $("water-icon").src = sp.water.icon;
     }
     if (sp.data) {

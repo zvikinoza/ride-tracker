@@ -19,10 +19,10 @@
     "water": {
       "name": "Nabeghlavi",
       "url": "https://nabeghlavi.ge/",
-      "litres_per_100km": 8,
-      "litres_extra": 0,
       "logo": "assets/nabeghlavi-wordmark.png",
-      "icon": "assets/nabeghlavi-bottle.png"
+      "icon": "assets/nabeghlavi-bottle.png",
+      "bottles_per_day": 2.332,
+      "bottles_extra": 0
     },
     "data": {
       "name": "Cellfie",
