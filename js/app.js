@@ -399,7 +399,6 @@
   function render(points, summary) {
     const a = analyse(points, config);
     const km = summary && typeof summary.total_km === "number" ? summary.total_km : a.km; // Strava's own total when we have it
-    const flights = a.flights;
     $("km").textContent = points.length ? fmtInt(km) : "—";
     $("days").textContent = fmtInt(dayCount(config.start_date));
     const hours = summary && summary.moving_h, climbed = summary && summary.elev_m;
@@ -432,8 +431,6 @@
     if (config.start_date) parts.push(`Left ${config.start_place ? config.start_place + " on " : ""}${fmtDate(config.start_date)}`);
     const nCountries = summary && summary.countries ? summary.countries.length : 0;
     if (nCountries) parts.push(`${nCountries} countries`);
-    if (flights) parts.push(`${flights} flight${flights === 1 ? "" : "s"}`);
-    for (const [mode, n] of Object.entries(a.ground)) parts.push(`${n} ${mode}${n === 1 ? "" : mode === "bus" ? "es" : "s"}`);
     $("meta").textContent = parts.join(" · ");
 
     const links = (config.links || []).filter((l) => l.url);
