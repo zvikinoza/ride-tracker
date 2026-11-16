@@ -261,7 +261,8 @@ h1 {
   text-underline-offset: 3px;
 }
 .links a:hover { color: var(--ink); }
-.brand .links { margin: 8px 0 0; font-size: 12.5px; pointer-events: auto; }
+.brand-row { display: flex; align-items: baseline; gap: 6px 18px; }
+.brand .links { margin: 0; font-size: 12.5px; pointer-events: auto; white-space: nowrap; }
 .brand .links:empty { display: none; }
 .links a + a { margin-left: 14px; }
 .links a { display: inline-flex; align-items: center; gap: 5px; text-decoration: none; }
@@ -409,7 +410,13 @@ h1 {
 
 /* Mobile */
 @media (max-width: 640px) {
-  .brand { left: 12px; top: max(12px, env(safe-area-inset-top)); padding: 14px 18px 16px; border-radius: 20px; }
+  .brand { left: 12px; right: 56px; top: max(12px, env(safe-area-inset-top)); padding: 10px 14px 11px; border-radius: 18px; }
+  .brand .eyebrow { margin-bottom: 2px; font-size: 10px; }
+  .brand h1 { font-size: 23px; white-space: nowrap; }
+  .brand-row { justify-content: space-between; gap: 10px; }
+  .brand .links { font-size: 11.5px; }
+  .links a + a { margin-left: 10px; }
+  .links svg { width: 13px; height: 13px; }
   h1 { font-size: 28px; }
   .panel {
     left: 12px; right: 12px; bottom: max(12px, env(safe-area-inset-bottom));
