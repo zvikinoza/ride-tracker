@@ -263,7 +263,7 @@ h1 {
 .links a:hover { color: var(--ink); }
 #rider a { color: inherit; text-decoration: none; pointer-events: auto; white-space: nowrap; }
 #rider a:hover { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; }
-#rider svg { width: 0.58em; height: 0.58em; margin-left: 0.18em; vertical-align: 0.04em; fill: none; stroke: currentColor; stroke-width: 1.8; opacity: 0.75; }
+#rider svg { width: 0.58em; height: 0.58em; margin-right: 0.16em; vertical-align: 0.04em; fill: none; stroke: currentColor; stroke-width: 1.8; opacity: 0.75; }
 #rider svg .dotfill { fill: currentColor; stroke: none; }
 .brand .links:empty { display: none; }
 .links a + a { margin-left: 14px; }

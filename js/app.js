@@ -437,12 +437,12 @@
     $("meta").textContent = parts.join(" · ");
 
     const links = (config.links || []).filter((l) => l.url);
-    // Each rider's name in the title links to their Instagram, with a small icon after it.
+    // Each rider's name in the title links to their Instagram, with a small icon before it.
     const IG = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" class="dotfill"/></svg>';
     const esc = (t) => t.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
     let title = esc(config.rider || "");
     for (const l of links) {
-      title = title.replace(esc(l.label), `<a href="${l.url}" target="_blank" rel="noopener" title="${esc(l.label)} on Instagram">${esc(l.label)}${l.icon === "instagram" ? IG : ""}</a>`);
+      title = title.replace(esc(l.label), `<a href="${l.url}" target="_blank" rel="noopener" title="${esc(l.label)} on Instagram">${l.icon === "instagram" ? IG : ""}${esc(l.label)}</a>`);
     }
     $("rider").innerHTML = title;
   }
