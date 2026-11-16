@@ -83,8 +83,8 @@ h1 {
   left: 24px;
   bottom: max(24px, env(safe-area-inset-bottom));
   z-index: 500;
-  width: 340px;
-  padding: 24px 24px 20px;
+  width: 330px;
+  padding: 20px 22px 17px;
 }
 
 /* Glass surfaces: translucent gradient, deep blur, a bright specular edge and a soft drop shadow. */
@@ -116,11 +116,11 @@ h1 {
 }
 .stat { display: flex; flex-direction: column; }
 .stat[hidden] { display: none; }
-.stat:nth-child(n+3) .num { font-size: 30px; }
+.stat:nth-child(n+3) .num { font-size: 27px; }
 .num {
   font-family: var(--serif);
   font-weight: 300;
-  font-size: 40px;
+  font-size: 36px;
   line-height: 1;
   font-variant-numeric: tabular-nums;
   letter-spacing: -0.02em;
@@ -419,24 +419,27 @@ h1 {
   .panel {
     left: 12px; right: 12px; bottom: max(12px, env(safe-area-inset-bottom));
     width: auto;
-    padding: 14px 18px 12px;
-    border-radius: 20px;
+    padding: 11px 16px 9px;
+    border-radius: 18px;
   }
-  .stats { gap: 14px; padding-bottom: 10px; }
-  .num { font-size: 30px; }
-  .stat:nth-child(n+3) .num { font-size: 24px; }
-  .stats { row-gap: 8px; }
-  .label { margin-top: 3px; font-size: 11.5px; }
-  .last { margin-top: 10px; font-size: 14px; }
-  .sponsor-stats { margin-top: 10px; padding-top: 10px; gap: 10px; }
-  .records { grid-template-columns: repeat(4, 1fr); gap: 4px; margin-top: 10px; padding-top: 10px; }
+  .stats { gap: 12px; padding-bottom: 8px; }
+  .num { font-size: 25px; }
+  .stat:nth-child(n+3) .num { font-size: 20px; }
+  .stats { row-gap: 5px; }
+  .label { margin-top: 1px; font-size: 10.5px; }
+  .last { margin-top: 8px; font-size: 13px; }
+  .sponsor-stats { margin-top: 8px; padding-top: 8px; gap: 10px; }
+  .water-icon { height: 34px; }
+  .signal { width: 16px; height: 16px; }
+  .brand-img.data { height: 16px; }
+  .records { grid-template-columns: repeat(4, 1fr); gap: 4px; margin-top: 8px; padding-top: 8px; }
   .rec { padding: 4px 4px; margin: -4px 0; }
-  .rec-num { font-size: 16px; }
-  .rec-label { font-size: 10px; }
+  .rec-num { font-size: 14.5px; }
+  .rec-label { font-size: 9.5px; }
   .rec-label::before { width: 5px; height: 5px; margin-right: 3px; }
   .rec-date { display: none; }
-  .mini-num { font-size: 20px; }
-  .meta { margin-top: 6px; font-size: 12px; }
+  .mini-num { font-size: 17px; }
+  .meta { margin-top: 5px; font-size: 11px; }
   .maplibregl-ctrl-top-right .maplibregl-ctrl-group:not(.theme-toggle):not(.view-toggle) { display: none; } /* no +/- on phones, keep the theme toggle */
   .maplibregl-ctrl-top-right { top: max(14px, env(safe-area-inset-top)); }
   .maplibregl-ctrl-bottom-right { top: 0; bottom: auto; }
