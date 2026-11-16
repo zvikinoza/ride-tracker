@@ -229,6 +229,8 @@
     map.addControl(new ViewToggle(), "top-right");
     map.addControl(new ThemeToggle(), "top-right");
     map.on("style.load", addLayers);
+    window.addEventListener("resize", () => requestAnimationFrame(syncPadding));
+    if (window.ResizeObserver) { const ro = new ResizeObserver(() => syncPadding()); ro.observe(document.querySelector(".panel")); ro.observe(document.querySelector(".brand")); }
     map.on("mousemove", "records-hit", (e) => {
       map.getCanvas().style.cursor = "pointer";
       if (overMarker) { if (hoverPopup) hoverPopup.remove(); return; } // the marker under the pointer shows its own label
@@ -368,20 +370,31 @@
     drawRecords();
   }
 
-  /* Room to leave for the title and stats card. Shrinks on short or narrow screens (a phone held sideways),
-     where the full padding would not leave any map to fit things into. */
+  /* The part of the screen the map can actually be seen in: between the title plate and the stats card on phones,
+     right of the stats card on wider screens. Measured from the boxes themselves, so it stays right when they change
+     size, and capped so a very small screen (a phone held sideways) still has some map to fit things into. */
   const uiPadding = () => {
-    const p = window.innerWidth < 640 ? { top: 110, left: 20, bottom: 260, right: 20 } : { top: 80, left: 180, bottom: 40, right: 40 };
     const c = map.getCanvas(), w = c.clientWidth || 1, h = c.clientHeight || 1;
+    const box = (sel) => { const el = document.querySelector(sel); return el ? el.getBoundingClientRect() : null; };
+    const brand = box(".brand"), panel = box(".panel"), gap = 10;
+    let p;
+    if (w < 640) {
+      p = { top: brand ? brand.bottom + gap : 0, bottom: panel ? h - panel.top + gap : 0, left: 12, right: 12 };
+    } else {
+      p = { top: brand ? brand.bottom + gap : 0, bottom: 20, left: panel ? panel.right + gap : 0, right: 50 };
+    }
     const fx = Math.max(0, Math.min(1, (w - 80) / (p.left + p.right))), fy = Math.max(0, Math.min(1, (h - 80) / (p.top + p.bottom)));
     return { top: Math.round(p.top * fy), bottom: Math.round(p.bottom * fy), left: Math.round(p.left * fx), right: Math.round(p.right * fx) };
   };
+  /* Keep the map's centre (and so the globe, zooming and flights) in the middle of the visible area. */
+  const syncPadding = () => { if (map) map.setPadding(uiPadding()); };
 
   /* First view: a regional look around where they are now (the whole route is a zoom-out away). */
   function fit(points) {
     if (!points.length) return;
     const last = points[points.length - 1];
-    map.jumpTo({ center: [last.lon, last.lat], zoom: window.innerWidth < 640 ? 2.4 : 4.3, padding: uiPadding() });
+    syncPadding();
+    map.jumpTo({ center: [last.lon, last.lat], zoom: window.innerWidth < 640 ? 2.4 : 4.3 });
   }
 
   // ---------- data ----------
@@ -601,6 +614,7 @@
       const xs = pts.map((p) => p.x), ys = pts.map((p) => p.lat);
       try {
         map.fitBounds([[Math.min(...xs), Math.min(...ys)], [Math.max(...xs), Math.max(...ys)]], { padding: uiPadding(), maxZoom: 9.5, duration: 1600 });
+        map.once("moveend", syncPadding);
       } catch (e) { map.flyTo({ center: at, zoom: 8, duration: 1600 }); } // no room to fit: just go there
     }
   }
