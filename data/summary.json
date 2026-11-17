@@ -1,22 +1,22 @@
 {
-  "updated": "2026-11-15T17:06:51Z",
+  "updated": "2026-11-17T02:54:49Z",
   "source": "strava",
-  "rides": 95,
-  "riding_days": 95,
-  "total_km": 9757.8,
-  "elev_m": 75696,
-  "moving_h": 631.0,
+  "rides": 96,
+  "riding_days": 96,
+  "total_km": 9868.7,
+  "elev_m": 76484,
+  "moving_h": 637.6,
   "last": {
-    "t": "2026-11-15T12:55:26Z",
-    "lat": 24.838,
-    "lon": 103.33127
+    "t": "2026-11-16T10:52:38Z",
+    "lat": 23.99923,
+    "lon": 103.34666
   },
   "last_ride": {
     "name": "Morning Ride",
-    "start": "2026-11-15T01:06:45Z",
-    "km": 131.58
+    "start": "2026-11-16T01:24:50Z",
+    "km": 110.88
   },
-  "place": "Kunming, China",
+  "place": "Mile City, China",
   "records": {
     "furthest": {
       "date": "2026-07-19",
