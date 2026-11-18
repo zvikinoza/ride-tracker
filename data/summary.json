@@ -1,22 +1,22 @@
 {
-  "updated": "2026-11-17T02:54:49Z",
+  "updated": "2026-11-18T07:24:26Z",
   "source": "strava",
-  "rides": 96,
-  "riding_days": 96,
-  "total_km": 9868.7,
-  "elev_m": 76484,
-  "moving_h": 637.6,
+  "rides": 97,
+  "riding_days": 97,
+  "total_km": 10016.7,
+  "elev_m": 77895,
+  "moving_h": 646.9,
   "last": {
-    "t": "2026-11-16T10:52:38Z",
-    "lat": 23.99923,
-    "lon": 103.34666
+    "t": "2026-11-17T13:37:56Z",
+    "lat": 23.00977,
+    "lon": 103.64352
   },
   "last_ride": {
     "name": "Morning Ride",
-    "start": "2026-11-16T01:24:50Z",
-    "km": 110.88
+    "start": "2026-11-17T01:08:56Z",
+    "km": 148.04
   },
-  "place": "Mile City, China",
+  "place": "Pingbian, China",
   "records": {
     "furthest": {
       "date": "2026-07-19",

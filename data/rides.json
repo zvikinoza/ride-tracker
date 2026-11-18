@@ -2245,5 +2245,25 @@
    "name": "China"
   },
   "crossings": []
+ },
+ "21028913980": {
+  "name": "Morning Ride",
+  "start": "2026-11-17T01:08:56Z",
+  "start_local": "2026-11-17T09:08:56Z",
+  "km": 148.04,
+  "elapsed_s": 44940,
+  "moving_s": 33333,
+  "elev_m": 1411.0,
+  "elev_high": 1558.0,
+  "points": 440,
+  "c_start": {
+   "code": "CN",
+   "name": "China"
+  },
+  "c_end": {
+   "code": "CN",
+   "name": "China"
+  },
+  "crossings": []
  }
 }
