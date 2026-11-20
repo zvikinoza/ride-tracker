@@ -1,22 +1,22 @@
 {
-  "updated": "2026-11-18T07:24:26Z",
+  "updated": "2026-11-20T03:10:32Z",
   "source": "strava",
-  "rides": 97,
-  "riding_days": 97,
-  "total_km": 10016.7,
-  "elev_m": 77895,
-  "moving_h": 646.9,
+  "rides": 98,
+  "riding_days": 98,
+  "total_km": 10128.4,
+  "elev_m": 78838,
+  "moving_h": 653.9,
   "last": {
-    "t": "2026-11-17T13:37:56Z",
-    "lat": 23.00977,
-    "lon": 103.64352
+    "t": "2026-11-18T11:16:58Z",
+    "lat": 22.50975,
+    "lon": 103.96196
   },
   "last_ride": {
     "name": "Morning Ride",
-    "start": "2026-11-17T01:08:56Z",
-    "km": 148.04
+    "start": "2026-11-18T01:01:24Z",
+    "km": 111.65
   },
-  "place": "Pingbian, China",
+  "place": "Hekou, China",
   "records": {
     "furthest": {
       "date": "2026-07-19",
