@@ -2285,5 +2285,33 @@
    "name": "China"
   },
   "crossings": []
+ },
+ "21057671140": {
+  "name": "Morning Ride",
+  "start": "2026-11-20T01:16:55Z",
+  "start_local": "2026-11-20T09:16:55Z",
+  "km": 87.05,
+  "elapsed_s": 38930,
+  "moving_s": 21072,
+  "elev_m": 898.0,
+  "elev_high": 131.6,
+  "points": 268,
+  "c_start": {
+   "code": "CN",
+   "name": "China"
+  },
+  "c_end": {
+   "code": "VN",
+   "name": "Vietnam"
+  },
+  "crossings": [
+   {
+    "code": "VN",
+    "name": "Vietnam",
+    "t": "2026-11-20T01:21:25Z",
+    "lat": 22.50687,
+    "lon": 103.96518
+   }
+  ]
  }
 }

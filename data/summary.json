@@ -1,22 +1,22 @@
 {
-  "updated": "2026-11-20T03:10:32Z",
+  "updated": "2026-11-20T12:51:29Z",
   "source": "strava",
-  "rides": 98,
-  "riding_days": 98,
-  "total_km": 10128.4,
-  "elev_m": 78838,
-  "moving_h": 653.9,
+  "rides": 99,
+  "riding_days": 99,
+  "total_km": 10215.4,
+  "elev_m": 79736,
+  "moving_h": 659.8,
   "last": {
-    "t": "2026-11-18T11:16:58Z",
-    "lat": 22.50975,
-    "lon": 103.96196
+    "t": "2026-11-20T12:05:45Z",
+    "lat": 22.0683,
+    "lon": 104.46486
   },
   "last_ride": {
     "name": "Morning Ride",
-    "start": "2026-11-18T01:01:24Z",
-    "km": 111.65
+    "start": "2026-11-20T01:16:55Z",
+    "km": 87.05
   },
-  "place": "Hekou, China",
+  "place": "Châu Quế Commune, Vietnam",
   "records": {
     "furthest": {
       "date": "2026-07-19",
@@ -155,6 +155,14 @@
       "t": "2026-10-05T13:34:07Z",
       "lat": 44.15703,
       "lon": 80.40645
+    },
+    {
+      "code": "VN",
+      "name": "Vietnam",
+      "date": "2026-11-20",
+      "t": "2026-11-20T01:21:25Z",
+      "lat": 22.50687,
+      "lon": 103.96518
     }
   ]
 }
