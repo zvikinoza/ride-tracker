@@ -2313,5 +2313,25 @@
     "lon": 103.96518
    }
   ]
+ },
+ "21077864415": {
+  "name": "Morning Ride",
+  "start": "2026-11-21T00:11:35Z",
+  "start_local": "2026-11-21T07:11:35Z",
+  "km": 101.38,
+  "elapsed_s": 45912,
+  "moving_s": 27158,
+  "elev_m": 1418.0,
+  "elev_high": 344.6,
+  "points": 314,
+  "c_start": {
+   "code": "VN",
+   "name": "Vietnam"
+  },
+  "c_end": {
+   "code": "VN",
+   "name": "Vietnam"
+  },
+  "crossings": []
  }
 }

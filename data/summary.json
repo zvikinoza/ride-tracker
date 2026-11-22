@@ -1,22 +1,22 @@
 {
-  "updated": "2026-11-20T12:51:29Z",
+  "updated": "2026-11-22T02:12:13Z",
   "source": "strava",
-  "rides": 99,
-  "riding_days": 99,
-  "total_km": 10215.4,
-  "elev_m": 79736,
-  "moving_h": 659.8,
+  "rides": 100,
+  "riding_days": 100,
+  "total_km": 10316.8,
+  "elev_m": 81154,
+  "moving_h": 667.3,
   "last": {
-    "t": "2026-11-20T12:05:45Z",
-    "lat": 22.0683,
-    "lon": 104.46486
+    "t": "2026-11-21T12:56:47Z",
+    "lat": 21.57366,
+    "lon": 104.52628
   },
   "last_ride": {
     "name": "Morning Ride",
-    "start": "2026-11-20T01:16:55Z",
-    "km": 87.05
+    "start": "2026-11-21T00:11:35Z",
+    "km": 101.38
   },
-  "place": "Châu Quế Commune, Vietnam",
+  "place": "Cau Thia Ward, Vietnam",
   "records": {
     "furthest": {
       "date": "2026-07-19",
