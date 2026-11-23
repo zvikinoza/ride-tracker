@@ -1,22 +1,22 @@
 {
-  "updated": "2026-11-22T02:12:13Z",
+  "updated": "2026-11-23T07:32:39Z",
   "source": "strava",
-  "rides": 100,
-  "riding_days": 100,
-  "total_km": 10316.8,
-  "elev_m": 81154,
-  "moving_h": 667.3,
+  "rides": 101,
+  "riding_days": 101,
+  "total_km": 10443.0,
+  "elev_m": 82773,
+  "moving_h": 676.3,
   "last": {
-    "t": "2026-11-21T12:56:47Z",
-    "lat": 21.57366,
-    "lon": 104.52628
+    "t": "2026-11-22T14:24:45Z",
+    "lat": 20.95853,
+    "lon": 104.71953
   },
   "last_ride": {
     "name": "Morning Ride",
-    "start": "2026-11-21T00:11:35Z",
-    "km": 101.38
+    "start": "2026-11-22T01:36:06Z",
+    "km": 126.2
   },
-  "place": "Cau Thia Ward, Vietnam",
+  "place": "Son La province, Vietnam",
   "records": {
     "furthest": {
       "date": "2026-07-19",
