@@ -2353,5 +2353,33 @@
    "name": "Vietnam"
   },
   "crossings": []
+ },
+ "21106743472": {
+  "name": "Morning Ride",
+  "start": "2026-11-23T01:56:48Z",
+  "start_local": "2026-11-23T08:56:48Z",
+  "km": 102.68,
+  "elapsed_s": 45169,
+  "moving_s": 30202,
+  "elev_m": 1783.0,
+  "elev_high": 1342.6,
+  "points": 323,
+  "c_start": {
+   "code": "VN",
+   "name": "Vietnam"
+  },
+  "c_end": {
+   "code": "LA",
+   "name": "Laos"
+  },
+  "crossings": [
+   {
+    "code": "LA",
+    "name": "Laos",
+    "t": "2026-11-23T11:05:31Z",
+    "lat": 20.72625,
+    "lon": 104.49075
+   }
+  ]
  }
 }

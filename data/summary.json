@@ -1,22 +1,22 @@
 {
-  "updated": "2026-11-23T07:32:39Z",
+  "updated": "2026-11-24T17:40:00Z",
   "source": "strava",
-  "rides": 101,
-  "riding_days": 101,
-  "total_km": 10443.0,
-  "elev_m": 82773,
-  "moving_h": 676.3,
+  "rides": 102,
+  "riding_days": 102,
+  "total_km": 10545.7,
+  "elev_m": 84556,
+  "moving_h": 684.7,
   "last": {
-    "t": "2026-11-22T14:24:45Z",
-    "lat": 20.95853,
-    "lon": 104.71953
+    "t": "2026-11-23T14:29:37Z",
+    "lat": 20.70712,
+    "lon": 104.38435
   },
   "last_ride": {
     "name": "Morning Ride",
-    "start": "2026-11-22T01:36:06Z",
-    "km": 126.2
+    "start": "2026-11-23T01:56:48Z",
+    "km": 102.68
   },
-  "place": "Son La province, Vietnam",
+  "place": "Phiangxai, Laos",
   "records": {
     "furthest": {
       "date": "2026-07-19",
@@ -163,6 +163,14 @@
       "t": "2026-11-20T01:21:25Z",
       "lat": 22.50687,
       "lon": 103.96518
+    },
+    {
+      "code": "LA",
+      "name": "Laos",
+      "date": "2026-11-23",
+      "t": "2026-11-23T11:05:31Z",
+      "lat": 20.72625,
+      "lon": 104.49075
     }
   ]
 }
