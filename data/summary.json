@@ -1,22 +1,22 @@
 {
-  "updated": "2026-11-24T17:40:00Z",
+  "updated": "2026-11-25T02:24:15Z",
   "source": "strava",
-  "rides": 102,
-  "riding_days": 102,
-  "total_km": 10545.7,
-  "elev_m": 84556,
-  "moving_h": 684.7,
+  "rides": 103,
+  "riding_days": 103,
+  "total_km": 10626.4,
+  "elev_m": 86023,
+  "moving_h": 692.1,
   "last": {
-    "t": "2026-11-23T14:29:37Z",
-    "lat": 20.70712,
-    "lon": 104.38435
+    "t": "2026-11-24T12:36:56Z",
+    "lat": 20.41217,
+    "lon": 104.04839
   },
   "last_ride": {
     "name": "Morning Ride",
-    "start": "2026-11-23T01:56:48Z",
-    "km": 102.68
+    "start": "2026-11-24T02:39:30Z",
+    "km": 80.66
   },
-  "place": "Phiangxai, Laos",
+  "place": "Phouviang (Houa Phan), Laos",
   "records": {
     "furthest": {
       "date": "2026-07-19",

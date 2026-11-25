@@ -2381,5 +2381,25 @@
     "lon": 104.49075
    }
   ]
+ },
+ "21113973998": {
+  "name": "Morning Ride",
+  "start": "2026-11-24T02:39:30Z",
+  "start_local": "2026-11-24T09:39:30Z",
+  "km": 80.66,
+  "elapsed_s": 35846,
+  "moving_s": 26453,
+  "elev_m": 1467.0,
+  "elev_high": 1121.0,
+  "points": 250,
+  "c_start": {
+   "code": "LA",
+   "name": "Laos"
+  },
+  "c_end": {
+   "code": "LA",
+   "name": "Laos"
+  },
+  "crossings": []
  }
 }
