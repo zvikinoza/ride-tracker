@@ -1,22 +1,22 @@
 {
-  "updated": "2026-11-25T14:18:05Z",
+  "updated": "2026-11-26T21:28:32Z",
   "source": "strava",
-  "rides": 104,
-  "riding_days": 104,
-  "total_km": 10724.1,
-  "elev_m": 88375,
-  "moving_h": 702.3,
+  "rides": 105,
+  "riding_days": 105,
+  "total_km": 10809.6,
+  "elev_m": 90407,
+  "moving_h": 711.2,
   "last": {
-    "t": "2026-11-25T13:53:41Z",
-    "lat": 20.03155,
-    "lon": 103.71816
+    "t": "2026-11-26T13:26:08Z",
+    "lat": 19.63019,
+    "lon": 103.55782
   },
   "last_ride": {
     "name": "Morning Ride",
-    "start": "2026-11-25T01:33:05Z",
-    "km": 97.79
+    "start": "2026-11-26T01:25:04Z",
+    "km": 85.49
   },
-  "place": "Nam Neun, Laos",
+  "place": "Chomthong-Tai, Laos",
   "records": {
     "furthest": {
       "date": "2026-07-19",
