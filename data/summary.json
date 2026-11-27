@@ -1,22 +1,22 @@
 {
-  "updated": "2026-11-26T21:28:32Z",
+  "updated": "2026-11-27T13:51:34Z",
   "source": "strava",
-  "rides": 105,
-  "riding_days": 105,
-  "total_km": 10809.6,
-  "elev_m": 90407,
-  "moving_h": 711.2,
+  "rides": 106,
+  "riding_days": 106,
+  "total_km": 10895.3,
+  "elev_m": 91475,
+  "moving_h": 718.2,
   "last": {
-    "t": "2026-11-26T13:26:08Z",
-    "lat": 19.63019,
-    "lon": 103.55782
+    "t": "2026-11-27T12:17:58Z",
+    "lat": 19.33038,
+    "lon": 103.36787
   },
   "last_ride": {
     "name": "Morning Ride",
-    "start": "2026-11-26T01:25:04Z",
-    "km": 85.49
+    "start": "2026-11-27T02:09:26Z",
+    "km": 85.7
   },
-  "place": "Chomthong-Tai, Laos",
+  "place": "Phiavat, Laos",
   "records": {
     "furthest": {
       "date": "2026-07-19",
